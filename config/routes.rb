@@ -4,4 +4,13 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
+
+  namespace :account do
+    scope 'profile' do
+     controller :profile do
+       get :password
+       put :update_password
+     end
+   end
+  end
 end

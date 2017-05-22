@@ -19,6 +19,6 @@ class User < ApplicationRecord
 
   private
   def need_validate_password
-    self.new_record? || (!self.pasword.nil? || !self.password_confirmation.nil?)
+    self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
   end
 end
