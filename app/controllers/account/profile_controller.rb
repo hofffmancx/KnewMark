@@ -1,4 +1,5 @@
 class Account::ProfileController < ApplicationController
+  before_action :require_login
   def password
   end
 
