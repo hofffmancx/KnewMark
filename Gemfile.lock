@@ -41,6 +41,11 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.7.2)
       execjs
+    awesome_print (1.7.0)
+    awesome_rails_console (0.4.0)
+      awesome_print
+      pry-rails
+      railties
     bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
@@ -105,6 +110,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     puma (3.8.2)
     rack (2.0.3)
     rack-test (0.6.3)
@@ -168,11 +175,6 @@ GEM
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
       oauth2 (~> 1.0, >= 0.8.0)
-    spring (2.0.2)
-      activesupport (>= 4.2)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -204,6 +206,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_rails_console
   bootstrap-sass
   coffee-rails (~> 4.2)
   font-awesome-rails
@@ -217,8 +220,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   simple_form
   sorcery
-  spring
-  spring-watcher-listen (~> 2.0.0)
   sqlite3
   turbolinks (~> 5)
   tzinfo-data

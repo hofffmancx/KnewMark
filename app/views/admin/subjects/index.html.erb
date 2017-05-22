@@ -1,0 +1,5 @@
+<% @subjects.each do |subject| %>
+  <%= link_to(subject.title, admin_subject_path(subject) )%>
+<% end %>
+
+ <%= link_to("新增主题", new_admin_subject_path, class: "btn btn-primary btn-sm") %>
