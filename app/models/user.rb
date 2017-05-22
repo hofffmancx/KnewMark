@@ -17,6 +17,10 @@ class User < ApplicationRecord
     self.email.split('@').first
   end
 
+  def admin?
+    is_admin
+  end
+
   private
   def need_validate_password
     self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
