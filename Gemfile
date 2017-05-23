@@ -39,6 +39,10 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'awesome_rails_console'
+gem 'nested_form_fields'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ckeditor'
 
 group :development, :test do
   gem 'rspec-rails'

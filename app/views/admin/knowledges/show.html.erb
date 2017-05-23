@@ -1,0 +1,25 @@
+<div class="pull-right">
+
+  <% case @knowledge.status %>
+  <% when "published" %>
+    <%= link_to("下线产品", hide_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+  <% when "hidden" %>
+    <%= link_to("上线产品", publish_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+    <%= link_to("驳回产品", reject_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+  <% when "failed" %>
+    <%= link_to("重新上线产品", publish_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+  <% end %>
+
+  <%= link_to("编辑", edit_admin_knowledge_path(@knowledge), class: "btn btn-sm btn-success") %> |
+  <%= link_to("删除", admin_knowledge_path(@knowledge), :method => :delete, class: "btn btn-sm btn-danger") %>
+</div>
+<h3><%= @knowledge.title %></h3>
+<small>--<%= @knowledge.subtitle %></small>
+<hr>
+<% @knowledge.photos.each do |photo| %>
+  <%= image_tag(photo.image.thumb.url) %>
+<% end %>
+<hr>
+<p>产品介绍: <br><%= sanitize @knowledge.description %> </p>
+<p>适宜人群: <br><%= sanitize @knowledge.appropriate %> </p>
+<p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
