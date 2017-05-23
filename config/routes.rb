@@ -19,8 +19,9 @@ Rails.application.routes.draw do
     resources :subjects
     resources :knowledges do
       member do
-        post :hide
+        post :reject
         post :publish
+        post :hide
       end
     end
   end

@@ -1,9 +1,15 @@
 <div class="pull-right">
-  <% if @knowledge.is_hidden? %>
-    <%= link_to("上线产品", publish_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
-  <% else %>
+
+  <% case @knowledge.status %>
+  <% when "published" %>
     <%= link_to("下线产品", hide_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+  <% when "hidden" %>
+    <%= link_to("上线产品", publish_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+    <%= link_to("驳回产品", reject_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
+  <% when "failed" %>
+    <%= link_to("重新上线产品", publish_admin_knowledge_path(@knowledge), :method => :post, class: "btn btn-sm btn-default") %> |
   <% end %>
+
   <%= link_to("编辑", edit_admin_knowledge_path(@knowledge), class: "btn btn-sm btn-success") %> |
   <%= link_to("删除", admin_knowledge_path(@knowledge), :method => :delete, class: "btn btn-sm btn-danger") %>
 </div>

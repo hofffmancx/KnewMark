@@ -5,10 +5,12 @@ class Admin::KnowledgesController < ApplicationController
 
   def index
     @knowledges = case params[:status]
-    when "by_hidden"
-      Knowledge.where(:is_hidden => true).all
     when "by_published"
-      Knowledge.where(:is_hidden => false).all
+      Knowledge.where(:status => "published").all
+    when "by_failed"
+      Knowledge.where(:status => "failed").all
+    when "by_hidden"
+      Knowledge.where(:status => "hidden").all
     else
       Knowledge.all.recent
     end
@@ -56,8 +58,15 @@ class Admin::KnowledgesController < ApplicationController
 
   def hide
     @knowledge = Knowledge.find(params[:id])
-    @knowledge.hide!
-    flash[:notice] = "产品已下线"
+    @knowledge.reject!
+    flash[:alert] = "产品已下线"
+    redirect_to :back
+  end
+
+  def reject
+    @knowledge = Knowledge.find(params[:id])
+    @knowledge.reject!
+    flash[:alert] = "产品驳回，已通知重新修改"
     redirect_to :back
   end
 

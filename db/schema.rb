@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170523082608) do
+ActiveRecord::Schema.define(version: 20170523132524) do
 
   create_table "knowledges", force: :cascade do |t|
     t.string   "title"
@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 20170523082608) do
     t.text     "description"
     t.text     "appropriate"
     t.text     "notice"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.boolean  "is_hidden",   default: true
+    t.string   "status",      default: "hidden"
     t.index ["title"], name: "index_knowledges_on_title"
   end
 

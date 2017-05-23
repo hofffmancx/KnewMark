@@ -2,12 +2,12 @@ class KnowledgesController < ApplicationController
   before_action :require_login, :only => [:new, :create]
 
   def index
-    @knowledges = Knowledge.where(:is_hidden => false).recent
+    @knowledges = Knowledge.where(:status => "published").recent
   end
 
   def show
     @knowledge = Knowledge.find(params[:id])
-    if @knowledge.is_hidden?
+    if !@knowledge.published?
       flash[:warning] = "此课程未上线"
       redirect_to knowledges_path
     end
