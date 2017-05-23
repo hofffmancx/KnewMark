@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522091838) do
+ActiveRecord::Schema.define(version: 20170523082608) do
+
+  create_table "knowledges", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.text     "description"
+    t.text     "appropriate"
+    t.text     "notice"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_hidden",   default: true
+    t.index ["title"], name: "index_knowledges_on_title"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "knowledge_id"
+    t.string   "image"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["knowledge_id"], name: "index_photos_on_knowledge_id"
+  end
 
   create_table "subjects", force: :cascade do |t|
     t.string   "title"

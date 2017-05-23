@@ -1,0 +1,41 @@
+<%= simple_form_for [:admin, @knowledge] do |f| %>
+  <div class="group">
+    <%= f.input :title, :label => "产品名称" %>
+  </div>
+
+  <div class="group">
+    <%= f.input :subtitle, :label => "产品副标题" %>
+  </div>
+
+  <div class="group">
+    <%= f.nested_fields_for :photos do |ff| %>
+      <%= ff.input :image %>
+      <% if ff.object.image.present? %>
+        <span>目前产品图</span><br>
+        <% @knowledge.photos.each do |p| %>
+          <%= image_tag p.image.thumb.url %><br />
+        <% end %>
+      <% end %>
+      <%= ff.remove_nested_fields_link "移除图片", :class => "btn btn-danger" %>
+    <% end %>
+    <p>
+      <%= f.add_nested_fields_link :photos, "新增图片", :class => "btn btn-info" %>
+    </p>
+  </div>
+
+  <div class="group">
+    <%= f.input :description, :label => "产品介绍", as: :ckeditor %>
+  </div>
+
+  <div class="group">
+    <%= f.input :appropriate, :label => "适宜人群", as: :ckeditor %>
+  </div>
+
+  <div class="group">
+    <%= f.input :notice, :label => "订阅须知", as: :ckeditor %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "提交", class: "btn btn-primary" %>
+  </div>
+<% end %>

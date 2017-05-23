@@ -14,6 +14,9 @@
       <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
           <li> <%= link_to("Subjects", admin_subjects_path) %> </li>
+          <li> <%= link_to("所有产品", admin_knowledges_path) %> </li>
+          <li> <%= link_to("待审核产品", admin_knowledges_path(:status => "by_hidden")) %> </li>
+          <li> <%= link_to("已上线产品", admin_knowledges_path(:status => "by_published")) %> </li>
         </ul>
       </div>
       <div class="col-md-10">
