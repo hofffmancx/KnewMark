@@ -7,7 +7,7 @@ class KnowledgesController < ApplicationController
 
   def show
     @knowledge = Knowledge.find(params[:id])
-    if !@knowledge.published?
+    unless @knowledge.status == "published"
       flash[:warning] = "此课程未上线"
       redirect_to knowledges_path
     end
