@@ -5,7 +5,16 @@ class Knowledge < ApplicationRecord
   scope :recent, -> { order("created_at DESC") }
 
   has_many :photos, :dependent => :destroy
+  has_many :scores, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => :all_blank
+
+  def find_score(user)
+    user && self.scores.where( :user_id => user.id ).first
+  end
+
+  def average_score
+    self.scores.average(:score)
+  end
 
   def hide!
     self.status = "hidden"
