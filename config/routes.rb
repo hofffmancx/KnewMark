@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
-  resources :knowledges
+  resources :knowledges do
+    collection do
+      get :search
+    end
+  end
 
   namespace :account do
     scope 'profile' do
@@ -23,6 +27,9 @@ Rails.application.routes.draw do
         post :publish
         post :hide
       end
+      collection do
+        get :search
+      end 
     end
   end
 end
