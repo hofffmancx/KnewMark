@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to new_session_path, :alert => "请先登录"
   end
+
 end

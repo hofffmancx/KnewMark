@@ -1,18 +1,9 @@
 <div class="container">
-  <div class="pull-right">
-    <%= link_to("推荐产品", new_knowledge_path, class: "btn btn-info btn-sm") %>
-  </div>
-  <br>
-  <% @knowledges.each do |knowledge| %>
-    <div class="col-md-3">
-      <%= link_to knowledge_path(knowledge) do %>
-        <% if knowledge.photos.present? %>
-          <%= image_tag(knowledge.photos[0].image.thumb.url, class: "thumbnail") %>
-        <% else %>
-          <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-        <% end %>
-        <p><%= link_to(knowledge.title, knowledge_path(knowledge)) %></p>
-      <% end %>
-    </div>
-  <% end %>
+<div class="pull-right">
+  <%= link_to("推荐产品", new_knowledge_path, class: "btn btn-info btn-sm") %>
 </div>
+<br>
+
+<%= render :partial => "knowledge_item", :collection => @knowledges, :as => :knowledge %>
+</div>
+
