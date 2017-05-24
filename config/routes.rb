@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    member do
+      post :add
+    end
   end
 
   namespace :account do
@@ -15,6 +18,11 @@ Rails.application.routes.draw do
      controller :profile do
        get :password
        put :update_password
+     end
+   end
+   resources :knowledges do
+     member do
+       post :remove
      end
    end
   end
@@ -29,7 +37,7 @@ Rails.application.routes.draw do
       end
       collection do
         get :search
-      end 
+      end
     end
   end
 end

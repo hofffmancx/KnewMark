@@ -7,6 +7,9 @@ class Knowledge < ApplicationRecord
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => :all_blank
 
+  has_many :to_learns
+  has_many :likers, :through => :to_learns, :source => :user
+
   def hide!
     self.status = "hidden"
     self.save

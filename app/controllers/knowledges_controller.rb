@@ -1,5 +1,5 @@
 class KnowledgesController < ApplicationController
-  before_action :require_login, :only => [:new, :create]
+  before_action :require_login, :only => [:new, :create, :add, :remove]
   before_action :validate_search_key, only: [:search]
 
   def index
@@ -34,6 +34,15 @@ class KnowledgesController < ApplicationController
       @knowledges = search_params
       @knowledges = @knowledges.where(:status => "published")
     end
+  end
+
+  def add
+    @knowledge = Knowledge.find(params[:id])
+    if !current_user.is_liker_of?(@knowledge)
+      current_user.add!(@knowledge)
+      flash[:notice] = "已将课程加入心愿单！"
+    end
+    redirect_to :back
   end
 
   private

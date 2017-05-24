@@ -13,6 +13,9 @@ class User < ApplicationRecord
   validates_confirmation_of :password, message: "密码不一致", if: :need_validate_password
   validates_length_of :password, minimum: 6, message: "密码最短为6位", if: :need_validate_password
 
+  has_many :to_learns
+  has_many :wishlists, :through => :to_learns, :source => :knowledge
+
   def username
     self.email.split('@').first
   end
@@ -21,7 +24,20 @@ class User < ApplicationRecord
     is_admin
   end
 
+  def is_liker_of?(knowledge)
+    wishlists.include?(knowledge)
+  end
+
+  def add!(knowledge)
+    wishlists << knowledge
+  end
+
+  def remove!(knowledge)
+    wishlists.delete(knowledge)
+  end
+
   private
+
   def need_validate_password
     self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
   end

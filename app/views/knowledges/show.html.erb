@@ -1,3 +1,12 @@
+<span class="pull-right">
+  <% if current_user && current_user.is_liker_of?(@knowledge) %>
+    <label class="label label-success"> 已加入心愿单 </label>
+    (<small> <%= @knowledge.likers.count %>人想学 </small>)
+    <%#= link_to("移出", remove_knowledge_path(@knowledge), :method => :post, :class => "btn btn-default btn-xs") %>
+  <% else %>
+    <%= link_to("想学", add_knowledge_path(@knowledge), :method => :post, :class => "btn btn-default btn-xs") %>
+  <% end %>
+</span>
 <h3><%= @knowledge.title %></h3>
 <small>--<%= @knowledge.subtitle %></small>
 <hr>
