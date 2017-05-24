@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: categories
+#
+#  id                 :integer          not null, primary key
+#  title              :string
+#  weight             :integer          default("0")
+#  knowledges_counter :integer          default("0")
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  ancestry           :string
+#
+
 class Category < ApplicationRecord
   validates :title, presence: { message: "名称不能为空" }
   validates :title, uniqueness: { message: "名称不能重复" }
