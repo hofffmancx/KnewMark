@@ -10,6 +10,11 @@
 #  updated_at         :datetime         not null
 #  ancestry           :string
 #
+# Indexes
+#
+#  index_categories_on_ancestry  (ancestry)
+#  index_categories_on_title     (title)
+#
 
 require 'rails_helper'
 

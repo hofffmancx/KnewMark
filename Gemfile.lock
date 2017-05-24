@@ -241,7 +241,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-
   action-store
   ancestry
   annotate

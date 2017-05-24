@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20170524121205) do
 
   create_table "actions", force: :cascade do |t|
@@ -26,7 +25,6 @@ ActiveRecord::Schema.define(version: 20170524121205) do
     t.index ["user_type", "user_id", "action_type"], name: "index_actions_on_user_type_and_user_id_and_action_type"
   end
 
-
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.integer  "weight",             default: 0
@@ -38,23 +36,20 @@ ActiveRecord::Schema.define(version: 20170524121205) do
     t.index ["title"], name: "index_categories_on_title"
   end
 
-
-
   create_table "knowledges", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
     t.text     "description"
     t.text     "appropriate"
     t.text     "notice"
-
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.boolean  "is_hidden",     default: true
     t.string   "status",        default: "hidden"
+    t.integer  "category_id"
     t.integer  "likes_count",   default: 0
     t.integer  "stars_count",   default: 0
     t.integer  "follows_count", default: 0
-    t.integer  "category_id"
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
@@ -98,8 +93,6 @@ ActiveRecord::Schema.define(version: 20170524121205) do
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
     t.boolean  "is_admin",                        default: false
-    t.integer  "like_knowledge_count",            default: 0
-    t.integer  "star_knowledge_count",            default: 0
     t.integer  "like_knowledges_count",           default: 0
     t.integer  "star_knowledges_count",           default: 0
     t.integer  "follow_knowledges_count",         default: 0
