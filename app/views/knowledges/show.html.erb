@@ -1,6 +1,7 @@
 <div class="container">
   <h3><%= @knowledge.title %></h3>
   <small>--<%= @knowledge.subtitle %></small>
+  <div class="raty"></div>
   <hr>
   <% @knowledge.photos.each do |photo| %>
     <%= image_tag(photo.image.thumb.url) %>
@@ -10,3 +11,9 @@
   <p>适宜人群: <br><%= sanitize @knowledge.appropriate %> </p>
   <p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
 </div>
+
+<%= content_for :page_javascript do %>
+  <script>
+    $(".raty").raty( { path: '/images/' } );
+  </script>
+<% end %>
