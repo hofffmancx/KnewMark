@@ -5,8 +5,18 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
-  resources :knowledges
+
   resources :categories, only: [:index, :show]
+
+  resources :knowledges do
+    member do
+      post :rate
+    end
+    collection do
+      get :search
+    end
+  end
+
   namespace :account do
     scope 'profile' do
      controller :profile do
@@ -25,6 +35,9 @@ Rails.application.routes.draw do
         post :publish
         post :hide
       end
+      collection do
+        get :search
+      end 
     end
   end
 end
