@@ -1,5 +1,5 @@
 class KnowledgesController < ApplicationController
-  before_action :require_login, :only => [:new, :create]
+  before_action :require_login, :only => [:new, :create, :like, :unlike, :star, :unstar, :follow, :unfollow]
 
   def index
     @knowledges = Knowledge.where(:status => "published").recent
@@ -37,6 +37,42 @@ class KnowledgesController < ApplicationController
       @knowledge.scores.create( :score => params[:score], :user => current_user )
     end
     render :json => { :average_score => @knowledge.average_score }
+  end
+
+  def like
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:like, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unlike
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:like, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def star
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:star, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unstar
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:star, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def follow
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:follow, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unfollow
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:follow, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
   end
 
   private
