@@ -43,7 +43,8 @@ gem 'nested_form_fields'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ckeditor'
-
+gem 'ancestry'
+gem 'will_paginate'
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+
   root 'welcome#index'
 
   resources :users
   resources :sessions
   resources :password_resets
   resources :knowledges
-
+  resources :categories, only: [:show] 
   namespace :account do
     scope 'profile' do
      controller :profile do
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects
+    resources :categories
     resources :knowledges do
       member do
         post :reject
