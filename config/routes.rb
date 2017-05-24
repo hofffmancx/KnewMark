@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
-  resources :knowledges
+  resources :knowledges do
+    member do
+      post :rate
+    end
+  end
 
   namespace :account do
     scope 'profile' do

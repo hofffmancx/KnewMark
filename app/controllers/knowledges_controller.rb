@@ -28,6 +28,17 @@ class KnowledgesController < ApplicationController
     end
   end
 
+  def rate
+    @knowledge = Knowledge.find(params[:id])
+    existing_score = @knowledge.find_score(current_user)
+    if existing_score
+      existing_score.update( :score => params[:score] )
+    else
+      @knowledge.scores.create( :score => params[:score], :user => current_user )
+    end
+    render :json => { :average_score => @knowledge.average_score }
+  end
+
   private
 
   def knowledge_params
