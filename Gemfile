@@ -43,6 +43,7 @@ gem 'nested_form_fields'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ckeditor'
+gem 'ransack'
 
 group :development, :test do
   gem 'rspec-rails'

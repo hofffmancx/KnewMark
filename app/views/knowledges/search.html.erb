@@ -1,0 +1,7 @@
+<% if @knowledges.present? %>
+  <h5>已为您找到 <%= @knowledges.count %>个课程</h5>
+  <hr>
+  <%= render :partial => "knowledge_item", :collection => @knowledges, :as => :knowledge %>
+<% else %>
+  抱歉，没有找到相关课程
+<% end %>

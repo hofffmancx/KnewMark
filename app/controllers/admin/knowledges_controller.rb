@@ -1,4 +1,5 @@
 class Admin::KnowledgesController < ApplicationController
+  before_action :validate_search_key, only: [:search]
   before_action :require_login
   before_action :require_admin
   layout "admin"
@@ -75,6 +76,20 @@ class Admin::KnowledgesController < ApplicationController
     @knowledge.publish!
     flash[:notice] = "产品已上线"
     redirect_to :back
+  end
+
+  def search
+    if @query_string.present?
+      @knowledges = search_params
+    end
+  end
+
+  def validate_search_key
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+  end
+
+  def search_params
+    Knowledge.ransack({:title_or_subtitle_or_description_cont => @query_string}).result(distinct: true)
   end
 
   private

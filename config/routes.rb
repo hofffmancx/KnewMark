@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     member do
       post :rate
     end
+    collection do
+      get :search
+    end
   end
 
   namespace :account do
@@ -27,6 +30,9 @@ Rails.application.routes.draw do
         post :publish
         post :hide
       end
+      collection do
+        get :search
+      end 
     end
   end
 end
