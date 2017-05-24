@@ -34,6 +34,12 @@ class User < ApplicationRecord
   validates_confirmation_of :password, message: "密码不一致", if: :need_validate_password
   validates_length_of :password, minimum: 6, message: "密码最短为6位", if: :need_validate_password
 
+  action_store :like, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :star, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
+
+
   def username
     self.email.split('@').first
   end

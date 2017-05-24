@@ -43,10 +43,12 @@ gem 'nested_form_fields'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ckeditor'
+gem 'action-store'
 gem 'ancestry'
 gem "annotate"
 gem 'will_paginate'
 gem 'ransack'
+
 
 
 group :development, :test do

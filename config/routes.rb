@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   resources :knowledges do
     member do
       post :rate
+      post :like
+      post :follow
+      post :star
+      post :unlike
+      post :unfollow
+      post :unstar
     end
     collection do
       get :search
