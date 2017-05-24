@@ -10,6 +10,9 @@ class Knowledge < ApplicationRecord
   has_many :to_learns
   has_many :likers, :through => :to_learns, :source => :user
 
+  has_many :owners
+  has_many :buyers, :through => :owners, :source => :user
+
   def hide!
     self.status = "hidden"
     self.save

@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :to_learns
   has_many :wishlists, :through => :to_learns, :source => :knowledge
 
+  has_many :owners
+  has_many :knowledges, :through => :owners, :source => :knowledge
+
   def username
     self.email.split('@').first
   end
@@ -28,12 +31,20 @@ class User < ApplicationRecord
     wishlists.include?(knowledge)
   end
 
+  def is_buyer_of?(knowledge)
+    knowledges.include?(knowledge)
+  end
+
   def add!(knowledge)
     wishlists << knowledge
   end
 
   def remove!(knowledge)
     wishlists.delete(knowledge)
+  end
+
+  def buy!(knowledge)
+    knowledges << knowledge
   end
 
   private

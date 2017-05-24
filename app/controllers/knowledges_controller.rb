@@ -45,6 +45,14 @@ class KnowledgesController < ApplicationController
     redirect_to :back
   end
 
+  def buy
+    @knowledge = Knowledge.find(params[:id])
+    if !current_user.is_buyer_of?(@knowledge)
+      current_user.buy!(@knowledge)
+    end
+    redirect_to :back
+  end
+
   private
 
   def validate_search_key
