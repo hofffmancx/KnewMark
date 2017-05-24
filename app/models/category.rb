@@ -4,7 +4,7 @@ class Category < ApplicationRecord
 
   has_ancestry orphan_strategy: :destroy
 
-  has_many :knowleges, dependent: :destroy
+  has_many :knowledges, dependent: :destroy
 
   before_validation :correct_ancestry
 

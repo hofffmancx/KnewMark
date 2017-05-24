@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root 'categories#index'
 
   resources :users
   resources :sessions
   resources :password_resets
   resources :knowledges
-  resources :categories, only: [:show] 
+  resources :categories, only: [:index, :show]
   namespace :account do
     scope 'profile' do
      controller :profile do

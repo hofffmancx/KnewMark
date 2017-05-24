@@ -1,7 +1,7 @@
 class Knowledge < ApplicationRecord
   validates_presence_of :title, message: "标题不能为空"
   validates_presence_of :description, message: "请添加详情介绍"
-
+  validates_presence_of :category_id, message: "分类不能为空"
   scope :recent, -> { order("created_at DESC") }
 
   has_many :photos, :dependent => :destroy

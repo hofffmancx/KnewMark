@@ -4,12 +4,11 @@
   </div>
   <div class="col-lg-9">
     <ol class="breadcrumb">
-      <li><a href="<%= root_path %>">Home</a></li>
-      <li class="active"><%= @category.parent.title %></li>
-      <li class="active"><%= @category.title %></li>
+      <li class="active">Home</li>
     </ol>
-    <h1><%= @category.title %></h1>
-
+    <div class="pull-right">
+      <%= link_to("推荐产品", new_knowledge_path, class: "btn btn-info btn-sm") %>
+    </div>
     <%= render 'shared/knowledges' %>
   </div>
 </div>
