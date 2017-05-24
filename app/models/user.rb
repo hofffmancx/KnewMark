@@ -22,8 +22,10 @@
 #  follow_knowledges_count         :integer          default("0")
 #  followers_count                 :integer          default("0")
 #  following_count                 :integer          default("0")
+
 #  learn_knowledges_count          :integer          default("0")
 #  buy_knowledges_count            :integer          default("0")
+
 #
 # Indexes
 #
