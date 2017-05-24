@@ -2,17 +2,24 @@
 #
 # Table name: knowledges
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  subtitle    :string
-#  description :text
-#  appropriate :text
-#  notice      :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  is_hidden   :boolean          default("t")
-#  status      :string           default("hidden")
-#  category_id :integer
+#  id            :integer          not null, primary key
+#  title         :string
+#  subtitle      :string
+#  description   :text
+#  appropriate   :text
+#  notice        :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  is_hidden     :boolean          default("t")
+#  status        :string           default("hidden")
+#  category_id   :integer
+#  likes_count   :integer          default("0")
+#  stars_count   :integer          default("0")
+#  follows_count :integer          default("0")
+#
+# Indexes
+#
+#  index_knowledges_on_title  (title)
 #
 
 class Knowledge < ApplicationRecord

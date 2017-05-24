@@ -79,6 +79,7 @@ class KnowledgesController < ApplicationController
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:follow, target: @knowledge)
     redirect_to knowledge_path(@knowledge)
+  end
 
   def search
     if @query_string.present?
