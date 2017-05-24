@@ -1,3 +1,38 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                              :integer          not null, primary key
+#  email                           :string           not null
+#  crypted_password                :string
+#  salt                            :string
+#  created_at                      :datetime         not null
+#  updated_at                      :datetime         not null
+#  remember_me_token               :string
+#  remember_me_token_expires_at    :datetime
+#  reset_password_token            :string
+#  reset_password_token_expires_at :datetime
+#  reset_password_email_sent_at    :datetime
+#  activation_state                :string
+#  activation_token                :string
+#  activation_token_expires_at     :datetime
+#  is_admin                        :boolean          default("f")
+#  like_knowledges_count           :integer          default("0")
+#  star_knowledges_count           :integer          default("0")
+#  follow_knowledges_count         :integer          default("0")
+#  followers_count                 :integer          default("0")
+#  following_count                 :integer          default("0")
+#  learn_knowledges_count          :integer          default("0")
+#  buy_knowledges_count            :integer          default("0")
+#
+# Indexes
+#
+#  index_users_on_activation_token      (activation_token)
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_remember_me_token     (remember_me_token)
+#  index_users_on_reset_password_token  (reset_password_token)
+#
+
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
@@ -13,11 +48,13 @@ class User < ApplicationRecord
   validates_confirmation_of :password, message: "密码不一致", if: :need_validate_password
   validates_length_of :password, minimum: 6, message: "密码最短为6位", if: :need_validate_password
 
-  has_many :to_learns
-  has_many :wishlists, :through => :to_learns, :source => :knowledge
+  action_store :like, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :star, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
 
-  has_many :owners
-  has_many :knowledges, :through => :owners, :source => :knowledge
+  action_store :learn, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :buy, :knowledge, counter_cache: true, user_counter_cache: true
 
   def username
     self.email.split('@').first
@@ -25,26 +62,6 @@ class User < ApplicationRecord
 
   def admin?
     is_admin
-  end
-
-  def is_liker_of?(knowledge)
-    wishlists.include?(knowledge)
-  end
-
-  def is_buyer_of?(knowledge)
-    knowledges.include?(knowledge)
-  end
-
-  def add!(knowledge)
-    wishlists << knowledge
-  end
-
-  def remove!(knowledge)
-    wishlists.delete(knowledge)
-  end
-
-  def buy!(knowledge)
-    knowledges << knowledge
   end
 
   private

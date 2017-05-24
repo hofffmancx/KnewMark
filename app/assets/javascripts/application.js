@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require nested_form_fields
 //= require ckeditor/init
+//= require jquery.raty
 //= require_tree .

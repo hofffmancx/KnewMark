@@ -1,16 +1,29 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
+
+  root 'categories#index'
 
   resources :users
   resources :sessions
   resources :password_resets
+
+  resources :categories, only: [:index, :show]
+
   resources :knowledges do
+    member do
+      post :rate
+      post :like
+      post :follow
+      post :star
+      post :unlike
+      post :unfollow
+      post :unstar
+      post :learn
+      post :unlearn
+      post :buy
+      post :unbuy
+    end
     collection do
       get :search
-    end
-    member do
-      post :add
-      post :buy
     end
   end
 
@@ -30,6 +43,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects
+    resources :categories
     resources :knowledges do
       member do
         post :reject

@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524120320) do
+ActiveRecord::Schema.define(version: 20170524162647) do
+
+  create_table "actions", force: :cascade do |t|
+    t.string   "action_type",   null: false
+    t.string   "action_option"
+    t.string   "target_type"
+    t.integer  "target_id"
+    t.string   "user_type"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["target_type", "target_id", "action_type"], name: "index_actions_on_target_type_and_target_id_and_action_type"
+    t.index ["user_type", "user_id", "action_type"], name: "index_actions_on_user_type_and_user_id_and_action_type"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "weight",             default: 0
+    t.integer  "knowledges_counter", default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+    t.index ["title"], name: "index_categories_on_title"
+  end
 
   create_table "knowledges", force: :cascade do |t|
     t.string   "title"
@@ -18,10 +42,16 @@ ActiveRecord::Schema.define(version: 20170524120320) do
     t.text     "description"
     t.text     "appropriate"
     t.text     "notice"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.boolean  "is_hidden",   default: true
-    t.string   "status",      default: "hidden"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "is_hidden",     default: true
+    t.string   "status",        default: "hidden"
+    t.integer  "category_id"
+    t.integer  "likes_count",   default: 0
+    t.integer  "stars_count",   default: 0
+    t.integer  "follows_count", default: 0
+    t.integer  "learns_count",  default: 0
+    t.integer  "buys_count",    default: 0
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
@@ -38,6 +68,16 @@ ActiveRecord::Schema.define(version: 20170524120320) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["knowledge_id"], name: "index_photos_on_knowledge_id"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer  "knowledge_id"
+    t.integer  "score"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["knowledge_id"], name: "index_scores_on_knowledge_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -69,6 +109,13 @@ ActiveRecord::Schema.define(version: 20170524120320) do
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
     t.boolean  "is_admin",                        default: false
+    t.integer  "like_knowledges_count",           default: 0
+    t.integer  "star_knowledges_count",           default: 0
+    t.integer  "follow_knowledges_count",         default: 0
+    t.integer  "followers_count",                 default: 0
+    t.integer  "following_count",                 default: 0
+    t.integer  "learn_knowledges_count",          default: 0
+    t.integer  "buy_knowledges_count",            default: 0
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

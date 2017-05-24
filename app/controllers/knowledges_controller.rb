@@ -1,5 +1,5 @@
 class KnowledgesController < ApplicationController
-  before_action :require_login, :only => [:new, :create, :add, :remove]
+  before_action :require_login, :only => [:new, :create, :like, :unlike, :star, :unstar, :follow, :unfollow, :unlearn, :learn, :buy]
   before_action :validate_search_key, only: [:search]
 
   def index
@@ -16,17 +16,67 @@ class KnowledgesController < ApplicationController
 
   def new
     @knowledge = Knowledge.new
+    @root_categories = Category.roots
   end
 
   def create
     @knowledge = Knowledge.new(knowledge_params)
-
+    @root_categories = Category.roots
     if @knowledge.save
       flash[:notice] = "产品已提交，待审核中..."
       redirect_to knowledges_path
     else
       render :new
     end
+  end
+
+
+  def rate
+    @knowledge = Knowledge.find(params[:id])
+    existing_score = @knowledge.find_score(current_user)
+    if existing_score
+      existing_score.update( :score => params[:score] )
+    else
+      @knowledge.scores.create( :score => params[:score], :user => current_user )
+    end
+    render :json => { :average_score => @knowledge.average_score }
+  end
+
+
+  def like
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:like, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unlike
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:like, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def star
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:star, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unstar
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:star, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def follow
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:follow, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unfollow
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:follow, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
   end
 
   def search
@@ -36,21 +86,28 @@ class KnowledgesController < ApplicationController
     end
   end
 
-  def add
+  def learn
     @knowledge = Knowledge.find(params[:id])
-    if !current_user.is_liker_of?(@knowledge)
-      current_user.add!(@knowledge)
-      flash[:notice] = "已将课程加入心愿单！"
-    end
-    redirect_to :back
+    current_user.create_action(:learn, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unlearn
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:learn, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
   end
 
   def buy
     @knowledge = Knowledge.find(params[:id])
-    if !current_user.is_buyer_of?(@knowledge)
-      current_user.buy!(@knowledge)
-    end
-    redirect_to :back
+    current_user.create_action(:buy, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unbuy
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:buy, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
   end
 
   private
@@ -64,6 +121,6 @@ class KnowledgesController < ApplicationController
   end
 
   def knowledge_params
-    params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :photos_attributes => [:id, :image, :_destroy])
+    params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :category_id, :photos_attributes => [:id, :image, :_destroy])
   end
 end
