@@ -10,6 +10,16 @@
   <div class="container">
     <%= render "common/navbar" %>
     <%= render "common/flashes" %>
+    <%= form_tag search_admin_knowledges_path, :method => :get do %>
+      <div class="input-group">
+        <input type="text" name="q" value="<%= params[:q] %>" placeholder="课程，描述...">
+        <span>
+          <button type="submit">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">

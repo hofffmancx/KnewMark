@@ -3,15 +3,5 @@
 </div>
 <br>
 <hr>
-<% @knowledges.each do |knowledge| %>
-  <div class="col-md-3">
-    <%= link_to admin_knowledge_path(knowledge) do %>
-      <% if knowledge.photos.present? %>
-        <%= image_tag(knowledge.photos[0].image.thumb.url, class: "thumbnail") %>
-      <% else %>
-        <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-      <% end %>
-      <p><%= link_to(knowledge.title, admin_knowledge_path(knowledge)) %></p>
-    <% end %>
-  </div>
-<% end %>
+
+<%= render :partial => "knowledge_item", :collection => @knowledges, :as => :knowledge %>
