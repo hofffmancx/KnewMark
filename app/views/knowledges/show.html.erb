@@ -9,8 +9,8 @@
     <%= render "like" %>
     <%= render "star" %>
     <%= render "follow" %>
-    <%= render "learn" %>
-    <%= render "buy" %>
+    <%= render "want" %>
+    <%= render "have" %>
 
   <hr>
   <% @knowledge.photos.each do |photo| %>
@@ -22,7 +22,7 @@
   <p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
   <hr>
 
-  <div class="section-buylink">
+  <div class="section-havelink">
     <h3>如何购买</h3>
     <a href="#">购买链接</a>
     <hr>

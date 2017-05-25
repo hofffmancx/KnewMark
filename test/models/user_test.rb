@@ -22,8 +22,8 @@
 #  follow_knowledges_count         :integer          default("0")
 #  followers_count                 :integer          default("0")
 #  following_count                 :integer          default("0")
-#  learn_knowledges_count          :integer          default("0")
-#  buy_knowledges_count            :integer          default("0")
+#  want_knowledges_count           :integer          default("0")
+#  have_knowledges_count           :integer          default("0")
 #  reviews_count                   :integer          default("0"), not null
 #  discussions_count               :integer          default("0"), not null
 #  comments_count                  :integer          default("0"), not null
@@ -39,8 +39,8 @@
 #  index_users_on_reset_password_token  (reset_password_token)
 #
 
-#  learn_knowledges_count          :integer          default("0")
-#  buy_knowledges_count            :integer          default("0")
+#  want_knowledges_count          :integer          default("0")
+#  have_knowledges_count            :integer          default("0")
 
 #
 # Indexes

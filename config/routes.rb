@@ -35,10 +35,10 @@ Rails.application.routes.draw do
       post :unlike
       post :unfollow
       post :unstar
-      post :learn
-      post :unlearn
-      post :buy
-      post :unbuy
+      post :want
+      post :unwant
+      post :have
+      post :unhave
     end
     collection do
       get :search

@@ -1,0 +1,12 @@
+<span id="knowledge-<%= @knowledge.id %>-want">
+  <% if current_user && current_user.find_action(:want, target: @knowledge) %>
+    <%= link_to unwant_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i> 想学
+    <% end %>
+  <% else %>
+    <%= link_to want_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-cart-plus" aria-hidden="true"></i> 想学
+    <% end %>
+  <% end %>
+  <span class="badge" id="action-want-count"><%= @knowledge.reload.wants_count %></span>
+</span>
