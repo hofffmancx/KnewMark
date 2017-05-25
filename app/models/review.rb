@@ -10,6 +10,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  comments_count :integer          default("0"), not null
+#  likes_count    :integer          default("0")
 #
 # Indexes
 #

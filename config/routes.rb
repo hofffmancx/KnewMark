@@ -10,6 +10,18 @@ Rails.application.routes.draw do
 
   resources :reviews do
     resources :comments
+    post :like, on: :member
+    post :unlike, on: :member
+  end
+
+  resources :comments do
+    post :like, on: :member
+    post :unlike, on: :member
+  end
+
+  resources :discussions do
+    post :like, on: :member
+    post :unlike, on: :member
   end
 
   resources :knowledges do

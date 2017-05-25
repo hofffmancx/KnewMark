@@ -27,6 +27,9 @@
 #  reviews_count                   :integer          default("0"), not null
 #  discussions_count               :integer          default("0"), not null
 #  comments_count                  :integer          default("0"), not null
+#  like_comments_count             :integer          default("0")
+#  like_reviews_count              :integer          default("0")
+#  like_discussions_count          :integer          default("0")
 #
 # Indexes
 #
@@ -64,11 +67,15 @@ class User < ApplicationRecord
   validates_length_of :password, minimum: 6, message: "密码最短为6位", if: :need_validate_password
 
   action_store :like, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :like, :review, counter_cache: true, user_counter_cache: true
+  action_store :like, :discussion, counter_cache: true, user_counter_cache: true
+  action_store :like, :comment, counter_cache: true, user_counter_cache: true
   action_store :star, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
   action_store :learn, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :buy, :knowledge, counter_cache: true, user_counter_cache: true
+
 
   has_many :reviews, :dependent => :destroy
   has_many :discussions, :dependent => :destroy

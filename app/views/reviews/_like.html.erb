@@ -1,0 +1,15 @@
+<% if current_user && current_user.find_action(:like, target: review) %>
+  <span id="review-<%= review.id %>-like">
+    <%= link_to unlike_review_path(review), method: :post, remote: true do  %>
+      <i class="fa fa-heart" aria-hidden="true"></i>(<%= review.reload.likes_count %>)
+    <% end %>
+  </span>
+<% else %>
+  <span id="review-<%= review.id %>-like">
+    <%= link_to like_review_path(review), method: :post, remote: true do  %>
+      <i class="fa fa-heart-o" aria-hidden="true"></i>(<%= review.reload.likes_count %>)
+    <% end %>
+  </span>
+<% end %>
+|
+<a href="<%= review_path(review) %>#comment-list">评论(<%= review.comments_count %>)</a>

@@ -20,6 +20,16 @@ class CommentsController < ApplicationController
     @comment.destroy
   end
 
+  def like
+    @comment = Comment.find(params[:id])
+    current_user.create_action(:like, target: @comment)
+  end
+
+  def unlike
+    @comment = Comment.find(params[:id])
+    current_user.destroy_action(:like, target: @comment)
+  end
+
   protected
 
   def comment_params

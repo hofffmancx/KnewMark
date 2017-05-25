@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
-  before_action :require_login, only: [ :new, :create, :destoy, :edit ]
-  before_action :find_knowledge
+  before_action :require_login, only: [ :new, :create, :destoy, :edit, :like, :unlike ]
+  before_action :find_knowledge, except: [ :like, :unlike ]
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
   def new
@@ -36,6 +36,16 @@ class DiscussionsController < ApplicationController
   def destroy
     @discussion.destroy
     redirect_to knowledge_path(@knowledge), alert: "评测已经删除。"
+  end
+
+  def like
+    @discussion = Discussion.find(params[:id])
+    current_user.create_action(:like, target: @discussion)
+  end
+
+  def unlike
+    @discussion = Discussion.find(params[:id])
+    current_user.destroy_action(:like, target: @discussion)
   end
 
   protected
