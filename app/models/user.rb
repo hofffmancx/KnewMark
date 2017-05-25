@@ -24,6 +24,8 @@
 #  following_count                 :integer          default("0")
 #  learn_knowledges_count          :integer          default("0")
 #  buy_knowledges_count            :integer          default("0")
+#  reviews_count                   :integer          default("0"), not null
+#  discussions_count               :integer          default("0"), not null
 #
 # Indexes
 #
@@ -68,6 +70,7 @@ class User < ApplicationRecord
   action_store :buy, :knowledge, counter_cache: true, user_counter_cache: true
 
   has_many :reviews, :dependent => :destroy
+  has_many :discussions, :dependent => :destroy
 
   def username
     self.email.split('@').first

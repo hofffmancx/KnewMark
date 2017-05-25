@@ -4,7 +4,7 @@ namespace :dev do
     users = []
 
     10.times do
-      users << User.create!( :email => Faker::Internet.email, :password => "111111", :password_confirmation => "111111",)
+      users << User.create( :email => Faker::Internet.email, :password => "111111", :password_confirmation => "111111",)
     end
 
     admin = User.create( :email => "admin@example.com", :password => "111111", :password_confirmation => "111111", :is_admin => true )
@@ -25,9 +25,18 @@ namespace :dev do
     reviews = []
     50.times do |i|
       reviews << Review.create!( :title => Faker::Lorem.word,
-                                 :content => Faker::Lorem.paragraph(50), :knowledge_id => knowledges.sample.id,
+                                 :content => Faker::Lorem.paragraph(50),
+                                 :knowledge_id => knowledges.sample.id,
                                  :user_id => users.sample.id )
     end
+
+    discussions = []
+    50.times do |i|
+      discussions << Discussion.create!( :content => Faker::Lorem.sentence,
+                                         :knowledge_id => knowledges.sample.id,
+                                         :user_id => users.sample.id )
+    end
+
   end
 
 end

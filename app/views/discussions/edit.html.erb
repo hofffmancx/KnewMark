@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>修改讨论</h2>
+
+  <%= simple_form_for [@knowledge, @discussion] do |f| %>
+
+    <div class="group">
+      <%= f.input :content, :label => "评测内容",  as: :ckeditor  %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "发表讨论", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>

@@ -2,22 +2,24 @@
 #
 # Table name: knowledges
 #
-#  id            :integer          not null, primary key
-#  title         :string
-#  subtitle      :string
-#  description   :text
-#  appropriate   :text
-#  notice        :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  is_hidden     :boolean          default("t")
-#  status        :string           default("hidden")
-#  category_id   :integer
-#  likes_count   :integer          default("0")
-#  stars_count   :integer          default("0")
-#  follows_count :integer          default("0")
-#  learns_count  :integer          default("0")
-#  buys_count    :integer          default("0")
+#  id                :integer          not null, primary key
+#  title             :string
+#  subtitle          :string
+#  description       :text
+#  appropriate       :text
+#  notice            :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  is_hidden         :boolean          default("t")
+#  status            :string           default("hidden")
+#  category_id       :integer
+#  likes_count       :integer          default("0")
+#  stars_count       :integer          default("0")
+#  follows_count     :integer          default("0")
+#  learns_count      :integer          default("0")
+#  buys_count        :integer          default("0")
+#  reviews_count     :integer          default("0"), not null
+#  discussions_count :integer          default("0"), not null
 #
 # Indexes
 #
@@ -42,6 +44,8 @@ class Knowledge < ApplicationRecord
   has_many :photos, :dependent => :destroy
   has_many :scores, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
+  has_many :discussions, :dependent => :destroy
+
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => :all_blank
 
   belongs_to :category

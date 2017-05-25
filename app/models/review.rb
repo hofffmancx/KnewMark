@@ -22,7 +22,7 @@ class Review < ApplicationRecord
   validates_presence_of :content, message: "评测内容不能为空"
   validates_length_of :content, minimum: 300, too_short: "评测不应小于300字"
 
-  belongs_to :knowledge
-  belongs_to :user
+  belongs_to :knowledge, counter_cache: true
+  belongs_to :user, counter_cache: true
 
 end
