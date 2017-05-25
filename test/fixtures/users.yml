@@ -24,6 +24,8 @@
 #  following_count                 :integer          default("0")
 #  learn_knowledges_count          :integer          default("0")
 #  buy_knowledges_count            :integer          default("0")
+#  reviews_count                   :integer          default("0"), not null
+#  discussions_count               :integer          default("0"), not null
 #
 # Indexes
 #
