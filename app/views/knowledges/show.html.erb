@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="pull-right">
+    <%= social_share_button_tag(@knowledge.title) %>
+  </div>
+  
   <h3><%= @knowledge.title %></h3>
   <small>--<%= @knowledge.subtitle %></small>
   <hr>
