@@ -139,7 +139,7 @@ SimpleForm.setup do |config|
   end
   # Wrappers for forms and inputs using the Bootstrap toolkit.
   # Check the Bootstrap docs (http://getbootstrap.com)
-  # to learn about the different styles for forms and inputs,
+  # to want about the different styles for forms and inputs,
   # buttons and other elements.
   config.default_wrapper = :vertical_form
   config.wrapper_mappings = {

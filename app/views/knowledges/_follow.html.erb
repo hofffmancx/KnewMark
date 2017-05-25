@@ -1,12 +1,12 @@
-<div id="action-follow">
+<span id="knowledge-<%= @knowledge.id %>-follow">
   <% if current_user && current_user.find_action(:follow, target: @knowledge) %>
-    <%= link_to unfollow_knowledge_path(@knowledge), :method => :post do %>
-      <i class="fa fa-eye" id="action-follow-icon" aria-hidden="true"></i> 关注
+    <%= link_to unfollow_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-eye" aria-hidden="true"></i> 关注
     <% end %>
   <% else %>
-    <%= link_to follow_knowledge_path(@knowledge), :method => :post do %>
-      <i class="fa fa-eye-slash" id="action-follow-icon" aria-hidden="true"></i> 关注
+    <%= link_to follow_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-eye-slash" aria-hidden="true"></i> 关注
     <% end %>
   <% end %>
   <span class="badge" id="action-follow-count"><%= @knowledge.reload.follows_count %></span>
-</div>
+</span>

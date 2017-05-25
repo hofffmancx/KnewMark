@@ -1,0 +1,2 @@
+str = '<span id="discussion-<%= @discussion.id %>-like"><%= link_to like_discussion_path(@discussion), method: :post, remote: true do  %><i class="fa fa-heart-o" aria-hidden="true"></i>(<%= @discussion.reload.likes_count %>)<% end %></span>'
+$("#discussion-<%= @discussion.id %>-like").replaceWith(str)

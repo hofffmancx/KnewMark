@@ -3,9 +3,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <%= @review.user.username %> 发表评测：《<%= link_to(@review.title, review_path(@review)) %>》
-      <a href="#">
-        <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
-      </a> <!-- 待补充 -->
+      <div style="float:right">
+        <%= render :partial => "like", :locals => { :review => @review } %>
+      </div>
     </div>
     <div class="panel-body">
       <% if current_user && @review.user == current_user %>

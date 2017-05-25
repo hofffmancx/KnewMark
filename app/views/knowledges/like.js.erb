@@ -1,0 +1,2 @@
+str = '<span id="knowledge-<%= @knowledge.id %>-like"><%= link_to unlike_knowledge_path(@knowledge), method: :post, remote: true do  %><i class="fa fa-heart" aria-hidden="true"></i> 喜欢 <span class="badge" id="action-like-count"><%= @knowledge.reload.likes_count %><% end %></span></span>'
+$("#knowledge-<%= @knowledge.id %>-like").replaceWith(str)

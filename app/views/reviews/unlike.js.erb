@@ -1,0 +1,2 @@
+str = '<span id="review-<%= @review.id %>-like"><%= link_to like_review_path(@review), method: :post, remote: true do  %><i class="fa fa-heart-o" aria-hidden="true"></i>(<%= @review.reload.likes_count %>)<% end %></span>'
+$("#review-<%= @review.id %>-like").replaceWith(str)

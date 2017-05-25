@@ -9,8 +9,8 @@
     <%= render "like" %>
     <%= render "star" %>
     <%= render "follow" %>
-    <%= render "learn" %>
-    <%= render "buy" %>
+    <%= render "want" %>
+    <%= render "have" %>
 
   <hr>
   <% @knowledge.photos.each do |photo| %>
@@ -22,7 +22,7 @@
   <p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
   <hr>
 
-  <div class="section-buylink">
+  <div class="section-havelink">
     <h3>如何购买</h3>
     <a href="#">购买链接</a>
     <hr>
@@ -36,9 +36,11 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <%= discussion.user.username %> :
-          <a href="#">
-            <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
-          </a> <!-- 待补充 -->
+
+          <div style="float:right">
+            <%= render :partial => "discussions/like", :locals => { :discussion => discussion } %>
+          </div>
+
         </div>
         <div class="panel-body">
           <% if current_user && discussion.user == current_user %>
@@ -60,10 +62,7 @@
         <div class="panel-heading">
           <%= review.user.username %> 发表评测：《<%= link_to(review.title, review_path(review)) %>》
           <div style="float:right">
-            <a href="#">
-              <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span> |
-            </a> <!-- 待补充 -->
-            <a href="<%= review_path(review) %>#comment-list">评论(<%= review.comments_count %>)</a>
+            <%= render :partial => "reviews/like", :locals => { :review => review } %>
           </div>
         </div>
         <div class="panel-body">
