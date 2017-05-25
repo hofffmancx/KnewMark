@@ -22,6 +22,10 @@
 #  follow_knowledges_count         :integer          default("0")
 #  followers_count                 :integer          default("0")
 #  following_count                 :integer          default("0")
+
+#  learn_knowledges_count          :integer          default("0")
+#  buy_knowledges_count            :integer          default("0")
+
 #
 # Indexes
 #
@@ -51,6 +55,8 @@ class User < ApplicationRecord
   action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
 
+  action_store :learn, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :buy, :knowledge, counter_cache: true, user_counter_cache: true
 
   def username
     self.email.split('@').first
@@ -61,6 +67,7 @@ class User < ApplicationRecord
   end
 
   private
+
   def need_validate_password
     self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
   end
