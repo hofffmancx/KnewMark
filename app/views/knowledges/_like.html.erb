@@ -1,5 +1,5 @@
 <div id="action-like">
-  <% if current_user.find_action(:like, target: @knowledge) %>
+  <% if current_user && current_user.find_action(:like, target: @knowledge) %>
     <%= link_to unlike_knowledge_path(@knowledge), :method => :post do %>
       <i class="fa fa-heart" id="action-like-icon" aria-hidden="true"></i> 喜欢
     <% end %>
