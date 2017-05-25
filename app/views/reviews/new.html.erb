@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>发表评测</h2>
+
+  <%= simple_form_for [@knowledge, @review] do |f| %>
+    <div class="group">
+      <%= f.input :title, :label => "标题" %>
+    </div>
+
+    <div class="group">
+      <%= f.input :content, :label => "评测内容",  as: :ckeditor  %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "发表评测", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+</div>

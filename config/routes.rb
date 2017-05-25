@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
 
   resources :knowledges do
+    resources :reviews
     member do
       post :rate
       post :like

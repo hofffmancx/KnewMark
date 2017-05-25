@@ -41,6 +41,7 @@ class Knowledge < ApplicationRecord
 
   has_many :photos, :dependent => :destroy
   has_many :scores, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => :all_blank
 
   belongs_to :category
