@@ -20,6 +20,7 @@
 #  buys_count        :integer          default("0")
 #  reviews_count     :integer          default("0"), not null
 #  discussions_count :integer          default("0"), not null
+#  questions_count   :integer          default("0"), not null
 #
 # Indexes
 #
@@ -45,6 +46,7 @@ class Knowledge < ApplicationRecord
   has_many :scores, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
+  has_many :questions, :dependent => :destroy
 
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => :all_blank
 

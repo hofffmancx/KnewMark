@@ -1,0 +1,7 @@
+<h3>关于《 <%= @knowledge.title %> 》的问题</h3>
+
+<%= simple_form_for [@knowledge, @question] do |f| %>
+  <%= f.input :title, label: "问题：" %>
+  <%= f.input :description, label: "描述：", as: :ckeditor %>
+  <%= f.submit "发布问题", class: "btn btn-primary" %>
+<% end %>
