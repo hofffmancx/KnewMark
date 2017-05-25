@@ -1,5 +1,5 @@
 <div id="action-star">
-  <% if current_user.find_action(:star, target: @knowledge) %>
+  <% if current_user && current_user.find_action(:star, target: @knowledge) %>
     <%= link_to unstar_knowledge_path(@knowledge), :method => :post do %>
       <i class="fa fa-star" id="action-star-icon" aria-hidden="true"></i> 收藏
     <% end %>
