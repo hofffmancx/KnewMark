@@ -19,7 +19,7 @@
  @import "font-awesome";
  @import "jquery.raty";
 
-
+//---------Category index ---------
 //---------Navbar---------
 
 .navbar-wrap {
@@ -52,6 +52,7 @@
   width: 300px;
   position: relative;
   margin: 0px 10px;
+
   .search-input {
     width: 300px;
     height: 36px;
@@ -103,3 +104,63 @@
 
 
 //---------Navbar End---------
+
+//---------轮播图 ---------
+.carousel {
+  width: 1200px;
+  margin: 0 auto;
+
+}
+.carousel .item {
+  height: 600px;
+}
+
+//---------轮播图 end---------
+
+//---------knowledge part  ---------
+.knowledge-wrap {
+  width: 100%;
+
+  .knowledge-part {
+    width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+//---------knowledge end  ---------
+//---------Category index end ---------
+
+//---------admin.html.erb ---------
+
+.admin_search {
+  width: 500px;
+  position: relative;
+  margin: 0px auto;
+
+  .admin_form_input {
+    width: 500px;
+    height: 36px;
+    line-height: 36px;
+    color: #666;
+    border: 0;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: "microsoft yahei";
+    background-color: #F3F4F4;
+    padding: 4px 20px;
+    outline: none;
+  }
+
+  .search-button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    outline: none;
+  }
+}
