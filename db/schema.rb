@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525033010) do
+ActiveRecord::Schema.define(version: 20170525072635) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20170525033010) do
     t.string   "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
     t.index ["title"], name: "index_categories_on_title"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "discussions", force: :cascade do |t|
@@ -87,8 +97,9 @@ ActiveRecord::Schema.define(version: 20170525033010) do
     t.text     "content"
     t.integer  "knowledge_id"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "comments_count", default: 0, null: false
     t.index ["knowledge_id"], name: "index_reviews_on_knowledge_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -141,6 +152,7 @@ ActiveRecord::Schema.define(version: 20170525033010) do
     t.integer  "buy_knowledges_count",            default: 0
     t.integer  "reviews_count",                   default: 0,     null: false
     t.integer  "discussions_count",               default: 0,     null: false
+    t.integer  "comments_count",                  default: 0,     null: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

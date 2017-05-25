@@ -1,0 +1,5 @@
+<% if @comment.valid? %>
+  $("#comment-<%= @comment.id %>").replaceWith("<%=j render :partial => "comments/comment", :locals => { :review => @review, :comment => @comment } %>");
+<% else %>
+  alert("修改失败");
+<% end %>

@@ -26,6 +26,7 @@
 #  buy_knowledges_count            :integer          default("0")
 #  reviews_count                   :integer          default("0"), not null
 #  discussions_count               :integer          default("0"), not null
+#  comments_count                  :integer          default("0"), not null
 #
 # Indexes
 #
@@ -71,6 +72,7 @@ class User < ApplicationRecord
 
   has_many :reviews, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   def username
     self.email.split('@').first

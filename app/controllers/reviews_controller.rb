@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :require_login, only: [ :new, :create, :destoy, :edit ]
-  before_action :find_knowledge
+  before_action :find_knowledge, except: [ :show ]
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
   def new
@@ -20,6 +20,8 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @comments = @review.comments
+    @comment = Comment.new
   end
 
   def edit
