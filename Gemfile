@@ -48,6 +48,7 @@ gem 'ancestry'
 gem "annotate"
 gem 'will_paginate'
 gem 'ransack'
+gem 'social-share-button'
 
 
 group :development, :test do

@@ -18,3 +18,17 @@
  @import "bootstrap";
  @import "font-awesome";
  @import "jquery.raty";
+ @import "social-share-button";
+
+
+ /* change social-share-button icon size */
+
+ $size: 18px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+  }
+}
