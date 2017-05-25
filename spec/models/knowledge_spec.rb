@@ -16,8 +16,8 @@
 #  likes_count       :integer          default("0")
 #  stars_count       :integer          default("0")
 #  follows_count     :integer          default("0")
-#  learns_count      :integer          default("0")
-#  buys_count        :integer          default("0")
+#  wants_count       :integer          default("0")
+#  haves_count       :integer          default("0")
 #  reviews_count     :integer          default("0"), not null
 #  discussions_count :integer          default("0"), not null
 #  questions_count   :integer          default("0"), not null
@@ -27,8 +27,8 @@
 #  index_knowledges_on_title  (title)
 #
 
-#  learns_count  :integer          default("0")
-#  buys_count    :integer          default("0")
+#  wants_count  :integer          default("0")
+#  haves_count    :integer          default("0")
 
 #
 # Indexes

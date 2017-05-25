@@ -8,6 +8,22 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index, :show]
 
+  resources :reviews do
+    resources :comments
+    post :like, on: :member
+    post :unlike, on: :member
+  end
+
+  resources :comments do
+    post :like, on: :member
+    post :unlike, on: :member
+  end
+
+  resources :discussions do
+    post :like, on: :member
+    post :unlike, on: :member
+  end
+
   resources :knowledges do
     resources :reviews
     resources :discussions
@@ -20,10 +36,10 @@ Rails.application.routes.draw do
       post :unlike
       post :unfollow
       post :unstar
-      post :learn
-      post :unlearn
-      post :buy
-      post :unbuy
+      post :want
+      post :unwant
+      post :have
+      post :unhave
     end
     collection do
       get :search

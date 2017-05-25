@@ -1,5 +1,5 @@
 class KnowledgesController < ApplicationController
-  before_action :require_login, :only => [:new, :create, :like, :unlike, :star, :unstar, :follow, :unfollow, :unlearn, :learn, :buy]
+  before_action :require_login, except: [ :index, :show ]
   before_action :validate_search_key, only: [:search]
 
   def index
@@ -46,37 +46,31 @@ class KnowledgesController < ApplicationController
   def like
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:like, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unlike
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:like, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def star
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:star, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unstar
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:star, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def follow
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:follow, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unfollow
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:follow, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def search
@@ -86,28 +80,24 @@ class KnowledgesController < ApplicationController
     end
   end
 
-  def learn
+  def want
     @knowledge = Knowledge.find(params[:id])
-    current_user.create_action(:learn, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
+    current_user.create_action(:want, target: @knowledge)
   end
 
-  def unlearn
+  def unwant
     @knowledge = Knowledge.find(params[:id])
-    current_user.destroy_action(:learn, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
+    current_user.destroy_action(:want, target: @knowledge)
   end
 
-  def buy
+  def have
     @knowledge = Knowledge.find(params[:id])
-    current_user.create_action(:buy, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
+    current_user.create_action(:have, target: @knowledge)
   end
 
-  def unbuy
+  def unhave
     @knowledge = Knowledge.find(params[:id])
-    current_user.destroy_action(:buy, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
+    current_user.destroy_action(:have, target: @knowledge)
   end
 
   private
