@@ -1,0 +1,2 @@
+$("#comment-<%= @comment.id %>").remove();
+$("#comment-count").replaceWith("<h4 id='comment-count'>共有 <%= @review.reload.comments_count %> 条评论</h4>");

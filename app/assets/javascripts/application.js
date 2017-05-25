@@ -16,6 +16,8 @@
 //= require nested_form_fields
 //= require ckeditor/init
 //= require jquery.raty
+//= require social-share-button
+//= require social-share-button/wechat
 //= require_tree .
 
 

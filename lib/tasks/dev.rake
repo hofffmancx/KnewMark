@@ -37,6 +37,13 @@ namespace :dev do
                                          :user_id => users.sample.id )
     end
 
+    comments = []
+    100.times do |i|
+      comments << Comment.create!( :content => Faker::Lorem.sentence,
+                                         :review_id => reviews.sample.id,
+                                         :user_id => users.sample.id )
+    end
+
   end
 
 end

@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :require_login, only: [ :new, :create, :destoy, :edit ]
-  before_action :find_knowledge
+  before_action :require_login, only: [ :new, :create, :destoy, :edit, :like ]
+  before_action :find_knowledge, except: [ :show, :like, :unlike ]
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
   def new
@@ -20,6 +20,8 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @comments = @review.comments
+    @comment = Comment.new
   end
 
   def edit
@@ -36,6 +38,16 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     redirect_to knowledge_path(@knowledge), alert: "评测已经删除。"
+  end
+
+  def like
+    @review = Review.find(params[:id])
+    current_user.create_action(:like, target: @review)
+  end
+
+  def unlike
+    @review = Review.find(params[:id])
+    current_user.destroy_action(:like, target: @review)
   end
 
   protected

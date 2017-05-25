@@ -18,6 +18,24 @@
  @import "bootstrap";
  @import "font-awesome";
  @import "jquery.raty";
+ @import "social-share-button";
+
+
+//---------Others  ---------
+ /* change social-share-button icon size */
+
+ $size: 18px;
+
+.social-share-button {
+  .ssb-icon {
+    background-size: $size $size;
+    height: $size;
+    width: $size;
+
+  }
+}
+//---------Others end ---------
+
 
 //---------Category index ---------
 //---------Navbar---------
@@ -171,4 +189,6 @@
     right: 0;
     outline: none;
   }
-}
+  
+  //---------admin.html.erb  end ---------
+
