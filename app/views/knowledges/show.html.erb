@@ -22,6 +22,12 @@
   <p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
   <hr>
 
+  <div class="section-buylink">
+    <h3>如何购买</h3>
+    <a href="#">购买链接</a>
+    <hr>
+  </div>
+
   <div class="section-discussion">
     <h3>共有 <%= @knowledge.reviews_count %> 条讨论</h3>
     <%= link_to("参与讨论", new_knowledge_discussion_path(@knowledge), class: "btn btn-default") %>
