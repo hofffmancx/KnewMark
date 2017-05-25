@@ -18,3 +18,88 @@
  @import "bootstrap";
  @import "font-awesome";
  @import "jquery.raty";
+
+
+//---------Navbar---------
+
+.navbar-wrap {
+  width: 100%;
+  background: linear-gradient(#B4C5B3, transparent);
+  border: none;
+  font-size: 14px;
+  height: 60px;
+  line-height: 60px;
+  color: #171B1F;
+}
+
+.navbar {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-left {
+  float: left;
+  height: 50px;
+  line-height: 50px;
+}
+
+.navbar-brand {
+  float: left;
+}
+
+.navbar-form {
+  float: left;
+  width: 300px;
+  position: relative;
+  margin: 0px 10px;
+  .search-input {
+    width: 300px;
+    height: 36px;
+    line-height: 36px;
+    color: #666;
+    border: 0;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: "microsoft yahei";
+    background-color: #F3F4F4;
+    padding: 4px 20px;
+    outline: none;
+  }
+  .search-button {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    outline: none;
+  }
+}
+
+.navbar-list {
+  float: right;
+  list-style: none;
+  height: 50px;
+  line-height: 50px;
+
+  .navbar-listItem {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.navbar-wrap a {
+  color: #171B1F;
+  text-decoration: none;
+}
+
+.navbar-listItem a:hover {
+  cursor: pointer;
+}
+
+
+//---------Navbar End---------
