@@ -17,8 +17,6 @@
 #  activation_token                :string
 #  activation_token_expires_at     :datetime
 #  is_admin                        :boolean          default("f")
-#  like_knowledge_count            :integer          default("0")
-#  star_knowledge_count            :integer          default("0")
 #  like_knowledges_count           :integer          default("0")
 #  star_knowledges_count           :integer          default("0")
 #  follow_knowledges_count         :integer          default("0")

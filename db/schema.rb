@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170525005704) do
-=======
-ActiveRecord::Schema.define(version: 20170524162647) do
->>>>>>> master
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -50,15 +46,12 @@ ActiveRecord::Schema.define(version: 20170524162647) do
     t.datetime "updated_at",                       null: false
     t.boolean  "is_hidden",     default: true
     t.string   "status",        default: "hidden"
+    t.integer  "category_id"
     t.integer  "likes_count",   default: 0
     t.integer  "stars_count",   default: 0
     t.integer  "follows_count", default: 0
-<<<<<<< HEAD
-    t.integer  "category_id"
-=======
     t.integer  "learns_count",  default: 0
     t.integer  "buys_count",    default: 0
->>>>>>> master
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
@@ -127,8 +120,6 @@ ActiveRecord::Schema.define(version: 20170524162647) do
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
     t.boolean  "is_admin",                        default: false
-    t.integer  "like_knowledge_count",            default: 0
-    t.integer  "star_knowledge_count",            default: 0
     t.integer  "like_knowledges_count",           default: 0
     t.integer  "star_knowledges_count",           default: 0
     t.integer  "follow_knowledges_count",         default: 0
