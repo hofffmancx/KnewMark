@@ -1,6 +1,5 @@
 class KnowledgesController < ApplicationController
-
-  before_action :require_login, :only => [:new, :create, :like, :unlike, :star, :unstar, :follow, :unfollow]
+  before_action :require_login, :only => [:new, :create, :like, :unlike, :star, :unstar, :follow, :unfollow, :unlearn, :learn, :buy]
   before_action :validate_search_key, only: [:search]
 
   def index
@@ -85,6 +84,30 @@ class KnowledgesController < ApplicationController
       @knowledges = search_params
       @knowledges = @knowledges.where(:status => "published")
     end
+  end
+
+  def learn
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:learn, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unlearn
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:learn, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def buy
+    @knowledge = Knowledge.find(params[:id])
+    current_user.create_action(:buy, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
+  end
+
+  def unbuy
+    @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:buy, target: @knowledge)
+    redirect_to knowledge_path(@knowledge)
   end
 
   private

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       post :unlike
       post :unfollow
       post :unstar
+      post :learn
+      post :unlearn
+      post :buy
+      post :unbuy
     end
     collection do
       get :search
@@ -29,6 +33,11 @@ Rails.application.routes.draw do
      controller :profile do
        get :password
        put :update_password
+     end
+   end
+   resources :knowledges do
+     member do
+       post :remove
      end
    end
   end

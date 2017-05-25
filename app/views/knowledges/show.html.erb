@@ -1,6 +1,7 @@
 <div class="container">
   <h3><%= @knowledge.title %></h3>
   <small>--<%= @knowledge.subtitle %></small>
+  <hr>
   <div class="rate">
     <div class="raty" data-score="<%= @knowledge.find_score(current_user).try(:score) || 0 %>" data-score-url="<%= rate_knowledge_path(@knowledge) %>"></div><span class="average-score"><%= @knowledge.average_score %></span>
   </div>
@@ -8,6 +9,8 @@
     <%= render "like" %>
     <%= render "star" %>
     <%= render "follow" %>
+    <%= render "learn" %>
+    <%= render "buy" %>
 
   <hr>
   <% @knowledge.photos.each do |photo| %>

@@ -24,6 +24,20 @@
 #  follow_knowledges_count         :integer          default("0")
 #  followers_count                 :integer          default("0")
 #  following_count                 :integer          default("0")
+#  learn_knowledges_count          :integer          default("0")
+#  buy_knowledges_count            :integer          default("0")
+#
+# Indexes
+#
+#  index_users_on_activation_token      (activation_token)
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_remember_me_token     (remember_me_token)
+#  index_users_on_reset_password_token  (reset_password_token)
+#
+
+#  learn_knowledges_count          :integer          default("0")
+#  buy_knowledges_count            :integer          default("0")
+
 #
 # Indexes
 #
@@ -53,7 +67,12 @@ class User < ApplicationRecord
   action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
 
+<<<<<<< HEAD
   has_many :reviews, :dependent => :destroy
+=======
+  action_store :learn, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :buy, :knowledge, counter_cache: true, user_counter_cache: true
+>>>>>>> master
 
   def username
     self.email.split('@').first
@@ -64,6 +83,7 @@ class User < ApplicationRecord
   end
 
   private
+
   def need_validate_password
     self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
   end

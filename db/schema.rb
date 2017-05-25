@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170525005704) do
+=======
+ActiveRecord::Schema.define(version: 20170524162647) do
+>>>>>>> master
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -49,8 +53,20 @@ ActiveRecord::Schema.define(version: 20170525005704) do
     t.integer  "likes_count",   default: 0
     t.integer  "stars_count",   default: 0
     t.integer  "follows_count", default: 0
+<<<<<<< HEAD
     t.integer  "category_id"
+=======
+    t.integer  "learns_count",  default: 0
+    t.integer  "buys_count",    default: 0
+>>>>>>> master
     t.index ["title"], name: "index_knowledges_on_title"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "knowledge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "photos", force: :cascade do |t|
@@ -89,6 +105,13 @@ ActiveRecord::Schema.define(version: 20170525005704) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "to_learns", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "knowledge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                                           null: false
     t.string   "crypted_password"
@@ -111,6 +134,8 @@ ActiveRecord::Schema.define(version: 20170525005704) do
     t.integer  "follow_knowledges_count",         default: 0
     t.integer  "followers_count",                 default: 0
     t.integer  "following_count",                 default: 0
+    t.integer  "learn_knowledges_count",          default: 0
+    t.integer  "buy_knowledges_count",            default: 0
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

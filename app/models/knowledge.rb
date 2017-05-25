@@ -16,6 +16,17 @@
 #  likes_count   :integer          default("0")
 #  stars_count   :integer          default("0")
 #  follows_count :integer          default("0")
+#  learns_count  :integer          default("0")
+#  buys_count    :integer          default("0")
+#
+# Indexes
+#
+#  index_knowledges_on_title  (title)
+#
+
+#  learns_count  :integer          default("0")
+#  buys_count    :integer          default("0")
+
 #
 # Indexes
 #
