@@ -1,0 +1,10 @@
+<div id="comment-<%= comment.id %>">
+  <%= simple_form_for [ review, comment ], remote: true do |f| %>
+    <div class="form-group">
+      <%= f.input :content, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "修改", class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

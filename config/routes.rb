@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index, :show]
 
+  resources :reviews do
+    resources :comments
+  end
+
   resources :knowledges do
     resources :reviews
     resources :discussions

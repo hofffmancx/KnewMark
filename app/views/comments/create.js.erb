@@ -1,0 +1,7 @@
+<% if @comment.valid? %>
+  $("#comment-list").prepend("<%=j render :partial => "comments/comment", :locals => { :review => @review, :comment => @comment } %>");
+  $("#comment_content").val("");
+  $("#comment-count").replaceWith("<h4 id='comment-count'>共有 <%= @review.reload.comments_count %> 条评论</h4>");
+<% else %>
+  alert("发表失败");
+<% end %>

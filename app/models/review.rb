@@ -2,13 +2,14 @@
 #
 # Table name: reviews
 #
-#  id           :integer          not null, primary key
-#  title        :string
-#  content      :text
-#  knowledge_id :integer
-#  user_id      :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id             :integer          not null, primary key
+#  title          :string
+#  content        :text
+#  knowledge_id   :integer
+#  user_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  comments_count :integer          default("0"), not null
 #
 # Indexes
 #
@@ -24,5 +25,7 @@ class Review < ApplicationRecord
 
   belongs_to :knowledge, counter_cache: true
   belongs_to :user, counter_cache: true
+
+  has_many :comments, :dependent => :destroy
 
 end

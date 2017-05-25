@@ -58,10 +58,13 @@
     <% @knowledge.reviews.each do |review| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%= review.user.username %> 发表评测：《<%= link_to(review.title, knowledge_review_path(@knowledge, review)) %>》
-          <a href="#">
-            <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
-          </a> <!-- 待补充 -->
+          <%= review.user.username %> 发表评测：《<%= link_to(review.title, review_path(review)) %>》
+          <div style="float:right">
+            <a href="#">
+              <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span> |
+            </a> <!-- 待补充 -->
+            <a href="<%= review_path(review) %>#comment-list">评论(<%= review.comments_count %>)</a>
+          </div>
         </div>
         <div class="panel-body">
           <% if current_user && review.user == current_user %>
