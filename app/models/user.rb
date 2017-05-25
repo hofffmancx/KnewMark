@@ -66,13 +66,10 @@ class User < ApplicationRecord
   action_store :star, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
-
-<<<<<<< HEAD
-  has_many :reviews, :dependent => :destroy
-=======
   action_store :learn, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :buy, :knowledge, counter_cache: true, user_counter_cache: true
->>>>>>> master
+
+  has_many :reviews, :dependent => :destroy
 
   def username
     self.email.split('@').first
