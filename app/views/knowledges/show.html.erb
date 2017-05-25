@@ -17,6 +17,9 @@
   <p>产品介绍: <br><%= sanitize @knowledge.description %> </p>
   <p>适宜人群: <br><%= sanitize @knowledge.appropriate %> </p>
   <p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
+  <div class="section-review">
+    <%= link_to("写评测", new_knowledge_review_path(@knowledge), class: "btn btn-default") %>
+  </div>
 </div>
 
 <%= content_for :page_javascript do %>

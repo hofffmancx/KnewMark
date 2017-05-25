@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
 
   resources :knowledges do
+    resources :reviews
     member do
       post :rate
       post :like
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
       end
       collection do
         get :search
-      end 
+      end
     end
   end
 end

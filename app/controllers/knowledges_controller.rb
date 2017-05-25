@@ -3,7 +3,6 @@ class KnowledgesController < ApplicationController
   before_action :require_login, :only => [:new, :create, :like, :unlike, :star, :unstar, :follow, :unfollow]
   before_action :validate_search_key, only: [:search]
 
-
   def index
     @knowledges = Knowledge.where(:status => "published").recent
   end
