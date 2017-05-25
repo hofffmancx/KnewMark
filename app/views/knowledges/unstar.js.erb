@@ -1,0 +1,2 @@
+str = '<span id="knowledge-<%= @knowledge.id %>-star"><%= link_to star_knowledge_path(@knowledge), method: :post, remote: true do  %><i class="fa fa-star-o" aria-hidden="true"></i> 收藏 <span class="badge" id="action-star-count"><%= @knowledge.reload.stars_count %><% end %></span></span>'
+$("#knowledge-<%= @knowledge.id %>-star").replaceWith(str)

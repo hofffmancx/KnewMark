@@ -1,12 +1,12 @@
-<div id="action-learn">
-<% if current_user && current_user.find_action(:learn, target: @knowledge) %>
-    <%= link_to unlearn_knowledge_path(@knowledge), :method => :post do %>
-      <i class="fa fa-shopping-cart" id="action-learn-icon" aria-hidden="true"></i> 想学
+<span id="knowledge-<%= @knowledge.id %>-learn">
+  <% if current_user && current_user.find_action(:learn, target: @knowledge) %>
+    <%= link_to unlearn_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i> 想学
     <% end %>
   <% else %>
-    <%= link_to learn_knowledge_path(@knowledge), :method => :post do %>
-      <i class="fa fa-cart-plus" id="action-learn-icon" aria-hidden="true"></i> 想学
+    <%= link_to learn_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-cart-plus" aria-hidden="true"></i> 想学
     <% end %>
   <% end %>
   <span class="badge" id="action-learn-count"><%= @knowledge.reload.learns_count %></span>
-</div>
+</span>

@@ -1,0 +1,2 @@
+str = '<span id="knowledge-<%= @knowledge.id %>-buy"><%= link_to unbuy_knowledge_path(@knowledge), method: :post, remote: true do  %><i class="fa fa-bookmark" aria-hidden="true"></i> 学过 <span class="badge" id="action-buy-count"><%= @knowledge.reload.buys_count %><% end %></span></span>'
+$("#knowledge-<%= @knowledge.id %>-buy").replaceWith(str)

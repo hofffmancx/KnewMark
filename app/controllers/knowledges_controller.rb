@@ -46,37 +46,31 @@ class KnowledgesController < ApplicationController
   def like
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:like, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unlike
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:like, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def star
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:star, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unstar
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:star, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def follow
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:follow, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unfollow
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:follow, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def search
@@ -89,25 +83,21 @@ class KnowledgesController < ApplicationController
   def learn
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:learn, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unlearn
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:learn, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def buy
     @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:buy, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   def unbuy
     @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:buy, target: @knowledge)
-    redirect_to knowledge_path(@knowledge)
   end
 
   private
