@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525153047) do
+ActiveRecord::Schema.define(version: 20170525151303) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -80,13 +80,6 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
-  create_table "owners", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "knowledge_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "photos", force: :cascade do |t|
     t.integer  "knowledge_id"
     t.string   "image"
@@ -134,13 +127,6 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "to_learns", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "knowledge_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                                           null: false
     t.string   "crypted_password"
@@ -165,11 +151,11 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.integer  "have_knowledges_count",           default: 0
     t.integer  "reviews_count",                   default: 0,     null: false
     t.integer  "discussions_count",               default: 0,     null: false
-    t.integer  "questions_count",                 default: 0,     null: false
     t.integer  "comments_count",                  default: 0,     null: false
     t.integer  "like_comments_count",             default: 0
     t.integer  "like_reviews_count",              default: 0
     t.integer  "like_discussions_count",          default: 0
+    t.integer  "questions_count",                 default: 0,     null: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
