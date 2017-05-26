@@ -77,7 +77,7 @@ class User < ApplicationRecord
   action_store :want, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :have, :knowledge, counter_cache: true, user_counter_cache: true
 
-
+  has_many :knowledges
   has_many :reviews, :dependent => :destroy
   has_many :discussions, :dependent => :destroy
   has_many :questions, :dependent => :destroy

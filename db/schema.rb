@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525151303) do
+ActiveRecord::Schema.define(version: 20170526051921) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170525151303) do
     t.integer  "reviews_count",     default: 0,        null: false
     t.integer  "discussions_count", default: 0,        null: false
     t.integer  "questions_count",   default: 0,        null: false
+    t.integer  "user_id"
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
