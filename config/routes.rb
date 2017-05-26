@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'categories#index'
+  root 'knowledges#index'
 
   resources :users
   resources :sessions
