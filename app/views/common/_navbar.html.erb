@@ -17,6 +17,16 @@
         <% end %>
       </div>
     </div>
+    <ul class="navbar-left">
+      <li class="navbar-listItem dropdown">
+        <a class="navbar-listItem dropdown-toggle" data-toggle="dropdown">分类列表<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <% Category.grouped_data.each do |group| %>
+            <li class="list-group-item"><a href="<%= category_path(group) %>"><%= group.first.title %></li>
+          <% end -%>
+        </ul>
+          </li>
+    </ul>
     <ul class="navbar-list">
       <% unless logged_in? %>
         <li class="navbar-listItem"><%= link_to("注册", new_user_path)%></li>

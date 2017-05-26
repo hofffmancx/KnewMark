@@ -1,8 +1,24 @@
 <ul class="list-group">
   <% @categories.each do |group| %>
-    <li class="list-group-item"><%= group.first.title %></li>
+    <li class="list-group-item"><a href="<%= category_path(group) %>"><%= group.first.title %></li>
     <% group.last.each do |sub_category| %>
       <li class="list-group-item"><a href="<%= category_path(sub_category) %>"><%= sub_category.title %></a></li>
     <% end -%>
   <% end -%>
 </ul>
+# <ul class="list-group">
+#   <% @categories.each do |group| %>
+#     <li class="list-group-item"><%= group.first.title %></li>
+#     <% group.first.knowledges.all.each do |knowledge|%>
+#         <%= link_to knowledge_path(knowledge) do %>
+#           <% if knowledge.photos.present? %>
+#             <%= image_tag(knowledge.photos[0].image.thumb.url, class: "thumbnail") %>
+#           <% else %>
+#             <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+#           <% end %>
+#           <p><%= link_to(knowledge.title, knowledge_path(knowledge)) %></p>
+#         <% end %>
+#        <% end -%>
+#
+#   <% end -%>
+# </ul>
