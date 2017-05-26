@@ -27,7 +27,10 @@ Rails.application.routes.draw do
   resources :knowledges do
     resources :reviews
     resources :discussions
-    resources :questions
+    resources :questions do
+      resources :anwsers
+    end
+    
     member do
       post :rate
       post :like

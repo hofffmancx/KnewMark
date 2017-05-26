@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525153047) do
+ActiveRecord::Schema.define(version: 20170526041038) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.datetime "updated_at",    null: false
     t.index ["target_type", "target_id", "action_type"], name: "index_actions_on_target_type_and_target_id_and_action_type"
     t.index ["user_type", "user_id", "action_type"], name: "index_actions_on_user_type_and_user_id_and_action_type"
+  end
+
+  create_table "anwsers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -80,13 +88,6 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
-  create_table "owners", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "knowledge_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "photos", force: :cascade do |t|
     t.integer  "knowledge_id"
     t.string   "image"
@@ -100,8 +101,9 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "anwsers_count", default: 0, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -134,13 +136,6 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "to_learns", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "knowledge_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                                           null: false
     t.string   "crypted_password"
@@ -165,11 +160,12 @@ ActiveRecord::Schema.define(version: 20170525153047) do
     t.integer  "have_knowledges_count",           default: 0
     t.integer  "reviews_count",                   default: 0,     null: false
     t.integer  "discussions_count",               default: 0,     null: false
-    t.integer  "questions_count",                 default: 0,     null: false
     t.integer  "comments_count",                  default: 0,     null: false
     t.integer  "like_comments_count",             default: 0
     t.integer  "like_reviews_count",              default: 0
     t.integer  "like_discussions_count",          default: 0
+    t.integer  "questions_count",                 default: 0,     null: false
+    t.integer  "anwsers_count",                   default: 0,     null: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
