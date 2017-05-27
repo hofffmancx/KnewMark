@@ -50,8 +50,8 @@ gem 'will_paginate'
 gem 'ransack'
 gem 'social-share-button'
 gem 'premailer-rails'
-
-
+gem 'rest-client'
+gem 'figaro'
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'

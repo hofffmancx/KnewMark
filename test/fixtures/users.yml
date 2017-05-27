@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                              :integer          not null, primary key
-#  email                           :string           not null
+#  email                           :string
 #  crypted_password                :string
 #  salt                            :string
 #  created_at                      :datetime         not null
@@ -26,16 +26,18 @@
 #  have_knowledges_count           :integer          default("0")
 #  reviews_count                   :integer          default("0"), not null
 #  discussions_count               :integer          default("0"), not null
-#  questions_count                 :integer          default("0"), not null
 #  comments_count                  :integer          default("0"), not null
 #  like_comments_count             :integer          default("0")
 #  like_reviews_count              :integer          default("0")
 #  like_discussions_count          :integer          default("0")
+#  questions_count                 :integer          default("0"), not null
+#  cellphone                       :string
 #
 # Indexes
 #
 #  index_users_on_activation_token      (activation_token)
-#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_cellphone             (cellphone)
+#  index_users_on_email                 (email)
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
 #
