@@ -21,6 +21,7 @@
 #  reviews_count     :integer          default("0"), not null
 #  discussions_count :integer          default("0"), not null
 #  questions_count   :integer          default("0"), not null
+#  user_id           :integer
 #
 # Indexes
 #
@@ -42,6 +43,8 @@ class Knowledge < ApplicationRecord
   validates_presence_of :category_id, message: "分类不能为空"
   scope :recent, -> { order("created_at DESC") }
 
+  has_many :knowledges_tags, class_name: "KnowledgesTags"
+  has_many :tags, through: :knowledges_tags
   has_many :photos, :dependent => :destroy
   has_many :scores, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
@@ -54,6 +57,17 @@ class Knowledge < ApplicationRecord
 
   def find_score(user)
     user && self.scores.where( :user_id => user.id ).first
+  end
+
+  def tags_string= one_tags
+     self.tags.destroy_all
+
+    one_tags.split(',').each do |tag|
+      one_tag = Tag.find_by(title: tag)
+      one_tag = Tag.new(title: tag) unless one_tag
+
+      self.tags << one_tag
+    end
   end
 
   def average_score

@@ -21,6 +21,7 @@
 #  reviews_count     :integer          default("0"), not null
 #  discussions_count :integer          default("0"), not null
 #  questions_count   :integer          default("0"), not null
+#  user_id           :integer
 #
 # Indexes
 #

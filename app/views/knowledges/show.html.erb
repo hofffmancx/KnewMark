@@ -2,7 +2,7 @@
   <div class="pull-right">
     <%= social_share_button_tag(@knowledge.title) %>
   </div>
-  
+
   <h3><%= @knowledge.title %></h3>
   <small>--<%= @knowledge.subtitle %></small>
   <hr>
@@ -24,6 +24,10 @@
   <p>产品介绍: <br><%= sanitize @knowledge.description %> </p>
   <p>适宜人群: <br><%= sanitize @knowledge.appropriate %> </p>
   <p>订阅须知: <br><%= sanitize @knowledge.notice %> </p>
+  <p>标签: <br><% @knowledge.tags.each do |tag| %>
+    <span class="badge"><%= tag.title %></span>
+  <% end -%>
+</p>
   <hr>
 
   <div class="section-havelink">

@@ -111,6 +111,6 @@ class KnowledgesController < ApplicationController
   end
 
   def knowledge_params
-    params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :category_id, :photos_attributes => [:id, :image, :_destroy])
+    params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :category_id, :tags_string, :photos_attributes => [:id, :image, :_destroy])
   end
 end

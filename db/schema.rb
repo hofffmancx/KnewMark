@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525151303) do
+ActiveRecord::Schema.define(version: 20170527053111) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -77,7 +77,13 @@ ActiveRecord::Schema.define(version: 20170525151303) do
     t.integer  "reviews_count",     default: 0,        null: false
     t.integer  "discussions_count", default: 0,        null: false
     t.integer  "questions_count",   default: 0,        null: false
+    t.integer  "user_id"
     t.index ["title"], name: "index_knowledges_on_title"
+  end
+
+  create_table "knowledges_tags", force: :cascade do |t|
+    t.integer "knowledge_id"
+    t.integer "tag_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -127,8 +133,14 @@ ActiveRecord::Schema.define(version: 20170525151303) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                           null: false
+    t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at",                                      null: false
@@ -156,10 +168,21 @@ ActiveRecord::Schema.define(version: 20170525151303) do
     t.integer  "like_reviews_count",              default: 0
     t.integer  "like_discussions_count",          default: 0
     t.integer  "questions_count",                 default: 0,     null: false
+    t.string   "cellphone"
     t.index ["activation_token"], name: "index_users_on_activation_token"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["cellphone"], name: "index_users_on_cellphone"
+    t.index ["email"], name: "index_users_on_email"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
+  end
+
+  create_table "verify_tokens", force: :cascade do |t|
+    t.string   "token"
+    t.string   "cellphone"
+    t.datetime "expired_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cellphone", "token"], name: "index_verify_tokens_on_cellphone_and_token"
   end
 
 end
