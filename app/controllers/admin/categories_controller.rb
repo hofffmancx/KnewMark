@@ -1,8 +1,7 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < AdminController
 
     before_action :find_root_categories, only: [:new, :create, :edit, :update]
     before_action :find_category, only: [:edit, :update, :destroy]
-    before_action :require_admin
     def index
       if params[:id].blank?
         @categories = Category.roots
