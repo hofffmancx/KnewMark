@@ -177,6 +177,8 @@ ActiveRecord::Schema.define(version: 20170603110423) do
     t.integer  "like_reviews_count",              default: 0
     t.integer  "like_discussions_count",          default: 0
     t.integer  "questions_count",                 default: 0,     null: false
+    t.string   "cellphone"
+    t.integer  "anwsers_count",                   default: 0,     null: false
     t.string   "avatar"
     t.string   "username"
     t.integer  "anwsers_count",                   default: 0,     null: false
