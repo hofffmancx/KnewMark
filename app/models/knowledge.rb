@@ -21,6 +21,7 @@
 #  reviews_count     :integer          default("0"), not null
 #  discussions_count :integer          default("0"), not null
 #  questions_count   :integer          default("0"), not null
+#  user_id           :integer
 #
 # Indexes
 #
@@ -51,6 +52,7 @@ class Knowledge < ApplicationRecord
   accepts_nested_attributes_for :photos, :allow_destroy => true, :reject_if => :all_blank
 
   belongs_to :category
+  belongs_to :user
 
   def find_score(user)
     user && self.scores.where( :user_id => user.id ).first

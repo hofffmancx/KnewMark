@@ -1,0 +1,6 @@
+<p>Hi <%= @user.username %>,</p>
+
+<p>很抱歉，您提交的产品已被驳回 <%=link_to @knowledge.title, knowledge_url(@knowledge) %></p>
+<% content_for :action do %>
+  <%= link_to "浏览产品页面", knowledge_url(@knowledge) , :class => "btn-primary", :itemprop => "url" %>
+<% end %>

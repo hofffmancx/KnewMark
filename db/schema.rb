@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170603110423) do
     t.integer  "reviews_count",     default: 0,        null: false
     t.integer  "discussions_count", default: 0,        null: false
     t.integer  "questions_count",   default: 0,        null: false
+    t.integer  "user_id"
     t.index ["title"], name: "index_knowledges_on_title"
   end
 

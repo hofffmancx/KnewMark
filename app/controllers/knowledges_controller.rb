@@ -22,6 +22,7 @@ class KnowledgesController < ApplicationController
   def create
     @knowledge = Knowledge.new(knowledge_params)
     @root_categories = Category.roots
+    @knowledge.user = current_user
     if @knowledge.save
       flash[:notice] = "产品已提交，待审核中..."
       redirect_to knowledges_path

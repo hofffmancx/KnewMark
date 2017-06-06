@@ -34,6 +34,7 @@ class Admin::KnowledgesController < ApplicationController
   def create
     @knowledge = Knowledge.new(knowledge_params)
     @root_categories = Category.roots
+    @knowledge.user = current_user
     if @knowledge.save
       redirect_to admin_knowledges_path
     else
@@ -44,6 +45,7 @@ class Admin::KnowledgesController < ApplicationController
   def update
     @knowledge = Knowledge.find(params[:id])
     @root_categories = Category.roots
+    @knowledge.user = current_user
     if @knowledge.update(knowledge_params)
       flash[:notice] = "更新成功"
       redirect_to admin_knowledges_path
@@ -69,6 +71,7 @@ class Admin::KnowledgesController < ApplicationController
   def reject
     @knowledge = Knowledge.find(params[:id])
     @knowledge.reject!
+    KnowledgeMailer.notify_knowledge_rejected(@knowledge).deliver_later
     flash[:alert] = "产品驳回，已通知重新修改"
     redirect_to :back
   end
@@ -76,6 +79,7 @@ class Admin::KnowledgesController < ApplicationController
   def publish
     @knowledge = Knowledge.find(params[:id])
     @knowledge.publish!
+    KnowledgeMailer.notify_knowledge_passed(@knowledge).deliver_later
     flash[:notice] = "产品已上线"
     redirect_to :back
   end
