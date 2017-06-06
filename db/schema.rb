@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20170603110423) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
+    t.string   "email",                                           null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at",                                      null: false
@@ -180,21 +180,10 @@ ActiveRecord::Schema.define(version: 20170603110423) do
     t.string   "avatar"
     t.string   "username"
     t.integer  "anwsers_count",                   default: 0,     null: false
-    t.string   "cellphone"
     t.index ["activation_token"], name: "index_users_on_activation_token"
-    t.index ["cellphone"], name: "index_users_on_cellphone"
-    t.index ["email"], name: "index_users_on_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
-  end
-
-  create_table "verify_tokens", force: :cascade do |t|
-    t.string   "token"
-    t.string   "cellphone"
-    t.datetime "expired_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cellphone", "token"], name: "index_verify_tokens_on_cellphone_and_token"
   end
 
 end
