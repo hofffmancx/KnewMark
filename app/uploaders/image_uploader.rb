@@ -39,6 +39,16 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [500, 500]
   end
 
+  # def filename
+  #   if super.present?
+  #     @name ||= Digest::MD5.hexdigest(current_path)
+  #     "#{Time.now.year}/#{@name}.#{file.extension.downcase}"
+  #   end
+  # end
+  # def extension_white_list
+  #   %w(jpg jpeg gif png)
+  # end
+
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]

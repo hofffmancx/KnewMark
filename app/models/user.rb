@@ -86,6 +86,7 @@ class User < ApplicationRecord
   has_many :questions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
   has_many :anwsers, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
 
   mount_uploader :avatar, AvatarUploader
 
