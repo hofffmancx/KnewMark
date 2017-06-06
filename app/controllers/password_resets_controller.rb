@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
 
     # This line sends an email to the user with instructions on how to reset their password (a url with a random token)
     if @user
-      UserMailer.reset_password_email(@user).deliver!
+      @user.deliver_reset_password_instructions! 
       redirect_to(root_path, :notice => '重置密码邮件已发送至上面的邮箱')
     else
       flash[:alert] = '邮箱不存在'
