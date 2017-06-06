@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
+  require 'sidekiq/web'
+  require 'admin_constraint'
+  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
+
   root 'knowledges#index'
 
   resources :users
   resources :sessions
   resources :password_resets
+
 
   resources :categories, only: [:index, :show]
   post 'photos' => 'photos#upload'

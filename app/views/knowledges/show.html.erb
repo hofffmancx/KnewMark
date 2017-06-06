@@ -45,7 +45,7 @@
     <% @knowledge.discussions.each do |discussion| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%= discussion.user.username %> :
+          <%= link_to discussion.user.username, user_path(discussion.user) %> :
 
           <div style="float:right">
             <%= render :partial => "discussions/like", :locals => { :discussion => discussion } %>
@@ -70,7 +70,7 @@
     <% @knowledge.reviews.each do |review| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%= review.user.username %> 发表评测：《<%= link_to(review.title, review_path(review)) %>》
+          <%= link_to review.user.username, user_path(review.user) %> 发表评测：《<%= link_to(review.title, review_path(review)) %>》
           <div style="float:right">
             <%= render :partial => "reviews/like", :locals => { :review => review } %>
           </div>
@@ -93,7 +93,7 @@
     <% @knowledge.questions.each do |question| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%= question.user.username %> 提出问题：《<%= link_to(question.title, knowledge_question_path(@knowledge, question)) %>》
+          <%= link_to question.user.username, user_path(question.user) %> 提出问题：《<%= link_to(question.title, knowledge_question_path(@knowledge, question)) %>》
           <a href="#">
             <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
           </a> <!-- 待补充 -->
