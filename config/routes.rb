@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :password_resets
 
   resources :categories, only: [:index, :show]
+  post 'photos' => 'photos#upload'
 
   resources :reviews do
     resources :comments
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
     resources :questions do
       resources :anwsers
     end
-    
+
     member do
       post :rate
       post :like

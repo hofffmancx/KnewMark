@@ -14,10 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require nested_form_fields
-//= require ckeditor/init
 //= require jquery.raty
 //= require social-share-button
 //= require social-share-button/wechat
+//= require simditor
+//= require marked
+//= require to-markdown
+//= require simditor-marked
+//= require simditor-markdown
+//= require simditor-mark
+//= require simditor-dropzone
 //= require_tree .
 
 
