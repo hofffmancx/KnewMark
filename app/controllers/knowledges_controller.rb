@@ -3,7 +3,7 @@ class KnowledgesController < ApplicationController
   before_action :validate_search_key, only: [:search]
 
   def index
-    @knowledges = Knowledge.where(:status => "published").recent
+    @knowledges = Knowledge.includes(:photos).where(:status => "published").recent
   end
 
   def show
