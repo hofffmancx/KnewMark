@@ -1,8 +1,5 @@
-class Admin::KnowledgesController < ApplicationController
+class Admin::KnowledgesController < AdminController
   before_action :validate_search_key, only: [:search]
-  before_action :require_login
-  before_action :require_admin
-  layout "admin"
 
   def index
     @knowledges = case params[:status]

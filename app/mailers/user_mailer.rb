@@ -5,4 +5,10 @@ class UserMailer < ApplicationMailer
     mail(:to => user.email,
          :subject => "Your password has been reset")
   end
+
+  def notify_welcome_info(user)
+    @user = user
+    mail(to: @user.email, subject: "您提交的内容已经上线，请前往查看")
+
+  end
 end
