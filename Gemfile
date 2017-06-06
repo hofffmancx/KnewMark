@@ -50,6 +50,8 @@ gem 'ransack'
 gem 'social-share-button'
 gem 'premailer-rails'
 gem 'simditor'
+gem 'sidekiq'
+
 
 
 group :development, :test do
