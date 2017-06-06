@@ -16,8 +16,19 @@ class Admin::UsersController < AdminController
      end
    end
 
+  def bulk_mail
+    total = 0
+    Array(params[:ids]).each do |user_id|
+      user = User.find(user_id)
+      UserMailer.notify_welcome_info(user).deliver_later
+      total += 1
+    end
+
+    flash[:alert] = "成功完成 #{total} 笔"
+    redirect_to admin_users_path
+  end
    protected
-   
+
    def user_params
      params.require(:user).permit(:email)
    end
