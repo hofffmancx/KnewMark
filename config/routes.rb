@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :questions do
       resources :anwsers
     end
-    
+
     member do
       post :rate
       post :like
@@ -67,6 +67,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects
+    resources :users
     resources :categories
     resources :knowledges do
       member do
