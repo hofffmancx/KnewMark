@@ -9,14 +9,12 @@
   </head>
 
   <body>
-
       <%= render "common/navbar" %>
       <%= render "common/flashes" %>
       <%= yield %>
-
       <%= render "common/footer" %>
       <%= javascript_include_tag 'application' %>
+      <!-- <script src="http://cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script> -->
       <%= yield :page_javascript %>
-
   </body>
 </html>

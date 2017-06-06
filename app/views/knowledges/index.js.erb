@@ -1,0 +1,5 @@
+$("#knowledge-list").append("<%=j render :partial => "knowledge_item", :collection => @knowledges, :as => :knowledge %>");
+
+<% if @knowledges.any? %>
+  var current_knowledge_id = <%= @knowledges.last.id %>;
+<% end %>

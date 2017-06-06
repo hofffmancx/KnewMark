@@ -3,7 +3,18 @@ class KnowledgesController < ApplicationController
   before_action :validate_search_key, only: [:search]
 
   def index
-    @knowledges = Knowledge.where(:status => "published").recent
+    @knowledges = Knowledge.where(:status => "published")
+
+    @knowledges = @knowledges.recent.limit(20)
+
+    if params[:max_id]
+      @knowledges = @knowledges.where( "id < ?", params[:max_id])
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

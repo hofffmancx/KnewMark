@@ -1,12 +1,21 @@
-<div class="col-md-3">
-  <%= link_to knowledge_path(knowledge) do %>
-    <% if knowledge.photos.present? %>
-      <%= image_tag(knowledge.photos[0].image.thumb.url, class: "thumbnail") %>
-    <% else %>
-      <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
+<span id="knowledge-<%= knowledge.id %>">
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <%= link_to knowledge_path(knowledge) do %>
+      <div class="knowledge">
+        <div class="knowledge-cover">
+          <% if knowledge.photos.present? %>
+            <%= image_tag(knowledge.photos[0].image.thumb.url, class: 'thumbnail') %>
+          <% else %>
+            <%= image_tag("http://placehold.it/200x200&text=No Pic", class: 'thumbnail') %>
+          <% end %>
+        </div>
+        <div class="knowledge-content">
+          <%= link_to(knowledge.title, knowledge_path(knowledge)) %>
+        </div>
+        <div class="knowledge-info">
+          <span class="icon"><i class="fa fa-heart-o" aria-hidden="true"></i></span><small><%= knowledge.likes_count %></small>
+        </div>
+      </div>
     <% end %>
-    <p>
-      <%= link_to(knowledge.title, knowledge_path(knowledge)) %>
-    </p>
-  <% end %>
-</div>
+  </div>
+</span>

@@ -1,15 +1,4 @@
 <div class="row">
   <% @knowledges.each do |knowledge| %>
-    <div class="col-md-3">
-      <%= link_to knowledge_path(knowledge) do %>
-        <% if knowledge.photos.present? %>
-          <%= image_tag(knowledge.photos[0].image.thumb.url, class: "thumbnail") %>
-        <% else %>
-          <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-        <% end %>
-        <p><%= link_to(knowledge.title, knowledge_path(knowledge)) %></p>
-      <% end %>
-    </div>
+    <%= render 'knowledges/knowledge_item' %>
   <% end %>
-
-<%= will_paginate @knowledges %>

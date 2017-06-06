@@ -23,7 +23,7 @@
 
  body {
      font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Lantinghei SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
-    //  background-color: #efefef;
+     background-color: #efefef;
      color: #333;
      font-size: 14px;
      letter-spacing: 0.1em;
@@ -50,6 +50,10 @@ a {
 }
 //---------Others end ---------
 
+.page-content {
+  margin-top: 80px;
+  min-height: 600px;
+}
 
 //---------Category index ---------
 //---------Navbar---------
@@ -74,7 +78,7 @@ a {
 
 
 .navbar-wrap a {
-  color: #171B1F;
+  // color: #171B1F;
   text-decoration: none;
 }
 
