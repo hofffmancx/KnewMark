@@ -33,6 +33,7 @@
 #  questions_count                 :integer          default("0"), not null
 #  avatar                          :string
 #  username                        :string
+#  anwsers_count                   :integer          default("0"), not null
 #
 # Indexes
 #
@@ -84,6 +85,7 @@ class User < ApplicationRecord
   has_many :discussions, :dependent => :destroy
   has_many :questions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :anwsers, :dependent => :destroy
 
   mount_uploader :avatar, AvatarUploader
 

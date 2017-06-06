@@ -91,6 +91,7 @@
           <a href="#">
             <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
           </a> <!-- 待补充 -->
+          <span class="pull-right"><%= question.anwsers_count %>人回答</span>
         </div>
         <div class="panel-body">
           <% if current_user && question.user == current_user %>

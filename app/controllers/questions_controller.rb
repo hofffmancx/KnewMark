@@ -22,6 +22,9 @@ class QuestionsController < ApplicationController
 	def edit
 	end
 
+	def show	
+	end
+
 	def update
 		if @question.update(question_params)
 			redirect_to knowledge_path(@knowledge), notice: "问题已更新。"

@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20170603110423) do
     t.index ["user_type", "user_id", "action_type"], name: "index_actions_on_user_type_and_user_id_and_action_type"
   end
 
+  create_table "anwsers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.integer  "weight",             default: 0
@@ -93,8 +101,9 @@ ActiveRecord::Schema.define(version: 20170603110423) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "anwsers_count", default: 0, null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -158,6 +167,7 @@ ActiveRecord::Schema.define(version: 20170603110423) do
     t.integer  "questions_count",                 default: 0,     null: false
     t.string   "avatar"
     t.string   "username"
+    t.integer  "anwsers_count",                   default: 0,     null: false
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

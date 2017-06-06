@@ -33,6 +33,7 @@
 #  questions_count                 :integer          default("0"), not null
 #  avatar                          :string
 #  username                        :string
+#  anwsers_count                   :integer          default("0"), not null
 #
 # Indexes
 #
