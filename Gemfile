@@ -49,6 +49,7 @@ gem "annotate"
 gem 'will_paginate'
 gem 'ransack'
 gem 'social-share-button'
+gem 'premailer-rails'
 
 
 group :development, :test do

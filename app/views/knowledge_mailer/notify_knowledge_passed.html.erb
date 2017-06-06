@@ -1,0 +1,6 @@
+<p>Hi <%= @user.username %>,</p>
+
+<p>您提交的产品已通过审核 <%=link_to @knowledge.title, knowledge_url(@knowledge) %></p>
+<% content_for :action do %>
+  <%= link_to "浏览产品页面", knowledge_url(@knowledge) , :class => "btn-primary", :itemprop => "url" %>
+<% end %>
