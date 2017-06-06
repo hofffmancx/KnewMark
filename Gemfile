@@ -50,6 +50,7 @@ gem 'will_paginate'
 gem 'ransack'
 gem 'social-share-button'
 gem 'premailer-rails'
+gem 'sidekiq'
 
 
 group :development, :test do
