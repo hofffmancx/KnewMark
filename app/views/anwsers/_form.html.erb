@@ -1,0 +1,4 @@
+<%= simple_form_for [@knowledge, @question, @anwser] do |f| %>
+  <%= f.input :content, as: :ckeditor %>
+  <%= f.submit "提交回答", class: "btn btn-primary" %>
+<% end %>
