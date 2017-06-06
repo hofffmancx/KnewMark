@@ -68,6 +68,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects
+    resources :users do
+      collection do
+        post :bulk_mail
+      end
+    end
     resources :categories
     resources :knowledges do
       member do
