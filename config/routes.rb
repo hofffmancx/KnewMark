@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   require 'admin_constraint'
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
-
+  
   root 'knowledges#index'
 
   resources :users
