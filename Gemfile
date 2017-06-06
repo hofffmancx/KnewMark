@@ -42,7 +42,6 @@ gem 'awesome_rails_console'
 gem 'nested_form_fields'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'ckeditor'
 gem 'action-store'
 gem 'ancestry'
 gem "annotate"
@@ -50,6 +49,7 @@ gem 'will_paginate'
 gem 'ransack'
 gem 'social-share-button'
 gem 'premailer-rails'
+gem 'simditor'
 
 
 group :development, :test do
