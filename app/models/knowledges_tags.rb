@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: knowledges_tags
+#
+#  id           :integer          not null, primary key
+#  knowledge_id :integer
+#  tag_id       :integer
+#
+
 class KnowledgesTags < ApplicationRecord
 
   self.table_name = 'knowledges_tags'
