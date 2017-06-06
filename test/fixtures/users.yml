@@ -26,11 +26,13 @@
 #  have_knowledges_count           :integer          default("0")
 #  reviews_count                   :integer          default("0"), not null
 #  discussions_count               :integer          default("0"), not null
-#  questions_count                 :integer          default("0"), not null
 #  comments_count                  :integer          default("0"), not null
 #  like_comments_count             :integer          default("0")
 #  like_reviews_count              :integer          default("0")
 #  like_discussions_count          :integer          default("0")
+#  questions_count                 :integer          default("0"), not null
+#  avatar                          :string
+#  username                        :string
 #
 # Indexes
 #

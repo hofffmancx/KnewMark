@@ -18,4 +18,5 @@ class Account::ProfileController < ApplicationController
       render action: :password
     end
   end
+
 end

@@ -51,6 +51,8 @@ Rails.application.routes.draw do
      controller :profile do
        get :password
        put :update_password
+       get :edit
+       put :update_profile
      end
    end
    resources :knowledges do
