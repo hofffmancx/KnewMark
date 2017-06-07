@@ -3,6 +3,10 @@ class QuestionsController < ApplicationController
 	before_action :find_knowledge
 	before_action :find_question, :except => [:index, :new, :create]
 
+	def index
+    @questions = @knowledge.questions
+  end
+
 	def new
 		@question = Question.new
 	end
@@ -22,7 +26,7 @@ class QuestionsController < ApplicationController
 	def edit
 	end
 
-	def show	
+	def show
 	end
 
 	def update
