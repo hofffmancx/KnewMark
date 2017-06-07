@@ -16,7 +16,7 @@
 <%= content_for :page_javascript do %>
 
   <script>
-    <% if @knowledges %>
+    <% if @knowledges.present? %>
       var current_knowledge_id = <%= @knowledges.last.id %>;
       $(window).scroll(function(){
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
