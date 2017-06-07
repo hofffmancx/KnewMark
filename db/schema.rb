@@ -178,13 +178,10 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.integer  "like_reviews_count",              default: 0
     t.integer  "like_discussions_count",          default: 0
     t.integer  "questions_count",                 default: 0,     null: false
-    t.string   "cellphone"
-<<<<<<< HEAD
-=======
     t.integer  "anwsers_count",                   default: 0,     null: false
+    t.string   "cellphone"
     t.string   "avatar"
     t.string   "username"
->>>>>>> master
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"
