@@ -1,0 +1,7 @@
+<% if @anwser.valid? %>
+  $("#anwser-list").prepend("<%=j render :partial => "anwsers/anwser", :locals => { :question => @question, :anwser => @anwser } %>");
+  $("#anwser_content").val("");
+  $("#anwser-count").replaceWith("<p id='anwser-count'>共有 <%= @question.reload.anwsers_count %> 个回答</p>");
+<% else %>
+  alert("发表失败");
+<% end %>

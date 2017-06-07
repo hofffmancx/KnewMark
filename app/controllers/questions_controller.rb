@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
 	end
 
 	def show
+		@anwser = Anwser.new
 	end
 
 	def update
