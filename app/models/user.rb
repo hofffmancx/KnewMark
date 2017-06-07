@@ -83,6 +83,8 @@ class User < ApplicationRecord
   validates_presence_of :password_confirmation, message: "密码确认不能为空", if: :need_validate_password
   validates_confirmation_of :password, message: "密码不一致", if: :need_validate_password
   validates_length_of :password, minimum: 6, message: "密码最短为6位", if: :need_validate_password
+  validate :validate_email_or_cellphone, on: :create
+
 
   action_store :like, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :like, :review, counter_cache: true, user_counter_cache: true
@@ -111,6 +113,7 @@ class User < ApplicationRecord
   def admin?
     is_admin
   end
+
 
   private
 

@@ -1,9 +1,9 @@
 module SendSMS
   class << self
 
-    MESSAGE_SUFFIX = "【KnewMark】"
+    MESSAGE_SUFFIX = "【知识马克】"
 
-    SMS_API_KEY = 'key-03c92edd495ea53462eeeac792dfe901'
+    SMS_API_KEY = ENV['SMS_API_KEY']
     SMS_SEND_URL = "https://sms-api.luosimao.com/v1/send.json"
     SMS_STATUS_URL = "https://sms-api.luosimao.com/v1/status.json"
 
