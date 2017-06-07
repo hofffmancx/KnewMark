@@ -1,0 +1,50 @@
+<div class="page-content">
+  <div class="container">
+    <div class="row">
+      <main class="col-md-9">
+        <%= render 'knowledges/show_header' %>
+
+        <section class="knowledge-discussion">
+
+          <%= link_to("参与讨论", new_knowledge_discussion_path(@knowledge), class: "btn btn-default") %>
+          <div class="discussions-list">
+            <% @discussions.each do |discussion| %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <%= link_to discussion.user.username, user_path(discussion.user) %>
+
+                  <div style="float:right">
+                    <%= render :partial => "discussions/like", :locals => { :discussion => discussion } %>
+                  </div>
+
+                </div>
+                <div class="panel-body">
+                  <% if current_user && discussion.user == current_user %>
+                    <%= link_to("edit", edit_knowledge_discussion_path(@knowledge, discussion), class: "btn btn-warning btn-xs pull-right") %>
+                    <%= link_to("delete", knowledge_discussion_path(@knowledge, discussion), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "btn btn-danger btn-xs pull-right") %>
+                  <% end %>
+                  <%= simple_format(discussion.content) %>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+
+        </section>
+
+        <%= render 'knowledges/show_footer' %>
+      </main>
+
+
+      <aside class="col-md-3">
+        <%= render 'knowledges/sidebar' %>
+      </aside>
+    </div>
+  </div>
+</div>
+
+
+<%= content_for :page_javascript do %>
+  <script>
+    $("#knowledge-discussion").addClass("active");
+  </script>
+<% end %>

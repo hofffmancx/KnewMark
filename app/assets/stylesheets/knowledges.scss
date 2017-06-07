@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// ----------- Index Page -----------
 .knowledge {
   background-color: white;
   margin-bottom: 30px;
@@ -37,3 +39,158 @@
     border-radius: 0;
   }
  }
+
+// ----------- Index Page end -----------
+
+
+// ----------- Show Page -----------
+
+
+aside {
+  ul, ol {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+  ul li {
+    margin-left: 0;
+    border-bottom: 1px dashed #eee;
+    border-right: 1px dashed #eee;
+    float: left;
+    width: 50%;
+    text-align: center;
+    transition: all 0.2s ease-out;
+    display: list-item;
+  }
+}
+
+
+aside .actions {
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+aside .share-links {
+  background-color: #fff;
+  padding: 1.5em 0;
+  text-align: center;
+  border-bottom: 1px dashed #eee;
+}
+
+aside .to-buy {
+  background-color: #fff;
+  border-radius: 0 0 10px 10px;
+  padding: 1.5em 0;
+  text-align: center;
+}
+
+.actions > li {
+  padding: 2.5em 0;
+  a {
+    font-size: 32px;
+    small {font-size: 12px;}
+  }
+}
+
+
+.actions {
+  .like a {
+    color: #F08080;
+  }
+  .like .liked {
+    color: #FF4500;
+  }
+  .want a {
+    color: #87CEFA;
+  }
+  .want .wanted {
+    color: #4682B4;
+  }
+  .have a {
+    color: #87CEFA;
+  }
+  .have .had {
+    color: #4682B4;
+  }
+  .follow a {
+    color: #F08080;
+  }
+  .follow .followed {
+    color: #FF4500;
+  }
+}
+
+
+main, aside {
+  padding: 0 1em !important;
+  display: block;
+  min-height: 200px;
+  position: relative;
+}
+
+main section{
+  background-color: #fff;
+  padding: 1em 2em;
+}
+
+section hr {
+  border-top: 1px dashed #eee;
+}
+
+.author_name, .knowledge_counter  {
+  border-left: 3px solid #47b2e2;
+  padding: 1em;
+  margin: 1em 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+main {
+  .heading {
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+  }
+  .footer {
+    border-top: 1px dashed #eee;
+    border-radius: 0 0 10px 10px;
+  }
+  .section-footer {
+    margin-top: 1em;
+  }
+  .rate {
+    text-align: center;
+  }
+
+  .menu {
+    a {
+      color: #696969;
+      font-size: 16px;
+      font-weight: 800;
+    }
+  }
+}
+
+.knowledge-info, .knowledge-discussion, .knowledge-review, .knowledge-question {
+  border-bottom: 1px dashed #eee;
+}
+
+.discussions-list, .reviews-list, .questions-list {
+  margin-top: 20px;
+}
+
+
+
+.counter {
+  color: #586069;
+  display: inline-block;
+  padding: 2px 5px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #586069;
+  background-color: rgba(27,31,35,0.08);
+  border-radius: 20px;
+}
+
+
+// ----------- Show Page end -----------

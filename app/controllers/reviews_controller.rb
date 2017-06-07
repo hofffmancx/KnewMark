@@ -3,6 +3,10 @@ class ReviewsController < ApplicationController
   before_action :find_knowledge, except: [ :show, :like, :unlike ]
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
+  def index
+    @reviews = @knowledge.reviews
+  end
+
   def new
     @review = Review.new
   end

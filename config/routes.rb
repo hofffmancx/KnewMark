@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     post :like, on: :member
     post :unlike, on: :member
   end
+  resources :cellphone_tokens, only: [:create]
 
   resources :comments do
     post :like, on: :member

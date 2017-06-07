@@ -24,6 +24,9 @@ class KnowledgesController < ApplicationController
       flash[:warning] = "此课程未上线"
       redirect_to knowledges_path
     end
+    @reviews = @knowledge.reviews.recent.limit(3)
+    @discussions = @knowledge.discussions.recent.limit(3)
+    @questions = @knowledge.questions.recent.limit(3)
   end
 
   def new
@@ -95,6 +98,7 @@ class KnowledgesController < ApplicationController
 
   def want
     @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
   end
 
@@ -105,6 +109,7 @@ class KnowledgesController < ApplicationController
 
   def have
     @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
   end
 

@@ -15,30 +15,23 @@
 
 <%= content_for :page_javascript do %>
 
-  <!-- <script>
-    $('.knowledge-list').masonry({
-    // options
-    itemSelector: '.knowledge',
-    columnWidth: 200
-    });
-  </script> -->
-
   <script>
-    var current_knowledge_id = <%= @knowledges.last.id %>;
-
-    $(window).scroll(function(){
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        var url = "/knowledges?max_id=" + current_knowledge_id;
-        if (url) {
-          $.ajax({
-            method: "GET",
-            url: url,
-            dataType: "script"
-          })
-        } else {
-          console.log("data ended")
+    <% if @knowledges.present? %>
+      var current_knowledge_id = <%= @knowledges.last.id %>;
+      $(window).scroll(function(){
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+          var url = "/knowledges?max_id=" + current_knowledge_id;
+          if (url) {
+            $.ajax({
+              method: "GET",
+              url: url,
+              dataType: "script"
+            })
+          } else {
+            console.log("data ended")
+          }
         }
-      }
-    })
+      })
+    <% end %>
   </script>
 <% end %>

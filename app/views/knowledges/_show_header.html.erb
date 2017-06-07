@@ -1,0 +1,26 @@
+<section class="heading">
+  <h3><%= @knowledge.title %></h3>
+  <small><%= @knowledge.subtitle %></small>
+</section>
+
+<section class="rate">
+  <div class="raty" data-score="<%= @knowledge.find_score(current_user).try(:score) || 0 %>" data-score-url="<%= rate_knowledge_path(@knowledge) %>"></div>
+  <span class="average-score"><%= @knowledge.average_score %></span>
+</section>
+
+<section class="menu">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation" id="knowledge-info">
+      <a href="<%= knowledge_path(@knowledge) %>">知识详情</a>
+    </li>
+    <li role="presentation" id="knowledge-review">
+      <a href="<%= knowledge_reviews_path(@knowledge) %>">评测 <span class="counter"><%= @knowledge.reviews_count %></span></a>
+    </li>
+    <li role="presentation" id="knowledge-discussion">
+      <a href="<%= knowledge_discussions_path(@knowledge) %>">讨论 <span class="counter"><%= @knowledge.discussions_count %></span></a>
+    </li>
+    <li role="presentation" id="knowledge-question">
+      <a href="<%= knowledge_questions_path(@knowledge) %>">问题 <span class="counter"><%= @knowledge.questions_count %></span></a>
+    </li>
+  </ul>
+</section>

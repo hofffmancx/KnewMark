@@ -3,6 +3,10 @@ class DiscussionsController < ApplicationController
   before_action :find_knowledge, except: [ :like, :unlike ]
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
+  def index
+    @discussions = @knowledge.discussions
+  end
+
   def new
     @discussion = Discussion.new
   end
