@@ -32,6 +32,10 @@
 #  like_discussions_count          :integer          default("0")
 #  questions_count                 :integer          default("0"), not null
 #  cellphone                       :string
+#  anwsers_count                   :integer          default("0"), not null
+#  avatar                          :string
+#  username                        :string
+
 #
 # Indexes
 #
@@ -86,6 +90,10 @@ class User < ApplicationRecord
   has_many :discussions, :dependent => :destroy
   has_many :questions, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :anwsers, :dependent => :destroy
+  has_many :photos, :dependent => :destroy
+
+  mount_uploader :avatar, AvatarUploader
 
   def username
     self.email.blank? ? self.cellphone : self.email.split('@').first

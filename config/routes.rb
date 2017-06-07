@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
+  require 'sidekiq/web'
+  require 'admin_constraint'
+  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
+  
   root 'knowledges#index'
 
   resources :users
   resources :sessions
   resources :password_resets
 
+
   resources :categories, only: [:index, :show]
+  post 'photos' => 'photos#upload'
 
   resources :reviews do
     resources :comments
@@ -28,7 +34,10 @@ Rails.application.routes.draw do
   resources :knowledges do
     resources :reviews
     resources :discussions
-    resources :questions
+    resources :questions do
+      resources :anwsers
+    end
+
     member do
       post :rate
       post :like
@@ -52,6 +61,8 @@ Rails.application.routes.draw do
      controller :profile do
        get :password
        put :update_password
+       get :edit
+       put :update_profile
      end
    end
    resources :knowledges do
@@ -63,6 +74,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :subjects
+    resources :users do
+      collection do
+        post :bulk_mail
+      end
+    end
     resources :categories
     resources :knowledges do
       member do

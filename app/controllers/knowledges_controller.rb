@@ -3,7 +3,19 @@ class KnowledgesController < ApplicationController
   before_action :validate_search_key, only: [:search]
 
   def index
-    @knowledges = Knowledge.where(:status => "published").recent
+    @knowledges = Knowledge.includes(:photos).where(:status => "published")
+
+    @knowledges = @knowledges.recent.limit(20)
+
+    if params[:max_id]
+      @knowledges = @knowledges.where( "id < ?", params[:max_id])
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def show
@@ -112,6 +124,6 @@ class KnowledgesController < ApplicationController
   end
 
   def knowledge_params
-    params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :category_id, :photos_attributes => [:id, :image, :_destroy])
+    params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :category_id, :tags_string, :photos_attributes => [:id, :image, :_destroy])
   end
 end

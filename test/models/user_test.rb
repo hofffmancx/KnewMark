@@ -32,6 +32,9 @@
 #  like_discussions_count          :integer          default("0")
 #  questions_count                 :integer          default("0"), not null
 #  cellphone                       :string
+#  anwsers_count                   :integer          default("0"), not null
+#  avatar                          :string
+#  username                        :string
 #
 # Indexes
 #

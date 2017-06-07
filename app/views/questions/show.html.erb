@@ -1,0 +1,16 @@
+<p><%= @question.title %></p>
+
+<p><%= sanitize @question.description %></p>
+
+<br>
+ <%= link_to("我来回答", new_knowledge_question_anwser_path(@knowledge, @question), class: "btn btn-primary") %>
+<br>
+<%= @question.anwsers_count %>个回答
+<h3></h3>
+<hr>
+
+<% @question.anwsers.each do |anwser| %>
+  <p><%= anwser.user.username %>( <%= anwser.created_at %> )</p>
+  <p><%= sanitize anwser.content %></p>
+  <hr>
+<% end %>

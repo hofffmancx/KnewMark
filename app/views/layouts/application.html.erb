@@ -4,20 +4,17 @@
     <title>KnewMark</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag  'application', media: 'all' %>
 
   </head>
 
   <body>
-
-      <div>
-          <%= render "common/navbar" %>
-          <%= render "common/flashes" %>
-          <%= yield %>
-      </div>
+      <%= render "common/navbar" %>
+      <%= render "common/flashes" %>
+      <%= yield %>
       <%= render "common/footer" %>
       <%= javascript_include_tag 'application' %>
+      <!-- <script src="http://cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script> -->
       <%= yield :page_javascript %>
-
   </body>
 </html>

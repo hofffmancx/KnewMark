@@ -7,6 +7,7 @@
 #  image        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  user_id      :integer
 #
 # Indexes
 #
@@ -15,5 +16,7 @@
 
 class Photo < ApplicationRecord
   belongs_to :knowledge
+  belongs_to :user
+  validates :image, presence: true
   mount_uploader :image, ImageUploader
 end

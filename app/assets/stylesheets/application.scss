@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require simditor
+ *= require simditor-markdown
  */
 
  @import "bootstrap-sprockets";
@@ -20,6 +22,20 @@
  @import "jquery.raty";
  @import "social-share-button";
 
+
+ body {
+     font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Lantinghei SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+     background-color: #efefef;
+     color: #333;
+     font-size: 14px;
+     letter-spacing: 0.1em;
+ }
+
+
+a {
+  text-decoration: none !important;
+  font-style: normal;
+}
 
 //---------Others  ---------
  /* change social-share-button icon size */
@@ -36,83 +52,35 @@
 }
 //---------Others end ---------
 
+.page-content {
+  margin-top: 80px;
+  min-height: 600px;
+}
 
 //---------Category index ---------
 //---------Navbar---------
 
 .navbar-wrap {
-  width: 100%;
-  background: linear-gradient(#B4C5B3, transparent);
-  border: none;
-  font-size: 14px;
-  height: 60px;
-  line-height: 60px;
-  color: #171B1F;
+  margin: 0 -15px;
+  padding: 0 15px;
 }
 
 .navbar {
-  width: 1200px;
+  // width: 100%;
   margin: 0 auto;
 }
 
 .navbar-left {
   float: left;
-  height: 50px;
-  line-height: 50px;
 }
 
 .navbar-brand {
   float: left;
 }
 
-.navbar-form {
-  float: left;
-  width: 300px;
-  position: relative;
-  margin: 0px 10px;
-
-  .search-input {
-    width: 300px;
-    height: 36px;
-    line-height: 36px;
-    color: #666;
-    border: 0;
-    border-radius: 5px;
-    font-size: 12px;
-    font-family: "microsoft yahei";
-    background-color: #F3F4F4;
-    padding: 4px 20px;
-    outline: none;
-  }
-  .search-button {
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: none;
-    font-size: 16px;
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    right: 0;
-    outline: none;
-  }
-}
-
-.navbar-list {
-  float: right;
-  list-style: none;
-  height: 50px;
-  line-height: 50px;
-
-  .navbar-listItem {
-    float: left;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
 
 .navbar-wrap a {
-  color: #171B1F;
+  // color: #171B1F;
   text-decoration: none;
 }
 
@@ -123,33 +91,20 @@
 
 //---------Navbar End---------
 
-//---------轮播图 ---------
-.carousel {
-  width: 1200px;
-  margin: 0 auto;
-
-}
-.carousel .item {
-  height: 600px;
-}
-
-//---------轮播图 end---------
 
 //---------knowledge part  ---------
 .knowledge-wrap {
   width: 100%;
 
   .knowledge-part {
-    width: 1200px;
+    // width: 1200px;
     margin: 0 auto;
   }
 }
 
 .knowledge-wrap {
   .btn {
-    background-color: #B4C5B3;
     border: none;
-    color: #171B1F;
   }
 }
 

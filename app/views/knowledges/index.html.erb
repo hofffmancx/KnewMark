@@ -1,40 +1,44 @@
-<div id="myCarousel" class="carousel slide">
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
- </ol>
- <div class="carousel-inner">
-    <div class="item active">
-     <a href="javascript:;">
-      <img src="https://ws4.sinaimg.cn/large/006tNbRwgy1ffxw02au1rj31400go7wh.jpg">
-      <div class="carousel-caption"></div>
-     </a>
-    </div>
-    <div class="item">
-     <a href="javascript:;">
-      <img src="https://ws4.sinaimg.cn/large/006tNbRwgy1ffxw11t54jj31400gmkjl.jpg">
-      <div class="carousel-caption"></div>
-     </a>
-    </div>
-    <div class="item">
-     <a href="javascript:;">
-      <img src="https://ws2.sinaimg.cn/large/006tNbRwgy1ffxvybzl8nj31400gs7r1.jpg">
-      <div class="carousel-caption"></div>
-     </a>
+<div class="page-content">
+  <div class="container">
+    <div class="knowledge-wrap">
+      <div class="knowledge-category">
+      </div>
+      <div class="knowledge-list" id="knowledge-list">
+        <!-- <div class="row"> -->
+          <%= render :partial => "knowledge_item", :collection => @knowledges, :as => :knowledge %>
+        <!-- </div> -->
+
+      </div>
     </div>
   </div>
 </div>
 
-<div class="knowledge-wrap">
-  <div class="knowledge-part">
-    <div class="knowledge-category">
-      <h2>选课程</h2>
+<%= content_for :page_javascript do %>
 
-<div class="container">
-  <div class="pull-right">
-    <%= link_to("推荐产品", new_knowledge_path, class: "btn btn-info btn-sm") %>
-  </div>
-  <br>
-  <%= render :partial => "knowledge_item", :collection => @knowledges, :as => :knowledge %>
-</div>
+  <!-- <script>
+    $('.knowledge-list').masonry({
+    // options
+    itemSelector: '.knowledge',
+    columnWidth: 200
+    });
+  </script> -->
+
+  <script>
+    var current_knowledge_id = <%= @knowledges.last.id %>;
+
+    $(window).scroll(function(){
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        var url = "/knowledges?max_id=" + current_knowledge_id;
+        if (url) {
+          $.ajax({
+            method: "GET",
+            url: url,
+            dataType: "script"
+          })
+        } else {
+          console.log("data ended")
+        }
+      }
+    })
+  </script>
+<% end %>
