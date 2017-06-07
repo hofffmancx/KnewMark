@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="panel-body">
-    <%= comment.content %>
+    <%= sanitize comment.content %>
     <% if current_user && comment.user == current_user %>
       <p class="text-right">
         <%= link_to "Delete", review_comment_path(review, comment), :method => :delete, data: {confirm: "删除后无法恢复，确定删除该评论吗？"}, :class => "btn btn-danger btn-xs", :remote => true %>

@@ -137,7 +137,7 @@ section hr {
   border-top: 1px dashed #eee;
 }
 
-.author_name, .knowledge_counter  {
+.author_name, .knowledge_counter, .article-info  {
   border-left: 3px solid #47b2e2;
   padding: 1em;
   margin: 1em 0;
@@ -194,3 +194,9 @@ main {
 
 
 // ----------- Show Page end -----------
+
+
+
+.article-content, .article-info {
+  padding: 0.5em 1em;
+}
