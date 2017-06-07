@@ -55,7 +55,7 @@
           <p class="knowledge_counter">共有 <%= @knowledge.discussions_count %> 条讨论</p>
           <%= link_to("参与讨论", new_knowledge_discussion_path(@knowledge), class: "btn btn-default") %>
           <div class="discussions-list">
-            <% @knowledge.discussions.each do |discussion| %>
+            <% @discussions.each do |discussion| %>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <%= link_to discussion.user.username, user_path(discussion.user) %>
@@ -85,7 +85,7 @@
           <p class="knowledge_counter">共有 <%= @knowledge.reviews_count %> 篇评测</p>
           <%= link_to("写评测", new_knowledge_review_path(@knowledge), class: "btn btn-default") %>
           <div class="reviews-list">
-            <% @knowledge.reviews.each do |review| %>
+            <% @reviews.each do |review| %>
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <%= link_to review.user.username, user_path(review.user) %> 发表评测：《<%= link_to(review.title, review_path(review)) %>》
@@ -116,9 +116,9 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <%= link_to question.user.username, user_path(question.user) %> 提出问题：《<%= link_to(question.title, knowledge_question_path(@knowledge, question)) %>》
-                  <a href="#">
+                  <!-- <a href="#">
                     <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
-                  </a> <!-- 待补充 -->
+                  </a>  -->
                   <span class="pull-right"><%= question.anwsers_count %>人回答</span>
                 </div>
                 <div class="panel-body">
