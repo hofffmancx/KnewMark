@@ -1,211 +1,214 @@
-<div class="container">
-  <div class="profile-card">
-      <div class="profile-cover">
-          <div class="menu-container">
-              <!-- <a class="list-icon" title="Expand" href="javascript:void(0);"></a> -->
-              <ul class="profile-actions" style="display: none;">
-                  <li><a href="#">Follow</a></li>
-                  <li><a href="#">Add as Friend</a></li>
-                  <li><a href="#">Like</a></li>
-              </ul>
-          </div>
-          <div class="profile-avatar">
-              <div class="btns-container">
-                  <div class="profile-links">
-                      <a class="zoom-avatar" href="#"><img src="https://dl.dropboxusercontent.com/s/5liaxzvwbfuqzpo/zoom.png"></a>
-                      <a class="read-more" href="#"><img src="https://dl.dropboxusercontent.com/s/62dfoo9h44o58lw/more.png"></a>
-                      <a class="view-map" href="#"><img src="https://dl.dropboxusercontent.com/s/9ofmihok0h64lvn/location.png"></a>
-                  </div>
-              </div>
-              <a href="#"><img src="<%= @user.avatar.thumb.url %>" alt="Anis M" /></a>
-          </div>
-          <div class="profile-details">
-              <h1><%= @user.username %></h1>
-              <h6>知识库</h6>
-          </div>
-      </div>
-      <div class="profile-info" style="display: none;">
-          <h1>About Me</h1>
-          <div class="info-area">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.Stet clita kasd gubergren, no sea takimata sanctus est.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-          </div>
+<div class="page-content">
+  <div class="container">
+    <div class="profile-card">
+        <div class="profile-cover">
+            <div class="menu-container">
+                <!-- <a class="list-icon" title="Expand" href="javascript:void(0);"></a> -->
+                <ul class="profile-actions" style="display: none;">
+                    <li><a href="#">Follow</a></li>
+                    <li><a href="#">Add as Friend</a></li>
+                    <li><a href="#">Like</a></li>
+                </ul>
+            </div>
+            <div class="profile-avatar">
+                <div class="btns-container">
+                    <div class="profile-links">
+                        <a class="zoom-avatar" href="#"><img src="https://dl.dropboxusercontent.com/s/5liaxzvwbfuqzpo/zoom.png"></a>
+                        <a class="read-more" href="#"><img src="https://dl.dropboxusercontent.com/s/62dfoo9h44o58lw/more.png"></a>
+                        <a class="view-map" href="#"><img src="https://dl.dropboxusercontent.com/s/9ofmihok0h64lvn/location.png"></a>
+                    </div>
+                </div>
+                <a href="#"><img src="<%= @user.avatar.thumb.url %>" alt="Anis M" /></a>
+            </div>
+            <div class="profile-details">
+                <h1><%= @user.username %></h1>
+                <h6>知识库</h6>
+            </div>
+        </div>
+        <div class="profile-info" style="display: none;">
+            <h1>About Me</h1>
+            <div class="info-area">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.Stet clita kasd gubergren, no sea takimata sanctus est.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="profile-content">
+          <ul class="nav nav-tabs nav-justified">
+              <li role="presentation">
+                <a data-toggle="tab" href="#like">
+                  <div class="digits"><%= @user.like_knowledges_count %>           </div>
+                  喜欢
+                </a>
+              </li>
+              <li role="presentation">
+                <a data-toggle="tab" href="#star">
+                  <div class="digits"><%= @user.star_knowledges_count %></div>
+                  收藏
+                </a>
+              </li>
+              <li role="presentation">
+                <a data-toggle="tab" href="#want">
+                  <div class="digits"><%= @user.want_knowledges_count %></div>
+                  想学
+                </a>
+              </li role="presentation">
+              <li>
+                <a data-toggle="tab" href="#have">
+                  <div class="digits"><%= @user.have_knowledges_count %></div>
+                  学过
+                </a>
+              </li>
+              <li role="presentation">
+                <a data-toggle="tab" href="#review">
+                  <div class="digits"><%= @user.reviews_count %></div>
+                  评测
+                </a>
+              </li>
+              <li role="presentation">
+                <a data-toggle="tab" href="#discussion">
+                  <div class="digits"><%= @user.discussions_count %></div>
+                  讨论
+                </a>
+              </li>
+              <li role="presentation">
+                <a data-toggle="tab" href="#comment">
+                  <div class="digits"><%= @user.comments_count %></div>
+                  评论
+                </a>
+              </li>
+              <li role="presentation">
+                <a data-toggle="tab" href="#following">
+                  <div class="digits"><%= @user.following_count + @user.follow_knowledges_count %></div>
+                  关注
+                </a>
+              </li>
+          </ul>
           <div class="clear"></div>
-      </div>
-      <div class="profile-content">
-        <ul class="nav nav-tabs nav-justified">
-            <li role="presentation">
-              <a data-toggle="tab" href="#like">
-                <div class="digits"><%= @user.like_knowledges_count %>           </div>
-                喜欢
-              </a>
-            </li>
-            <li role="presentation">
-              <a data-toggle="tab" href="#star">
-                <div class="digits"><%= @user.star_knowledges_count %></div>
-                收藏
-              </a>
-            </li>
-            <li role="presentation">
-              <a data-toggle="tab" href="#want">
-                <div class="digits"><%= @user.want_knowledges_count %></div>
-                想学
-              </a>
-            </li role="presentation">
-            <li>
-              <a data-toggle="tab" href="#have">
-                <div class="digits"><%= @user.have_knowledges_count %></div>
-                学过
-              </a>
-            </li>
-            <li role="presentation">
-              <a data-toggle="tab" href="#review">
-                <div class="digits"><%= @user.reviews_count %></div>
-                评测
-              </a>
-            </li>
-            <li role="presentation">
-              <a data-toggle="tab" href="#discussion">
-                <div class="digits"><%= @user.discussions_count %></div>
-                讨论
-              </a>
-            </li>
-            <li role="presentation">
-              <a data-toggle="tab" href="#comment">
-                <div class="digits"><%= @user.comments_count %></div>
-                评论
-              </a>
-            </li>
-            <li role="presentation">
-              <a data-toggle="tab" href="#following">
-                <div class="digits"><%= @user.following_count + @user.follow_knowledges_count %></div>
-                关注
-              </a>
-            </li>
-        </ul>
-        <div class="clear"></div>
-      </div>
-      <div class="page">
-        <div class="tab-content">
-          <div class="tab-pane fade in active" id="like">
-            <% if @user == current_user %>
-            <h4>我喜欢的知识</h4>
-            <% else %>
-            <h4>他/她喜欢的知识</h4>
-            <% end %>
-            <table class="table">
-              <tbody>
-                <% @user.like_knowledges.each do |knowledge| %>
+        </div>
+        <div class="page">
+          <div class="tab-content">
+            <div class="tab-pane fade in active" id="like">
+              <% if @user == current_user %>
+              <h4>我喜欢的知识</h4>
+              <% else %>
+              <h4>他/她喜欢的知识</h4>
+              <% end %>
+              <table class="table">
+                <tbody>
+                  <% @user.like_knowledges.each do |knowledge| %>
+                    <tr>
+                      <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="star">
+              <% if @user == current_user %>
+              <h4>我收藏的知识</h4>
+              <% else %>
+              <h4>他/她收藏的知识</h4>
+              <% end %>
+              <table class="table">
+                <tbody>
+                  <% @user.star_knowledges.each do |knowledge| %>
+                    <tr>
+                      <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="want">
+              <% if @user == current_user %>
+              <h4>我想学的知识</h4>
+              <% else %>
+              <h4>他/她想学的知识</h4>
+              <% end %>
+              <table class="table">
+                <tbody>
+                  <% @user.want_knowledges.each do |knowledge| %>
+                    <tr>
+                      <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="have">
+              <% if @user == current_user %>
+              <h4>我学过的知识</h4>
+              <% else %>
+              <h4>他/她学过的知识</h4>
+              <% end %>
+              <table class="table">
+                <tbody>
+                  <% @user.like_knowledges.each do |knowledge| %>
+                    <tr>
+                      <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="review">
+              <% if @user == current_user %>
+              <h4>我发表过的评测</h4>
+              <% else %>
+              <h4>他/她发表过的评测</h4>
+              <% end %>
+              <table class="table table-hover">
+                <tbody>
+                  <% @user.reviews.each do |review| %>
                   <tr>
-                    <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    <td><%= review.title %></td>
+                    <td><%= link_to(review.knowledge.title, knowledge_path(review.knowledge)) %></td>
                   </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="star">
-            <% if @user == current_user %>
-            <h4>我收藏的知识</h4>
-            <% else %>
-            <h4>他/她收藏的知识</h4>
-            <% end %>
-            <table class="table">
-              <tbody>
-                <% @user.star_knowledges.each do |knowledge| %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="discussion">
+              <% if @user == current_user %>
+              <h4>我发表过的讨论</h4>
+              <% else %>
+              <h4>他/她发表过的讨论</h4>
+              <% end %>
+              <table class="table table-hover">
+                <tbody>
+                  <% @user.discussions.each do |discussion| %>
                   <tr>
-                    <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    <td><%= discussion.content.truncate(100) %></td>
+                    <td><%= link_to(discussion.knowledge.title, knowledge_path(discussion.knowledge)) %></td>
                   </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="want">
-            <% if @user == current_user %>
-            <h4>我想学的知识</h4>
-            <% else %>
-            <h4>他/她想学的知识</h4>
-            <% end %>
-            <table class="table">
-              <tbody>
-                <% @user.want_knowledges.each do |knowledge| %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="comment">
+              <% if @user == current_user %>
+              <h4>我回复过的帖子</h4>
+              <% else %>
+              <h4>他/她回复过的帖子</h4>
+              <% end %>
+              <table class="table table-hover">
+                <tbody>
+                  <% @user.comments.each do |comment| %>
                   <tr>
-                    <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    <td><%= comment.content.truncate(100) %></td>
+                    <td><%= link_to(comment.review.title, review_path(comment.review)) %></td>
                   </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="have">
-            <% if @user == current_user %>
-            <h4>我学过的知识</h4>
-            <% else %>
-            <h4>他/她学过的知识</h4>
-            <% end %>
-            <table class="table">
-              <tbody>
-                <% @user.like_knowledges.each do |knowledge| %>
-                  <tr>
-                    <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="review">
-            <% if @user == current_user %>
-            <h4>我发表过的评测</h4>
-            <% else %>
-            <h4>他/她发表过的评测</h4>
-            <% end %>
-            <table class="table table-hover">
-              <tbody>
-                <% @user.reviews.each do |review| %>
-                <tr>
-                  <td><%= review.title %></td>
-                  <td><%= link_to(review.knowledge.title, knowledge_path(review.knowledge)) %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="discussion">
-            <% if @user == current_user %>
-            <h4>我发表过的讨论</h4>
-            <% else %>
-            <h4>他/她发表过的讨论</h4>
-            <% end %>
-            <table class="table table-hover">
-              <tbody>
-                <% @user.discussions.each do |discussion| %>
-                <tr>
-                  <td><%= discussion.content.truncate(100) %></td>
-                  <td><%= link_to(discussion.knowledge.title, knowledge_path(discussion.knowledge)) %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="comment">
-            <% if @user == current_user %>
-            <h4>我回复过的帖子</h4>
-            <% else %>
-            <h4>他/她回复过的帖子</h4>
-            <% end %>
-            <table class="table table-hover">
-              <tbody>
-                <% @user.comments.each do |comment| %>
-                <tr>
-                  <td><%= comment.content.truncate(100) %></td>
-                  <td><%= link_to(comment.review.title, review_path(comment.review)) %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-          <div class="tab-pane fade" id="following">
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tab-pane fade" id="following">
 
+            </div>
           </div>
         </div>
-      </div>
+    </div>
   </div>
+
 </div>

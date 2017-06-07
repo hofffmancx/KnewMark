@@ -1,6 +1,6 @@
 class AnwsersController < ApplicationController
 	before_action :require_login
-	before_action :find_knowledge_and_question
+	before_action :find_question
 	before_action :find_anwser, :only => [:edit, :update, :destroy]
 
 	def new
@@ -11,15 +11,10 @@ class AnwsersController < ApplicationController
 		@anwser = Anwser.new(anwser_params)
 		@anwser.question = @question
 		@anwser.user = current_user
-
-		if @anwser.save
-			redirect_to knowledge_question_path(@knowledge, @question)
-		else
-			render :new
-		end
+		@anwser.save
 	end
 
-	def edit		
+	def edit
 	end
 
 	def update
@@ -37,8 +32,7 @@ class AnwsersController < ApplicationController
 
 	private
 
-	def find_knowledge_and_question
-		@knowledge = Knowledge.find(params[:knowledge_id])
+	def find_question
 		@question = Question.find(params[:question_id])
 	end
 

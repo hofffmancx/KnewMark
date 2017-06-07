@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   require 'admin_constraint'
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
-  
+
   root 'knowledges#index'
 
   resources :users
@@ -31,12 +31,14 @@ Rails.application.routes.draw do
     post :unlike, on: :member
   end
 
+  resources :questions do
+    resources :anwsers
+  end
+
   resources :knowledges do
     resources :reviews
     resources :discussions
-    resources :questions do
-      resources :anwsers
-    end
+    resources :questions
 
     member do
       post :rate

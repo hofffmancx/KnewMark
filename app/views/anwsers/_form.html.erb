@@ -1,10 +1,4 @@
-<%= simple_form_for [@knowledge, @question, @anwser] do |f| %>
+<%= simple_form_for [@question, @anwser], remote: true do |f| %>
   <%= f.input :content %>
   <%= f.submit "提交回答", class: "btn btn-primary" %>
-<% end %>
-
-<%= content_for :page_javascript do %>
-  <script type="text/javascript">
-    var editor = new Simditor({ textarea: $('#anwser_content'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '这里输入回答内容...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
-  </script>
 <% end %>

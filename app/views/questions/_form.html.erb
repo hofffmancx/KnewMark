@@ -1,13 +1,31 @@
-<h3>关于《 <%= @knowledge.title %> 》的问题</h3>
+<div class="page-content">
 
-<%= simple_form_for [@knowledge, @question] do |f| %>
-  <%= f.input :title, label: "问题：" %>
-  <%= f.input :description, label: "描述：" %>
-  <%= f.submit "发布问题", class: "btn btn-primary" %>
-<% end %>
+  <main class="container">
+
+    <section>
+      <div class="article-info">
+        <b>关于 <%= link_to @knowledge.title, knowledge_path(@knowledge) %> 的问题</b>
+      </div>
+    </section>
+
+    <section>
+      <%= simple_form_for [@knowledge, @question] do |f| %>
+        <%= f.input :title, label: "问题：" %>
+        <%= f.input :description, label: "描述：" %>
+        <%= f.submit "发布问题", class: "btn btn-primary" %>
+      <% end %>
+
+    </section>
+
+  </main>
+
+</div>
+
 
 <%= content_for :page_javascript do %>
   <script type="text/javascript">
-    var editor = new Simditor({ textarea: $('#question_description'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '这里输入提问内容...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
+  $("#question_description").focus(function(){
+    var editor = new Simditor({ textarea: $('#question_description'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', '|', 'marked', 'mark'],  placeholder: '这里输入提问内容...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
+  });
   </script>
 <% end %>

@@ -1,16 +1,53 @@
-<p><%= @question.title %></p>
+<div class="page-content">
+  <main class="container">
 
-<p><%= sanitize @question.description %></p>
+    <section>
 
-<br>
- <%= link_to("我来回答", new_knowledge_question_anwser_path(@knowledge, @question), class: "btn btn-primary") %>
-<br>
-<%= @question.anwsers_count %>个回答
-<h3></h3>
-<hr>
+      <article>
+        <div class="article-info">
 
-<% @question.anwsers.each do |anwser| %>
-  <p><%= anwser.user.username %>( <%= anwser.created_at %> )</p>
-  <p><%= sanitize anwser.content %></p>
-  <hr>
+          <p>提问者：<%= link_to @question.user.username, user_path(@question.user) %></p>
+          <p>问题：<%= @question.title %></p>
+          <p>
+            返回知识页面：<%= link_to(@question.knowledge.title, knowledge_path(@question.knowledge)) %>
+          </p>
+        </div>
+        <div class="article-content">
+          <p><%= sanitize @question.description %></p>
+        </div>
+
+      </article>
+    </section>
+
+
+    <section>
+
+      <div class="add-answer">
+        <%= simple_form_for [@question, @anwser], remote: true do |f| %>
+          <%= f.input :content %>
+          <%= f.submit "提交回答", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+
+    </section>
+
+    <section>
+      <div id="anwser-count">
+        <p>共有<%= @question.anwsers_count %> 个回答</p>
+      </div>
+
+     <div id="anwser-list">
+       <% @question.anwsers.each do |anwser| %>
+        <%= render :partial => "anwsers/anwser", :locals => { :question => @question, :anwser => anwser } %>
+       <% end %>
+     </div>
+    </section>
+
+  </main>
+</div>
+
+<%= content_for :page_javascript do %>
+  <!-- <script type="text/javascript">
+    var editor = new Simditor({ textarea: $('#anwser_content'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '这里输入回答内容...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
+  </script> -->
 <% end %>
