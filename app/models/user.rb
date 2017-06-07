@@ -151,5 +151,4 @@ class User < ApplicationRecord
 
     return true
   end
->>>>>>> master
 end
