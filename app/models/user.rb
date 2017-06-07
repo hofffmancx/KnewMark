@@ -103,4 +103,5 @@ class User < ApplicationRecord
   def need_validate_password
     self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
   end
+
 end

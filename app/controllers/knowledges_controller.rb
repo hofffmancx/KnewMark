@@ -95,6 +95,7 @@ class KnowledgesController < ApplicationController
 
   def want
     @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
   end
 
@@ -105,6 +106,7 @@ class KnowledgesController < ApplicationController
 
   def have
     @knowledge = Knowledge.find(params[:id])
+    current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
   end
 
