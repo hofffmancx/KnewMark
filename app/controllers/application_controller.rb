@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
     end}
       format.js {
         unless logged_in?
-        render text: "window.location = '/sessions/new'"
-        flash[:alert] = "请先登录再进行操作 "
+          render text: "window.location = '/sessions/new'"
+          flash[:alert] = "请先登录再进行操作 "
         end }
     end
   end
