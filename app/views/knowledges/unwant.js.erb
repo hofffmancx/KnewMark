@@ -1,2 +1,2 @@
-str = '<span id="knowledge-<%= @knowledge.id %>-want"><%= link_to want_knowledge_path(@knowledge), method: :post, remote: true do  %><i class="fa fa-cart-plus" aria-hidden="true"></i> 想学 <span class="badge" id="action-want-count"><%= @knowledge.reload.wants_count %><% end %></span></span>'
+str = '<span id="knowledge-<%= @knowledge.id %>-want"><%= link_to want_knowledge_path(@knowledge), :method => :post, remote:true do %><i class="fa fa-heartbeat" aria-hidden="true"></i><p><%= @knowledge.reload.wants_count %> <small>想学</small></p><% end %></span>'
 $("#knowledge-<%= @knowledge.id %>-want").replaceWith(str)

@@ -2,8 +2,10 @@
 <html>
   <head>
     <title>KnewMark 后台</title>
-    <%= stylesheet_link_tag    'application', media: 'all'%>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -40,6 +42,8 @@
     </div>
 
     <%= render "common/footer" %>
+
+    <%= javascript_include_tag 'application' %>
 
   </body>
 </html>

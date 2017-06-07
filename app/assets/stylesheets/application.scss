@@ -31,6 +31,9 @@
      letter-spacing: 0.1em;
  }
 
+footer {
+  margin-top: 100px !important;
+}
 
 a {
   text-decoration: none !important;
@@ -40,7 +43,7 @@ a {
 //---------Others  ---------
  /* change social-share-button icon size */
 
- $size: 18px;
+ $size: 24px;
 
 .social-share-button {
   .ssb-icon {
@@ -52,42 +55,18 @@ a {
 }
 //---------Others end ---------
 
+
+//---------page layout ---------
+
 .page-content {
-  margin-top: 80px;
+  margin: 80px 10px 50px 10px;
   min-height: 600px;
 }
 
-//---------Category index ---------
+//---------page layout end ---------
+
+
 //---------Navbar---------
-
-.navbar-wrap {
-  margin: 0 -15px;
-  padding: 0 15px;
-}
-
-.navbar {
-  // width: 100%;
-  margin: 0 auto;
-}
-
-.navbar-left {
-  float: left;
-}
-
-.navbar-brand {
-  float: left;
-}
-
-
-.navbar-wrap a {
-  // color: #171B1F;
-  text-decoration: none;
-}
-
-.navbar-listItem a:hover {
-  cursor: pointer;
-}
-
 
 //---------Navbar End---------
 

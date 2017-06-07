@@ -1,12 +1,13 @@
 <span id="knowledge-<%= @knowledge.id %>-have">
   <% if current_user && current_user.find_action(:have, target: @knowledge) %>
-    <%= link_to unhave_knowledge_path(@knowledge), :method => :post, remote:true do %>
-      <i class="fa fa-bookmark" aria-hidden="true"></i> 学过
+    <%= link_to unhave_knowledge_path(@knowledge), :method => :post, remote:true, class: "had" do %>
+      <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+      <p><%= @knowledge.reload.haves_count %> <small>学过</small></p>
     <% end %>
   <% else %>
     <%= link_to have_knowledge_path(@knowledge), :method => :post, remote:true do %>
-      <i class="fa fa-bookmark-o" aria-hidden="true"></i> 学过
+      <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+      <p><%= @knowledge.reload.haves_count %> <small>学过</small></p>
     <% end %>
   <% end %>
-  <span class="badge" id="action-have-count"><%= @knowledge.reload.haves_count %></span>
 </span>
