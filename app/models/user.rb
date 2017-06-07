@@ -120,6 +120,7 @@ class User < ApplicationRecord
   def need_validate_password
     self.new_record? || (!self.password.nil? || !self.password_confirmation.nil?)
   end
+
   def validate_email_or_cellphone
     if [self.email, self.cellphone].all? { |attr| attr.nil? }
       self.errors.add :base, "邮箱和手机号其中之一不能为空"
@@ -150,4 +151,5 @@ class User < ApplicationRecord
 
     return true
   end
+>>>>>>> master
 end

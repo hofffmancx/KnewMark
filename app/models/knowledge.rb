@@ -89,4 +89,5 @@ class Knowledge < ApplicationRecord
     self.status = "published"
     self.save
   end
+
 end
