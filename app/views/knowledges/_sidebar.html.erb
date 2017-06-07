@@ -1,0 +1,32 @@
+<div class="actions">
+  <ul class="actions clearfix">
+
+    <!-- 这里的 action 用了 Ajax, 用不同程度的颜色区别用户的行为
+    ，例如用户已经 like 过了，显示的是深红色，为 like 过的，显示浅红色。
+    不同的颜色用一个 class 来控制 -->
+
+    <li class="like">
+      <%= render "like" %>
+    </li>
+
+    <li class="want">
+      <%= render "want" %>
+    </li>
+
+    <li class="have">
+      <%= render "have" %>
+    </li>
+
+    <li class="follow">
+      <%= render "follow" %>
+    </li>
+  </ul>
+</div>
+
+<div class="share-links">
+  <%= social_share_button_tag(@knowledge.title) %>
+</div>
+
+<div class="to-buy">
+  <%= link_to('购买方式','#', class: "btn btn-warning disabled") %>
+</div>

@@ -41,7 +41,7 @@ class Knowledge < ApplicationRecord
   validates_presence_of :title, message: "标题不能为空"
   validates_presence_of :description, message: "请添加详情介绍"
   validates_presence_of :category_id, message: "分类不能为空"
-  scope :recent, -> { order("id DESC") }
+  # scope :recent, -> { order("id DESC") }
 
   has_many :knowledges_tags, class_name: "KnowledgesTags"
   has_many :tags, through: :knowledges_tags
