@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-	before_action :require_login
+	before_action :require_login, except: [:index, :show]
 	before_action :find_knowledge
 	before_action :find_question, :except => [:index, :new, :create]
 
