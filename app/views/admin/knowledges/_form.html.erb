@@ -65,6 +65,8 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-  var editor = new Simditor({ textarea: $('#knowledge_description'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '这里输入产品介绍(包括详情、适宜人群、订阅须知等)...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
-</script>
+<%= content_for :page_javascript do %>
+  <script type="text/javascript">
+    var editor = new Simditor({ textarea: $('#knowledge_description'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '这里输入产品介绍(包括详情、适宜人群、订阅须知等)...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
+  </script>
+<% end %>
