@@ -18,7 +18,11 @@
                         <a class="view-map" href="#"><img src="https://dl.dropboxusercontent.com/s/9ofmihok0h64lvn/location.png"></a>
                     </div>
                 </div>
+                <% if @user.avatar.present?%>
                 <a href="#"><img src="<%= @user.avatar.thumb.url %>" alt="Anis M" /></a>
+                <% else %>
+                <a href="#"><%= render_head_pic %></a>
+                <% end %>
             </div>
             <div class="profile-details">
                 <h1><%= @user.username %></h1>
@@ -204,7 +208,20 @@
               </table>
             </div>
             <div class="tab-pane fade" id="following">
-
+              <% if @user == current_user %>
+              <h4>我关注的知识</h4>
+              <% else %>
+              <h4>他/她关注的知识</h4>
+              <% end %>
+              <table class="table">
+                <tbody>
+                  <% @user.follow_knowledges.each do |knowledge| %>
+                    <tr>
+                      <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

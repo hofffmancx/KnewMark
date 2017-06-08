@@ -53,7 +53,7 @@ gem 'rest-client'
 gem 'figaro'
 gem 'simditor'
 gem 'sidekiq'
-
+gem 'bootstrap-datepicker-rails'
 
 
 group :development, :test do
