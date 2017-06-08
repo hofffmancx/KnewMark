@@ -37,11 +37,11 @@ class CommentsController < ApplicationController
   end
 
   def find_comment
-    @comment = current_user.comments.find(params[:id])
+    @comment = current_user.comments.find_by_friendly_id!(params[:id])
   end
 
   def find_reivew
-    @review = Review.find(params[:review_id])
+    @review = Review.find_by_friendly_id!(params[:review_id])
   end
 
 end

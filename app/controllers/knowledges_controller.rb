@@ -1,7 +1,7 @@
 class KnowledgesController < ApplicationController
   before_action :require_login, except: [ :index, :show ]
   before_action :validate_search_key, only: [:search]
-
+  before_action :find_knowledge, except: [:index, :new, :create, :search ]
   def index
     @knowledges = Knowledge.includes(:photos).where(:status => "published")
 
@@ -39,7 +39,6 @@ class KnowledgesController < ApplicationController
   end
 
   def show
-    @knowledge = Knowledge.find(params[:id])
     unless @knowledge.status == "published"
       flash[:warning] = "此课程未上线"
       redirect_to knowledges_path
@@ -68,7 +67,6 @@ class KnowledgesController < ApplicationController
 
 
   def rate
-    @knowledge = Knowledge.find(params[:id])
     existing_score = @knowledge.find_score(current_user)
     if existing_score
       existing_score.update( :score => params[:score] )
@@ -80,32 +78,26 @@ class KnowledgesController < ApplicationController
 
 
   def like
-    @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:like, target: @knowledge)
   end
 
   def unlike
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:like, target: @knowledge)
   end
 
   def star
-    @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:star, target: @knowledge)
   end
 
   def unstar
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:star, target: @knowledge)
   end
 
   def follow
-    @knowledge = Knowledge.find(params[:id])
     current_user.create_action(:follow, target: @knowledge)
   end
 
   def unfollow
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:follow, target: @knowledge)
   end
 
@@ -117,28 +109,28 @@ class KnowledgesController < ApplicationController
   end
 
   def want
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
   end
 
   def unwant
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:want, target: @knowledge)
   end
 
   def have
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
   end
 
   def unhave
-    @knowledge = Knowledge.find(params[:id])
     current_user.destroy_action(:have, target: @knowledge)
   end
 
   private
+
+  def find_knowledge
+    @knowledge = Knowledge.find_by_friendly_id!(params[:id])
+  end
 
   def validate_search_key
     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
