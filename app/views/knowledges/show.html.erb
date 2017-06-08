@@ -9,10 +9,17 @@
           <%#= render "star" %>
         </section> -->
 
+        <section class="knowledge-pictures">
+          <div class="owl-carousel owl-theme">
+            <% @knowledge.photos.each do |photo| %>
+              <div class="item">
+                <%= image_tag(photo.image.medium.url) %>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
         <section class="knowledge-info">
-          <% @knowledge.photos.each do |photo| %>
-            <%= image_tag(photo.image.thumb.url) %>
-          <% end %>
           <div class="author_name">
             <span>由 <%= image_tag(@knowledge.user.avatar.thumb.url) if @knowledge.user.avatar.url %> <%= link_to @knowledge.user.username, user_path(@knowledge.user) %> 推荐</span>
           </div>
@@ -31,24 +38,10 @@
           <%= link_to("写评测", new_knowledge_review_path(@knowledge), class: "btn btn-default") %>
           <div class="reviews-list">
             <% @reviews.each do |review| %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <%= link_to review.user.username, user_path(review.user) %> 发表评测：《<%= link_to(review.title, review_path(review)) %>》
-                  <div style="float:right">
-                    <%= render :partial => "reviews/like", :locals => { :review => review } %>
-                  </div>
-                </div>
-                <div class="panel-body">
-                  <% if current_user && review.user == current_user %>
-                    <%= link_to("edit", edit_knowledge_review_path(@knowledge, review), class: "btn btn-warning btn-xs pull-right") %>
-                    <%= link_to("delete", knowledge_review_path(@knowledge, review), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "btn btn-danger btn-xs pull-right") %>
-                  <% end %>
-                  <%= simple_format(review.content) %>
-                </div>
-              </div>
+              <%= render partial: 'reviews/review_item', :collection => @reviews, :as => :review %>
             <% end -%>
             <div class="section-footer">
-              <%= link_to "更多评测...", knowledge_reviews_path(@knowledge) %>
+              <%= link_to "点击查看更多评测...", knowledge_reviews_path(@knowledge) %>
             </div>
           </div>
         </section>
@@ -58,26 +51,10 @@
           <%= link_to("参与讨论", new_knowledge_discussion_path(@knowledge), class: "btn btn-default") %>
           <div class="discussions-list">
             <% @discussions.each do |discussion| %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <%= link_to discussion.user.username, user_path(discussion.user) %>
-
-                  <div style="float:right">
-                    <%= render :partial => "discussions/like", :locals => { :discussion => discussion } %>
-                  </div>
-
-                </div>
-                <div class="panel-body">
-                  <% if current_user && discussion.user == current_user %>
-                    <%= link_to("edit", edit_knowledge_discussion_path(@knowledge, discussion), class: "btn btn-warning btn-xs pull-right") %>
-                    <%= link_to("delete", knowledge_discussion_path(@knowledge, discussion), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "btn btn-danger btn-xs pull-right") %>
-                  <% end %>
-                  <%= simple_format(discussion.content) %>
-                </div>
-              </div>
+              <%= render partial: 'discussions/discussion_item', :collection => @discussions, :as => :discussion %>
             <% end -%>
             <div class="section-footer">
-              <%= link_to "更多讨论...", knowledge_discussions_path(@knowledge) %>
+              <%= link_to "点击查看更多讨论...", knowledge_discussions_path(@knowledge) %>
             </div>
           </div>
 
@@ -88,26 +65,10 @@
           <%= link_to("提问题", new_knowledge_question_path(@knowledge), class: "btn btn-default") %>
           <div class="questions-list">
             <% @questions.each do |question| %>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <%= link_to question.user.username, user_path(question.user) %> 提出问题：<%= link_to(question.title, knowledge_question_path(@knowledge, question)) %>
-                  <!-- <a href="#">
-                    <i class="fa fa-heart" aria-hidden="true"></i><span>(10)</span>
-                  </a>  -->
-                  <span class="pull-right"><%= question.anwsers_count %>人回答</span>
-                </div>
-                <div class="panel-body">
-                  <%= link_to("我来回答", new_question_anwser_path(@knowledge, question), class: "btn btn-default btn-xs pull-right") %>
-                  <% if current_user && question.user == current_user %>
-                    <%= link_to("edit", edit_knowledge_question_path(@knowledge, question), class: "btn btn-warning btn-xs pull-right") %>
-                    <%= link_to("delete", knowledge_question_path(@knowledge, question), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "btn btn-danger btn-xs pull-right") %>
-                  <% end %>
-                  <%= sanitize question.description %>
-                </div>
-              </div>
+              <%= render partial: 'questions/question_item', :collection => @questions, :as => :question %>
             <% end -%>
             <div class="section-footer">
-              <%= link_to "更多问题...", knowledge_reviews_path(@knowledge) %>
+              <%= link_to "点击查看更多问题...", knowledge_questions_path(@knowledge) %>
             </div>
           </div>
         </section>
@@ -124,12 +85,37 @@
   </div>
 </div>
 
-
+<%= content_for :page_stylesheet do %>
+  <link href="http://cdn.bootcss.com/OwlCarousel2/2.2.1/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="http://cdn.bootcss.com/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="http://cdn.bootcss.com/OwlCarousel2/2.2.1/assets/owl.theme.green.min.css" rel="stylesheet">
+<% end %>
 
 <%= content_for :page_javascript do %>
+
+  <script src="http://cdn.bootcss.com/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('.owl-carousel').owlCarousel({
+          // loop: true,
+          center: true,
+          margin:10,
+          nav:true,
+          autoWidth:true,
+          items:1,
+          autoplay: true,
+          autoplayTimeout:2000,
+          autoplayHoverPause:true,
+      })
+    });
+  </script>
+
+
   <script>
     $("#knowledge-info").addClass("active");
   </script>
+
   <script>
    $(".raty").raty({
      path: '/images/',

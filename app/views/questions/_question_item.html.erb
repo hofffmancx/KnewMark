@@ -1,0 +1,19 @@
+<article>
+  <div class="article-heading">
+    来自 <%= link_to question.user.username, user_path(question.user) %> 的 <b>问题</b>
+    <span class="pull-right"><span class="counter"><%= question.anwsers_count %></span> 个回答</span>
+  </div>
+  <div class="article-body">
+    <div class="text-center">
+      <p class="title"><%= link_to(question.title, knowledge_question_path(@knowledge, question)) %></p>
+    </div>
+    <%= sanitize question.description %>
+    <p><%= link_to("我来回答", knowledge_question_path(@knowledge, question), class: "btn btn-default btn-xs pull-right") %></p>
+
+    <p class="acticle-actions">
+      <% if current_user && question.user == current_user %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_question_path(@knowledge, question), class: "pull-right") %>
+      <% end %>
+    </p>
+  </div>
+</article>

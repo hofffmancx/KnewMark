@@ -1,0 +1,17 @@
+<article>
+  <div class="article-heading">
+    来自 <%= link_to review.user.username, user_path(review.user) %>的  <b>评测</b>：
+  </div>
+  <div class="article-body">
+    <div class="text-center">
+      <p class="title"><%= link_to(review.title, review_path(review)) %></p>
+      <p><%= render :partial => "reviews/like", :locals => { :review => review } %></p>
+    </div>
+    <%= simple_format(review.content) %>
+    <span class="acticle-actions">
+      <% if current_user && review.user == current_user %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_review_path(@knowledge, review), class: "pull-right") %>
+      <% end %>
+    </span>
+  </div>
+</article>
