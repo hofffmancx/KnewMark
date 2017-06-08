@@ -84,6 +84,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password, message: "密码不一致", if: :need_validate_password
   validates_length_of :password, minimum: 6, message: "密码最短为6位", if: :need_validate_password
   validate :validate_email_or_cellphone, on: :create
+  validates_presence_of :username, message: "用户名不得为空"
 
 
   action_store :like, :knowledge, counter_cache: true, user_counter_cache: true
@@ -103,12 +104,14 @@ class User < ApplicationRecord
   has_many :comments, :dependent => :destroy
   has_many :anwsers, :dependent => :destroy
   has_many :photos, :dependent => :destroy
+  has_one :profile
+  accepts_nested_attributes_for :profile
 
   mount_uploader :avatar, AvatarUploader
 
-  def username
-    self.email.blank? ? self.cellphone : self.email.split('@').first
-  end
+  # def username
+  #   self.email.blank? ? self.cellphone : self.email.split('@').first
+  # end
 
   def admin?
     is_admin

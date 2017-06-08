@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
+    resource :user
     scope 'profile' do
      controller :profile do
        get :password
