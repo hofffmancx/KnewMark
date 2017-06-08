@@ -1,13 +1,13 @@
 <% if current_user && current_user.find_action(:like, target: discussion) %>
-  <span id="discussion-<%= discussion.id %>-like">
-    <%= link_to unlike_discussion_path(discussion), method: :post, remote: true do  %>
-      <i class="fa fa-heart" aria-hidden="true"></i>(<%= discussion.likes_count %>)
+  <span id="discussion-<%= discussion.id %>-like" class="like">
+    <%= link_to unlike_discussion_path(discussion), method: :post, remote: true, class: "liked" do  %>
+      <i class="fa fa-heart" aria-hidden="true"></i> <%= discussion.likes_count %>
     <% end %>
   </span>
 <% else %>
-  <span id="discussion-<%= discussion.id %>-like">
+  <span id="discussion-<%= discussion.id %>-like" class="like">
     <%= link_to like_discussion_path(discussion), method: :post, remote: true do  %>
-      <i class="fa fa-heart-o" aria-hidden="true"></i>(<%= discussion.likes_count %>)
+      <i class="fa fa-heart-o" aria-hidden="true"></i> <%= discussion.likes_count %>
     <% end %>
   </span>
 <% end %>

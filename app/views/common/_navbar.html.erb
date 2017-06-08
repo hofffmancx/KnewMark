@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">KnewMark </a>
+          <a class="navbar-brand" href="/"><i class="fa fa-bookmark-o logo" aria-hidden="true"></i> KnewMark</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -34,14 +34,30 @@
                 知识分类<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <% Category.grouped_data.each do |g| %>
+                <!-- <%# Category.grouped_data.each do |g| %>
                   <li>
-                  <a href="<%= category_path(g) %>"><%= g.first.title %></a>
+                  <a href="<%#= category_path(g) %>"><%#= g.first.title %></a>
                   </li>
-                <% end -%>
+                <%# end -%> -->
+                <li><%= link_to("全部", knowledges_path) %></li>
+                <% Category.all.each do |category| %>
+                  <li>
+                    <%= link_to(category.title, knowledges_path(category: category.title)) %>
+                  </li>
+                <% end %>
               </ul>
             </li>
-
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                筛选<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to("已学人数", knowledges_path(order: "by_have_counts", category: @category)) %></li>
+                <li><%= link_to("想学人数", knowledges_path(order: "by_want_counts", category: @category)) %></li>
+                <li><%= link_to("关注人数", knowledges_path(order: "by_follows_counts", category: @category)) %></li>
+                <li><%= link_to("喜欢人数", knowledges_path(order: "by_likes_counts", category: @category)) %></li>
+              </ul>
+            </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">

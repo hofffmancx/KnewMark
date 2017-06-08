@@ -1,0 +1,17 @@
+<article>
+  <div class="article-heading">
+    来自 <%= link_to discussion.user.username, user_path(discussion.user) %> 的<b>讨论</b>
+
+  </div>
+  <div class="article-body">
+    <div style="float:right">
+      <%= render :partial => "discussions/like", :locals => { :discussion => discussion } %>
+    </div>
+    <%= simple_format(discussion.content) %>
+    <span class="acticle-actions">
+      <% if current_user && discussion.user == current_user %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_discussion_path(@knowledge, discussion), class: "pull-right") %>
+      <% end %>
+    </span>
+  </div>
+</article>

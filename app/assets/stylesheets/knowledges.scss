@@ -93,32 +93,32 @@ aside .to-buy {
 }
 
 
-.actions {
-  .like a {
-    color: #F08080;
-  }
-  .like .liked {
-    color: #FF4500;
-  }
-  .want a {
-    color: #87CEFA;
-  }
-  .want .wanted {
-    color: #4682B4;
-  }
-  .have a {
-    color: #87CEFA;
-  }
-  .have .had {
-    color: #4682B4;
-  }
-  .follow a {
-    color: #F08080;
-  }
-  .follow .followed {
-    color: #FF4500;
-  }
+
+.like a {
+  color: #F08080;
 }
+.like .liked {
+  color: #FF4500;
+}
+.want a {
+  color: #87CEFA;
+}
+.want .wanted {
+  color: #4682B4;
+}
+.have a {
+  color: #87CEFA;
+}
+.have .had {
+  color: #4682B4;
+}
+.follow a {
+  color: #F08080;
+}
+.follow .followed {
+  color: #FF4500;
+}
+
 
 
 main, aside {
@@ -155,7 +155,9 @@ main {
     border-radius: 0 0 10px 10px;
   }
   .section-footer {
-    margin-top: 1em;
+    margin-bottom: 2em;
+    text-align: center;
+    a { color: #333;}
   }
   .rate {
     text-align: center;
@@ -170,7 +172,7 @@ main {
   }
 }
 
-.knowledge-info, .knowledge-discussion, .knowledge-review, .knowledge-question {
+.knowledge-pictures .knowledge-info, .knowledge-discussion, .knowledge-review, .knowledge-question {
   border-bottom: 1px dashed #eee;
 }
 
@@ -178,6 +180,9 @@ main {
   margin-top: 20px;
 }
 
+section .knowledge-pictures {
+  text-align: center;
+}
 
 
 .counter {
@@ -192,11 +197,30 @@ main {
   border-radius: 20px;
 }
 
-
 // ----------- Show Page end -----------
 
 
 
 .article-content, .article-info {
   padding: 0.5em 1em;
+}
+
+article {
+  a { color: #333;}
+  .article-heading {
+    margin-top: 0.5em;
+    font-weight: 400;
+    border-left: 3px solid #FF69B4;
+    padding: 0.5em 1em;
+
+  }
+  .article-body {
+    padding: 1em 1em 2em 1em;
+    border: solid 1px #eee;
+    margin: 1em 1em 3em 1em;
+    .title a { font-weight: 600; color: #696969; font-size: 18px;}
+    .acticle-actions {
+      a { }
+    }
+  }
 }

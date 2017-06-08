@@ -1,17 +1,17 @@
 <%= simple_form_for @knowledge do |f| %>
   <div class="group">
-    <%= f.input :title, :label => "产品名称" %>
+    <%= f.input :title, :label => "知识名称" %>
   </div>
 
   <div class="group">
-    <%= f.input :subtitle, :label => "产品副标题" %>
+    <%= f.input :subtitle, :label => "副标题" %>
   </div>
 
   <div class="group">
     <%= f.nested_fields_for :photos do |ff| %>
       <%= ff.input :image %>
       <% if ff.object.image.present? %>
-        <span>目前产品图</span><br>
+        <span>知识介绍图</span><br>
         <% @knowledge.photos.each do |p| %>
           <%= image_tag p.image.thumb.url %><br />
         <% end %>
