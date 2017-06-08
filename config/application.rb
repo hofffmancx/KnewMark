@@ -14,6 +14,7 @@ module Knewmark
     config.action_view.sanitized_allowed_tags = Rails::Html::WhiteListSanitizer.allowed_tags + %w(table tr td)
     config.action_view.sanitized_allowed_attributes = Rails::Html::WhiteListSanitizer.allowed_attributes + %w(style border)
     config.autoload_paths += %W[#{Rails.root}/lib]
+    config.i18n.default_locale = "zh-CN"
 
     config.generators do |generator|
       generator.assets false

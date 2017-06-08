@@ -18,11 +18,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_friendly_id!(params[:id])
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation,  :cellphone, :token)
+    params.require(:user).permit(:email, :username, :password, :password_confirmation,  :cellphone, :token)
   end
 end

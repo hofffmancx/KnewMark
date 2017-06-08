@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(params[:id])
+    @review = Review.find_by_friendly_id!(params[:id])
     @comments = @review.comments
     @comment = Comment.new
   end
@@ -57,11 +57,11 @@ class ReviewsController < ApplicationController
   protected
 
   def find_knowledge
-    @knowledge = Knowledge.find(params[:knowledge_id])
+    @knowledge = Knowledge.find_by_friendly_id!(params[:knowledge_id])
   end
 
   def find_reivew
-    @review = current_user.reviews.find(params[:id])
+    @review = current_user.reviews.find_by_friendly_id!(params[:id])
   end
 
   def review_params

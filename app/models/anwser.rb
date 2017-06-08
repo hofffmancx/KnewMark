@@ -8,10 +8,15 @@
 #  content     :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  friendly_id :string
+#
+# Indexes
+#
+#  index_anwsers_on_friendly_id  (friendly_id) UNIQUE
 #
 
 class Anwser < ApplicationRecord
-
+  include Friendly
 	validates_presence_of :content
 
 	belongs_to :question, counter_cache: true

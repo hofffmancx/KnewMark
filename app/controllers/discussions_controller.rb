@@ -55,11 +55,11 @@ class DiscussionsController < ApplicationController
   protected
 
   def find_knowledge
-    @knowledge = Knowledge.find(params[:knowledge_id])
+    @knowledge = Knowledge.find_by_friendly_id!(params[:knowledge_id])
   end
 
   def find_reivew
-    @discussion = current_user.discussions.find(params[:id])
+    @discussion = current_user.discussions.find_by_friendly_id!(params[:id])
   end
 
   def discussion_params

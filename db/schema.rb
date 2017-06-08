@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606075155) do
+ActiveRecord::Schema.define(version: 20170608081037) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.text     "content"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_anwsers_on_friendly_id", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
@@ -51,6 +53,8 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "likes_count", default: 0
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_comments_on_friendly_id", unique: true
     t.index ["review_id"], name: "index_comments_on_review_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -62,6 +66,8 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "likes_count",  default: 0
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_discussions_on_friendly_id", unique: true
     t.index ["knowledge_id"], name: "index_discussions_on_knowledge_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
@@ -86,6 +92,8 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.integer  "discussions_count", default: 0,        null: false
     t.integer  "questions_count",   default: 0,        null: false
     t.integer  "user_id"
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_knowledges_on_friendly_id", unique: true
     t.index ["title"], name: "index_knowledges_on_title"
   end
 
@@ -103,6 +111,18 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.index ["knowledge_id"], name: "index_photos_on_knowledge_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "gender"
+    t.date     "birthday"
+    t.string   "location"
+    t.string   "website"
+    t.text     "self_introduction"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer  "knowledge_id"
     t.integer  "user_id"
@@ -111,6 +131,8 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "anwsers_count", default: 0, null: false
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_questions_on_friendly_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -122,6 +144,8 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.datetime "updated_at",                 null: false
     t.integer  "comments_count", default: 0, null: false
     t.integer  "likes_count",    default: 0
+    t.string   "friendly_id"
+    t.index ["friendly_id"], name: "index_reviews_on_friendly_id", unique: true
     t.index ["knowledge_id"], name: "index_reviews_on_knowledge_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -182,9 +206,11 @@ ActiveRecord::Schema.define(version: 20170606075155) do
     t.string   "cellphone"
     t.string   "avatar"
     t.string   "username"
+    t.string   "friendly_id"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["cellphone"], name: "index_users_on_cellphone"
     t.index ["email"], name: "index_users_on_email"
+    t.index ["friendly_id"], name: "index_users_on_friendly_id", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end

@@ -33,11 +33,11 @@ class AnwsersController < ApplicationController
 	private
 
 	def find_question
-		@question = Question.find(params[:question_id])
+		@question = Question.find_by_friendly_id!(params[:question_id])
 	end
 
 	def find_anwser
-		@anwser = Anwser.find(params[:id])
+		@anwser = Anwser.find_by_friendly_id!(params[:id])
 	end
 
 	def anwser_params

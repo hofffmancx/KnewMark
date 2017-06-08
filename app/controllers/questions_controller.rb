@@ -50,10 +50,10 @@ class QuestionsController < ApplicationController
 	end
 
 	def find_knowledge
-		@knowledge = Knowledge.find(params[:knowledge_id])
+		@knowledge = Knowledge.find_by_friendly_id!(params[:knowledge_id])
 	end
 
 	def find_question
-		@question = Question.find(params[:id])
+		@question = Question.find_by_friendly_id!(params[:id])
 	end
 end

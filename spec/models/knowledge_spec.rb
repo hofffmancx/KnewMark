@@ -22,10 +22,12 @@
 #  discussions_count :integer          default("0"), not null
 #  questions_count   :integer          default("0"), not null
 #  user_id           :integer
+#  friendly_id       :string
 #
 # Indexes
 #
-#  index_knowledges_on_title  (title)
+#  index_knowledges_on_friendly_id  (friendly_id) UNIQUE
+#  index_knowledges_on_title        (title)
 #
 
 #  wants_count  :integer          default("0")

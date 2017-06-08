@@ -1,0 +1,61 @@
+<h2>编辑账户</h2>
+
+<%= form_for @user, :url => account_user_path(@user) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, :class => "form-control" %>
+    <% if f.object.avatar.present? %>
+      <label>
+        <%= f.check_box :remove_avatar %> 删除图档
+      </label>
+      <%= link_to f.object.avatar.filename, f.object.avatar.url, :target => "_blank" %>
+    <% end %>
+  </div>
+   <%= f.fields_for :profile do |ff| %>
+
+   <% Profile::GENDER.each do |gender| %>
+     <label>
+       <%= ff.radio_button :gender, gender %>
+       <%= t(gender, :scope => "profile.gender") %>
+     </label>
+   <% end -%>
+
+     <div class="form-group">
+       <%= ff.label :birthday %>
+       <%= ff.text_field :birthday, :class => "form-control" %>
+     </div>
+
+     <div class="form-group">
+       <%= ff.label :location %>
+       <%= ff.text_field :location, :class => "form-control" %>
+     </div>
+
+     <div class="form-group">
+       <%= ff.label :website %>
+       <%= ff.url_field :website, :class => "form-control" %>
+     </div>
+
+     <div class="form-group">
+       <%= ff.label :self_introduction %>
+       <%= ff.text_field :self_introduction, :class => "form-control" %>
+     </div>
+
+   <% end %>
+
+  <div class="form-group">
+    <%= f.submit "Save", :class => "btn btn-primary" %>
+  </div>
+
+<% end %>
+
+<%= content_for :page_javascript do %>
+<script>
+  $("#user_profile_attributes_birthday").datepicker({ format: "yyyy-mm-dd", language: "<%= I18n.locale %>"  });
+</script>
+<% end %>
