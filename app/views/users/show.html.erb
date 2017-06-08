@@ -18,11 +18,7 @@
               <a class="view-map" href="#"><img src="https://dl.dropboxusercontent.com/s/9ofmihok0h64lvn/location.png"></a>
             </div>
           </div>
-          <% if @user.avatar.present?%>
-            <a href="#"><img src="<%= @user.avatar.thumb.url %>" alt="user_avatar" /></a>
-          <% else %>
-            <a href="#"><%= render_head_pic %></a>
-          <% end %>
+          <%= display_avatar(current_user, "150x150") %>
         </div>
         <div class="profile-details">
             <h1><%= @user.username %></h1>
