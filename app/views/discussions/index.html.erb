@@ -8,9 +8,7 @@
 
           <%= link_to("参与讨论", new_knowledge_discussion_path(@knowledge), class: "btn btn-default") %>
           <div class="discussions-list">
-            <% @discussions.each do |discussion| %>
-              <%= render partial: 'discussions/discussion_item', :collection => @discussions, :as => :discussion %>
-            <% end -%>
+            <%= render partial: 'discussions/discussion_item', :collection => @discussions, :as => :discussion %>
           </div>
 
         </section>

@@ -37,12 +37,10 @@
           <p class="knowledge_counter">共有 <%= @knowledge.reviews_count %> 篇评测</p>
           <%= link_to("写评测", new_knowledge_review_path(@knowledge), class: "btn btn-default") %>
           <div class="reviews-list">
-            <% @reviews.each do |review| %>
-              <%= render partial: 'reviews/review_item', :collection => @reviews, :as => :review %>
-            <% end -%>
-            <div class="section-footer">
-              <%= link_to "点击查看更多评测...", knowledge_reviews_path(@knowledge) %>
-            </div>
+            <%= render partial: 'reviews/review_item', :collection => @reviews, :as => :review %>
+          </div>
+          <div class="section-footer">
+            <%= link_to "点击查看更多评测...", knowledge_reviews_path(@knowledge) %>
           </div>
         </section>
 
@@ -50,26 +48,21 @@
           <p class="knowledge_counter">共有 <%= @knowledge.discussions_count %> 条讨论</p>
           <%= link_to("参与讨论", new_knowledge_discussion_path(@knowledge), class: "btn btn-default") %>
           <div class="discussions-list">
-            <% @discussions.each do |discussion| %>
-              <%= render partial: 'discussions/discussion_item', :collection => @discussions, :as => :discussion %>
-            <% end -%>
-            <div class="section-footer">
-              <%= link_to "点击查看更多讨论...", knowledge_discussions_path(@knowledge) %>
-            </div>
+            <%= render partial: 'discussions/discussion_item', :collection => @discussions, :as => :discussion %>
           </div>
-
+          <div class="section-footer">
+            <%= link_to "点击查看更多讨论...", knowledge_discussions_path(@knowledge) %>
+          </div>
         </section>
 
         <section class="knowledge-question">
           <p class="knowledge_counter">共有 <%= @knowledge.questions_count %> 个问题</p>
           <%= link_to("提问题", new_knowledge_question_path(@knowledge), class: "btn btn-default") %>
           <div class="questions-list">
-            <% @questions.each do |question| %>
-              <%= render partial: 'questions/question_item', :collection => @questions, :as => :question %>
-            <% end -%>
-            <div class="section-footer">
-              <%= link_to "点击查看更多问题...", knowledge_questions_path(@knowledge) %>
-            </div>
+            <%= render partial: 'questions/question_item', :collection => @questions, :as => :question %>
+          </div>
+          <div class="section-footer">
+            <%= link_to "点击查看更多问题...", knowledge_questions_path(@knowledge) %>
           </div>
         </section>
 

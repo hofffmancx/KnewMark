@@ -7,9 +7,7 @@
         <section class="knowledge-review">
           <%= link_to("写评测", new_knowledge_review_path(@knowledge), class: "btn btn-default") %>
           <div class="reviews-list">
-            <% @reviews.each do |review| %>
-              <%= render partial: 'reviews/review_item', :collection => @reviews, :as => :review %>
-            <% end -%>
+            <%= render partial: 'reviews/review_item', :collection => @reviews, :as => :review %>
           </div>
         </section>
 

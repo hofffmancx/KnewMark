@@ -7,9 +7,7 @@
         <section class="knowledge-question">
           <%= link_to("提问题", new_knowledge_question_path(@knowledge), class: "btn btn-default") %>
           <div class="questions-list">
-            <% @questions.each do |question| %>
-              <%= render partial: 'questions/question_item', :collection => @questions, :as => :question %>
-            <% end -%>
+            <%= render partial: 'questions/question_item', :collection => @questions, :as => :question %>
           </div>
         </section>
 

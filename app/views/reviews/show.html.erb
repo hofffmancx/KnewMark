@@ -3,31 +3,32 @@
   <main class="container main">
 
     <section>
+      <div class="share-links pull-right">
+        <%= social_share_button_tag(@review.title) %>
+      </div>
       <h2 class="text-center">
         <%= @review.title %>
       </h2>
-      <div>
-        <article>
-          <div class="article-info">
-            <p>
-              <span>作者：<%= link_to @review.user.username, user_path(@review.user) %></span>
-              <span class="pull-right"><%= render :partial => "like", :locals => { :review => @review } %></span>
-            </p>
-            <p>
-              返回知识页面：<b><%= link_to(@review.knowledge.title, knowledge_path(@review.knowledge)) %></b>
-            </p>
-          </div>
-          <div class="article-content">
-            <%= sanitize(@review.content) %>
-          </div>
-          <span class="article-actions">
-            <% if current_user && @review.user == current_user %>
-              <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_review_path(@review.knowledge, @review), class: "pull-right") %>
-              <%= link_to(content_tag(:i, "",class:'fa fa-trash'), knowledge_review_path(@review.knowledge, @review), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
-            <% end %>
-          </span>
-        </article>
-      </div>
+      <article>
+        <div class="article-info">
+          <p>
+            <span>作者：<%= link_to @review.user.username, user_path(@review.user) %></span>
+            <span class="pull-right"><%= render :partial => "like", :locals => { :review => @review } %></span>
+          </p>
+          <p>
+            返回知识页面：<b><%= link_to(@review.knowledge.title, knowledge_path(@review.knowledge)) %></b>
+          </p>
+        </div>
+        <div class="article-content">
+          <%= sanitize(@review.content) %>
+        </div>
+        <span class="article-actions">
+          <% if current_user && @review.user == current_user %>
+            <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_review_path(@review.knowledge, @review), class: "pull-right") %>
+            <%= link_to(content_tag(:i, "",class:'fa fa-trash'), knowledge_review_path(@review.knowledge, @review), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
+          <% end %>
+        </span>
+      </article>
 
     </section>
 

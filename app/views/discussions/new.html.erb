@@ -1,6 +1,13 @@
-<div class="container">
-  <h2>参与讨论</h2>
-
-  <%= render "form" %>
-
+<div class="page-content">
+  <main class="container">
+    <section>
+      <span class="text-center">
+        <h2>参与讨论</h2>
+      </span>
+      <p class="pull-right">返回 <%= link_to @knowledge.title, knowledge_discussions_path(@knowledge) %> 的讨论</p>
+    </section>
+    <section>
+      <%= render "form" %>
+    </section>
+  </main>
 </div>

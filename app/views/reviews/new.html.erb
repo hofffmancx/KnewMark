@@ -1,13 +1,12 @@
 
 <div class="page-content">
-  <div class="container">
-
-    <div class="text-center">
-      <h3>发表评测</h3>
-      <small><%= link_to @knowledge.title, knowledge_path(@knowledge) %></small>
-    </div>
-
-    <%= render "form" %>
-
-  </div>
+  <main class="container">
+    <section>
+      <div class="text-center">
+        <h3>发表评测</h3>
+        <small><%= link_to @knowledge.title, knowledge_path(@knowledge) %></small>
+      </div>
+      <%= render "form" %>
+    </section>
+  </main>
 </div>
