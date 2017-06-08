@@ -85,12 +85,12 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:like, target: @knowledge)
   end
 
-  def star
-    current_user.create_action(:star, target: @knowledge)
+  def mark
+    current_user.create_action(:mark, target: @knowledge)
   end
 
-  def unstar
-    current_user.destroy_action(:star, target: @knowledge)
+  def unmark
+    current_user.destroy_action(:mark, target: @knowledge)
   end
 
   def follow

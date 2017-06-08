@@ -14,7 +14,7 @@
 #  status            :string           default("hidden")
 #  category_id       :integer
 #  likes_count       :integer          default("0")
-#  stars_count       :integer          default("0")
+#  marks_count       :integer          default("0")
 #  follows_count     :integer          default("0")
 #  wants_count       :integer          default("0")
 #  haves_count       :integer          default("0")

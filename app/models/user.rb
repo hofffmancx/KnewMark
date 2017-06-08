@@ -18,7 +18,7 @@
 #  activation_token_expires_at     :datetime
 #  is_admin                        :boolean          default("f")
 #  like_knowledges_count           :integer          default("0")
-#  star_knowledges_count           :integer          default("0")
+#  mark_knowledges_count           :integer          default("0")
 #  follow_knowledges_count         :integer          default("0")
 #  followers_count                 :integer          default("0")
 #  following_count                 :integer          default("0")
@@ -94,7 +94,7 @@ class User < ApplicationRecord
   action_store :like, :review, counter_cache: true, user_counter_cache: true
   action_store :like, :discussion, counter_cache: true, user_counter_cache: true
   action_store :like, :comment, counter_cache: true, user_counter_cache: true
-  action_store :star, :knowledge, counter_cache: true, user_counter_cache: true
+  action_store :mark, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :knowledge, counter_cache: true, user_counter_cache: true
   action_store :follow, :user, counter_cache: 'followers_count', user_counter_cache: 'following_count'
   action_store :want, :knowledge, counter_cache: true, user_counter_cache: true

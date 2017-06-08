@@ -6,7 +6,7 @@ class Account::KnowledgesController < ApplicationController
   end
 
   def remove
-    @knowledge = Knowledge.find(params[:id])
+    @knowledge = Knowledge.find_by_friendly_id(params[:id])
     if current_user.is_liker_of?(@knowledge)
       current_user.remove!(@knowledge)
       flash[:notice] = "已将课程移出心愿单！"

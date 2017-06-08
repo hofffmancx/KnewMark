@@ -1,0 +1,2 @@
+str = '<span id="knowledge-<%= @knowledge.id %>-mark"><%= link_to mark_knowledge_path(@knowledge), method: :post, remote: true do  %><i class="fa fa-bookmark-o" aria-hidden="true"></i><% end %></span></span>'
+$("#knowledge-<%= @knowledge.id %>-mark").replaceWith(str)

@@ -1,0 +1,11 @@
+<span id="knowledge-<%= @knowledge.id %>-mark">
+  <% if current_user && current_user.find_action(:mark, target: @knowledge) %>
+    <%= link_to unmark_knowledge_path(@knowledge), :method => :post, remote:true, class: "marked" do %>
+      <i class="fa fa-bookmark" aria-hidden="true"></i>
+    <% end %>
+  <% else %>
+    <%= link_to mark_knowledge_path(@knowledge), :method => :post, remote:true do %>
+      <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+</span>

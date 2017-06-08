@@ -44,10 +44,10 @@ Rails.application.routes.draw do
       post :rate
       post :like
       post :follow
-      post :star
+      post :mark
       post :unlike
       post :unfollow
-      post :unstar
+      post :unmark
       post :want
       post :unwant
       post :have

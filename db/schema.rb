@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20170608081037) do
     t.string   "status",            default: "hidden"
     t.integer  "category_id"
     t.integer  "likes_count",       default: 0
-    t.integer  "stars_count",       default: 0
+    t.integer  "marks_count",       default: 0
     t.integer  "follows_count",     default: 0
     t.integer  "wants_count",       default: 0
     t.integer  "haves_count",       default: 0
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20170608081037) do
     t.datetime "activation_token_expires_at"
     t.boolean  "is_admin",                        default: false
     t.integer  "like_knowledges_count",           default: 0
-    t.integer  "star_knowledges_count",           default: 0
+    t.integer  "mark_knowledges_count",           default: 0
     t.integer  "follow_knowledges_count",         default: 0
     t.integer  "followers_count",                 default: 0
     t.integer  "following_count",                 default: 0
