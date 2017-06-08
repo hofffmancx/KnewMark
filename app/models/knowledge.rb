@@ -22,10 +22,12 @@
 #  discussions_count :integer          default("0"), not null
 #  questions_count   :integer          default("0"), not null
 #  user_id           :integer
+#  friendly_id       :string
 #
 # Indexes
 #
-#  index_knowledges_on_title  (title)
+#  index_knowledges_on_friendly_id  (friendly_id) UNIQUE
+#  index_knowledges_on_title        (title)
 #
 
 #  wants_count  :integer          default("0")
@@ -38,6 +40,7 @@
 #
 
 class Knowledge < ApplicationRecord
+  include Friendly
   validates_presence_of :title, message: "标题不能为空"
   validates_presence_of :description, message: "请添加详情介绍"
   validates_presence_of :category_id, message: "分类不能为空"

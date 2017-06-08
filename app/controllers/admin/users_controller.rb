@@ -4,11 +4,11 @@ class Admin::UsersController < AdminController
    end
 
    def edit
-     @user = User.find(params[:id])
+     @user = User.find_by_friendly_id!(params[:id])
    end
 
    def update
-     @user = User.find(params[:id])
+     @user = User.find_by_friendly_id!(params[:id])
      if @user.update(user_params)
        redirect_to admin_users_path
      else

@@ -1,5 +1,6 @@
 class Admin::KnowledgesController < AdminController
   before_action :validate_search_key, only: [:search]
+  before_action :find_knowledge, except: [:index, :new, :create, :search ]
 
   def index
     @knowledges = case params[:status]
@@ -15,7 +16,6 @@ class Admin::KnowledgesController < AdminController
   end
 
   def show
-    @knowledge = Knowledge.find(params[:id])
   end
 
   def new
@@ -24,7 +24,6 @@ class Admin::KnowledgesController < AdminController
   end
 
   def edit
-    @knowledge = Knowledge.find(params[:id])
     @root_categories = Category.roots
   end
 
@@ -40,7 +39,6 @@ class Admin::KnowledgesController < AdminController
   end
 
   def update
-    @knowledge = Knowledge.find(params[:id])
     @root_categories = Category.roots
     @knowledge.user = current_user
     if @knowledge.update(knowledge_params)
@@ -52,21 +50,18 @@ class Admin::KnowledgesController < AdminController
   end
 
   def destroy
-    @knowledge = Knowledge.find(params[:id])
     @knowledge.destroy
     flash[:alert] = "已删除"
     redirect_to admin_knowledges_path
   end
 
   def hide
-    @knowledge = Knowledge.find(params[:id])
     @knowledge.reject!
     flash[:alert] = "产品已下线"
     redirect_to :back
   end
 
   def reject
-    @knowledge = Knowledge.find(params[:id])
     @knowledge.reject!
     KnowledgeMailer.notify_knowledge_rejected(@knowledge).deliver_later
     flash[:alert] = "产品驳回，已通知重新修改"
@@ -74,7 +69,6 @@ class Admin::KnowledgesController < AdminController
   end
 
   def publish
-    @knowledge = Knowledge.find(params[:id])
     @knowledge.publish!
     KnowledgeMailer.notify_knowledge_passed(@knowledge).deliver_later
     flash[:notice] = "产品已上线"
@@ -96,6 +90,10 @@ class Admin::KnowledgesController < AdminController
   end
 
   private
+
+  def find_knowledge
+    @knowledge = Knowledge.find_by_friendly_id!(params[:id])
+  end
 
   def knowledge_params
     params.require(:knowledge).permit(:title, :subtitle, :description, :appropriate, :notice, :category_id, :tags_string, :photos_attributes => [:id, :image, :_destroy])
