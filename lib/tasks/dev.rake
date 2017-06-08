@@ -4,7 +4,7 @@ namespace :dev do
     users = []
 
     100.times do
-      users << User.create( :email => Faker::Internet.email, :password => "111111", :password_confirmation => "111111",)
+      users << User.create( :email => Faker::Internet.email, :username => Faker::Internet.email, :password => "111111", :password_confirmation => "111111",)
     end
 
     admin = User.create( :email => "admin@example.com", :password => "111111", :password_confirmation => "111111", :is_admin => true )
