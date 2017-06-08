@@ -24,4 +24,6 @@
 //= require simditor-markdown
 //= require simditor-mark
 //= require simditor-dropzone
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 //= require_tree .

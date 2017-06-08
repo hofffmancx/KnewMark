@@ -65,6 +65,7 @@
                   <li><%= link_to "Admin 后台", admin_knowledges_path %></li>
                   <% end -%>
                   <li> <%= link_to "我的知识库", user_path(current_user) %></li>
+                  <li> <%= link_to "编辑账户信息", edit_account_user_path %></li>
                   <li> <%= link_to "修改密码", account_password_path %></li>
                   <li> <%= link_to("登出", session_path(current_user), method: :delete) %> </li>
                 </ul>
