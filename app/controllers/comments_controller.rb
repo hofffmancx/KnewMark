@@ -21,12 +21,12 @@ class CommentsController < ApplicationController
   end
 
   def like
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @comment)
   end
 
   def unlike
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @comment)
   end
 
