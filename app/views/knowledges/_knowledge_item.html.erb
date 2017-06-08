@@ -6,7 +6,7 @@
           <% if knowledge.photos.present? %>
             <%= image_tag(knowledge.photos[0].image.thumb.url, class: 'thumbnail') %>
           <% else %>
-            <%= image_tag("http://placehold.it/200x200&text=No Pic", class: 'thumbnail') %>
+            <%= image_tag("http://via.placeholder.com/250/87CEFA/ffffff?&text=#{knowledge.title}", class: 'thumbnail') %>
           <% end %>
         </div>
         <div class="knowledge-content">
