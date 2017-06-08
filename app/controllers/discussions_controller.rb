@@ -23,7 +23,7 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    @discussion = Discussion.find_by_friendly_id(params[:id])
+    @discussion = Discussion.find_by_friendly_id!(params[:id])
   end
 
   def edit
@@ -43,12 +43,12 @@ class DiscussionsController < ApplicationController
   end
 
   def like
-    @discussion = Discussion.find_by_friendly_id(params[:id])
+    @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @discussion)
   end
 
   def unlike
-    @discussion = Discussion.find_by_friendly_id(params[:id])
+    @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @discussion)
   end
 
