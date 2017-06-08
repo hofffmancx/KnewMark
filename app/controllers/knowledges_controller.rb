@@ -5,7 +5,28 @@ class KnowledgesController < ApplicationController
   def index
     @knowledges = Knowledge.includes(:photos).where(:status => "published")
 
-    @knowledges = @knowledges.recent.limit(20)
+    @knowledges = @knowledges.limit(20)
+
+    if params[:category].present?
+      @category = params[:category]
+      @category_id = Category.find_by(title: params[:category]).id
+      @knowledges = @knowledges.where(category_id: @category_id)
+    end
+
+    if params[:order].present?
+      @knowledges = case params[:order]
+      when "by_have_counts"
+        @knowledges.order("haves_count DESC")
+      when "by_want_counts"
+        @knowledges.order("wants_count DESC")
+      when "by_follows_counts"
+        @knowledges.order("follows_count DESC")
+      when "by_likes_counts"
+        @knowledges.order("likes_count DESC")
+      end
+    end
+
+    @knowledges = @knowledges.recent
 
     if params[:max_id]
       @knowledges = @knowledges.where( "id < ?", params[:max_id])
@@ -15,7 +36,6 @@ class KnowledgesController < ApplicationController
       format.html
       format.js
     end
-
   end
 
   def show
