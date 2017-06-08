@@ -93,11 +93,8 @@
         <div class="page">
           <div class="tab-content">
             <div class="tab-pane fade in active" id="like">
-              <% if @user == current_user %>
-              <h4>我喜欢的知识</h4>
-              <% else %>
-              <h4>他/她喜欢的知识</h4>
-              <% end %>
+              <%= render_status(@user, "喜欢的知识")%>
+
               <table class="table">
                 <tbody>
                   <% @user.like_knowledges.each do |knowledge| %>
@@ -109,11 +106,7 @@
               </table>
             </div>
             <div class="tab-pane fade" id="star">
-              <% if @user == current_user %>
-              <h4>我收藏的知识</h4>
-              <% else %>
-              <h4>他/她收藏的知识</h4>
-              <% end %>
+              <%= render_status(@user, "收藏的知识")%>
               <table class="table">
                 <tbody>
                   <% @user.star_knowledges.each do |knowledge| %>
@@ -125,11 +118,8 @@
               </table>
             </div>
             <div class="tab-pane fade" id="want">
-              <% if @user == current_user %>
-              <h4>我想学的知识</h4>
-              <% else %>
-              <h4>他/她想学的知识</h4>
-              <% end %>
+              <%= render_status(@user, "想学的知识")%>
+
               <table class="table">
                 <tbody>
                   <% @user.want_knowledges.each do |knowledge| %>
@@ -141,11 +131,8 @@
               </table>
             </div>
             <div class="tab-pane fade" id="have">
-              <% if @user == current_user %>
-              <h4>我学过的知识</h4>
-              <% else %>
-              <h4>他/她学过的知识</h4>
-              <% end %>
+              <%= render_status(@user, "学过的知识")%>
+
               <table class="table">
                 <tbody>
                   <% @user.like_knowledges.each do |knowledge| %>
@@ -157,11 +144,8 @@
               </table>
             </div>
             <div class="tab-pane fade" id="review">
-              <% if @user == current_user %>
-              <h4>我发表过的评测</h4>
-              <% else %>
-              <h4>他/她发表过的评测</h4>
-              <% end %>
+              <%= render_status(@user, "发表过的测评")%>
+
               <table class="table table-hover">
                 <tbody>
                   <% @user.reviews.each do |review| %>
@@ -174,11 +158,8 @@
               </table>
             </div>
             <div class="tab-pane fade" id="discussion">
-              <% if @user == current_user %>
-              <h4>我发表过的讨论</h4>
-              <% else %>
-              <h4>他/她发表过的讨论</h4>
-              <% end %>
+              <%= render_status(@user, "发表过的讨论")%>
+
               <table class="table table-hover">
                 <tbody>
                   <% @user.discussions.each do |discussion| %>
@@ -191,11 +172,8 @@
               </table>
             </div>
             <div class="tab-pane fade" id="comment">
-              <% if @user == current_user %>
-              <h4>我回复过的帖子</h4>
-              <% else %>
-              <h4>他/她回复过的帖子</h4>
-              <% end %>
+              <%= render_status(@user, "回复过的帖子")%>
+
               <table class="table table-hover">
                 <tbody>
                   <% @user.comments.each do |comment| %>
@@ -208,11 +186,8 @@
               </table>
             </div>
             <div class="tab-pane fade" id="following">
-              <% if @user == current_user %>
-              <h4>我关注的知识</h4>
-              <% else %>
-              <h4>他/她关注的知识</h4>
-              <% end %>
+              <%= render_status(@user, "关注的知识")%>
+
               <table class="table">
                 <tbody>
                   <% @user.follow_knowledges.each do |knowledge| %>
