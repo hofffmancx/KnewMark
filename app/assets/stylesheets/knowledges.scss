@@ -161,9 +161,9 @@ main {
     border-radius: 0 0 10px 10px;
   }
   .section-footer {
-    margin-bottom: 2em;
+    margin: 2em 0;
     text-align: center;
-    a { color: #333;}
+    a { color: #333; font-weight: 400;}
   }
   .rate {
     text-align: center;
@@ -212,6 +212,7 @@ section .knowledge-pictures {
 }
 
 article {
+  margin-top: 2em;
   a { color: #333;}
   .article-heading {
     margin-top: 0.5em;
@@ -221,12 +222,50 @@ article {
 
   }
   .article-body {
-    padding: 1em 1em 2em 1em;
+    padding: 1em 0.5em 2em 0.5em;
     border: solid 1px #eee;
-    margin: 1em 1em 3em 1em;
+    margin: 1em 1em 0em 1em;
     .title a { font-weight: 600; color: #696969; font-size: 18px;}
     .acticle-actions {
       a { }
     }
   }
+}
+
+.more {
+  display: block;
+  // position: absolute;
+  // width: 100%;
+  margin: 0 1em;
+  height: 40px;
+  left: 0;
+  bottom: 0;
+  line-height: 40px;
+  color: #777;
+  text-align: center;
+  background-color: #fff;
+  border-top: 1px dashed #999;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.less {
+  display: block;
+  // position: absolute;
+  // width: 100%;
+  margin: 0 1em;
+  height: 40px;
+  left: 0;
+  bottom: 0;
+  line-height: 40px;
+  color: #777;
+  text-align: center;
+  background-color: #fff;
+  border-top: 1px dashed #999;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }

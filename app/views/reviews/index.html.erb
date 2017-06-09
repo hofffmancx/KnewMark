@@ -27,4 +27,13 @@
   <script>
     $("#knowledge-review").addClass("active");
   </script>
+
+  <script>
+    $('article').readmore({
+      embedCSS: false,
+      speed: 75,
+      moreLink: '<a href="#" class="more">展开全文</a>',
+      lessLink: '<a href="#" class="less">收起全文</a>',
+    });
+  </script>
 <% end %>
