@@ -3,12 +3,12 @@
   <main class="container main">
 
     <section>
-      <div class="share-links pull-right">
-        <%= social_share_button_tag(@review.title) %>
-      </div>
       <h2 class="text-center">
         <%= @review.title %>
       </h2>
+      <div class="share-links pull-right">
+        <%= social_share_button_tag(@review.title) %>
+      </div>
       <article>
         <div class="article-info">
           <p>
@@ -53,6 +53,9 @@
       </div>
     </section>
 
+    <section class="section-footer">
+
+    </section>
   </main>
 
 </div>
