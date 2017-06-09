@@ -13,7 +13,7 @@
           <div class="owl-carousel owl-theme">
             <% @knowledge.photos.each do |photo| %>
               <div class="item">
-                <%= image_tag(photo.image.medium.url) %>
+                <%= image_tag(photo.image.url) %>
               </div>
             <% end %>
           </div>
@@ -21,7 +21,7 @@
 
         <section class="knowledge-info">
           <div class="author_name">
-            <span>由 <%= image_tag(@knowledge.user.avatar.thumb.url) if @knowledge.user.avatar.url %> <%= link_to @knowledge.user.username, user_path(@knowledge.user) %> 推荐</span>
+            <span><%= display_avatar(@knowledge.user, "35x35", "img-circle")%>  <%= link_to @knowledge.user.username, user_path(@knowledge.user) %> 推荐</span>
           </div>
           <p>
             <%= sanitize @knowledge.description %>
@@ -95,7 +95,7 @@
           center: true,
           margin:10,
           nav:true,
-          autoWidth:true,
+          // autoWidth:true,
           items:1,
           autoplay: true,
           autoplayTimeout:2000,

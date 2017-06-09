@@ -16,7 +16,7 @@
 #  activation_state                :string
 #  activation_token                :string
 #  activation_token_expires_at     :datetime
-#  is_admin                        :boolean          default(FALSE)
+#  role                            :string           default("user")
 #  like_knowledges_count           :integer          default(0)
 #  mark_knowledges_count           :integer          default(0)
 #  follow_knowledges_count         :integer          default(0)
@@ -45,6 +45,10 @@
 #  index_users_on_friendly_id           (friendly_id) UNIQUE
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
+<<<<<<< HEAD
+=======
+#  index_users_on_role                  (role)
+>>>>>>> 20223b1f7cf9869cab40cfa4ff218705df50a157
 #
 
 require 'rails_helper'

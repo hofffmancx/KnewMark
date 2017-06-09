@@ -7,7 +7,7 @@ namespace :dev do
       users << User.create( :email => Faker::Internet.email, :username => Faker::Internet.email, :password => "111111", :password_confirmation => "111111",)
     end
 
-    admin = User.create( :email => "admin@example.com", :username => "小小鸟", :password => "111111", :password_confirmation => "111111", :is_admin => true )
+    admin = User.create( :email => "admin@example.com", :username => "小小鸟", :password => "111111", :password_confirmation => "111111", :role => 'admin' )
 
     categories = []
     5.times do |i|
