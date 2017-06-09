@@ -13,7 +13,7 @@
           <div class="owl-carousel owl-theme">
             <% @knowledge.photos.each do |photo| %>
               <div class="item">
-                <%= image_tag(photo.image.medium.url) %>
+                <%= image_tag(photo.image.url) %>
               </div>
             <% end %>
           </div>
