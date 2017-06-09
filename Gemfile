@@ -54,7 +54,8 @@ gem 'figaro'
 gem 'simditor'
 gem 'sidekiq'
 gem 'bootstrap-datepicker-rails'
-
+gem 'carrierwave-qiniu'
+gem 'qiniu-rs'
 
 group :development, :test do
   gem 'rspec-rails'
