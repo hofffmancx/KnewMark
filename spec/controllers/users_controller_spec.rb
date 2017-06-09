@@ -45,6 +45,9 @@
 #  index_users_on_friendly_id           (friendly_id) UNIQUE
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
+#  index_users_on_role                  (role)
+#
+
 <<<<<<< HEAD
 =======
 #  index_users_on_role                  (role)
