@@ -29,6 +29,7 @@
               <%= sanitize @knowledge.description %>
               <p>
                 <% if @knowledge.tags.present? %>
+                  <hr>
                   标签:
                   <% @knowledge.tags.each do |tag| %>
                     <span class="badge"><%= tag.title %></span>
