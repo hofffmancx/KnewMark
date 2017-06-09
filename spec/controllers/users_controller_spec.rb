@@ -48,12 +48,6 @@
 #  index_users_on_role                  (role)
 #
 
-<<<<<<< HEAD
-=======
-#  index_users_on_role                  (role)
->>>>>>> 20223b1f7cf9869cab40cfa4ff218705df50a157
-#
-
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
