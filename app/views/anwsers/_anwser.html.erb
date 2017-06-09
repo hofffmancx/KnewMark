@@ -4,6 +4,17 @@
     <span><%= display_avatar(anwser.user, "35x35", "img-circle")%> <%= link_to anwser.user.username, user_path(anwser.user) %> 在 <%= anwser.created_at.to_s(:short) %> 回答：
   </div>
   <div class="article-body">
-    <%= sanitize anwser.content %>
+    <div class="article-content">
+        <%= sanitize anwser.content %>
+    </div>
+    <% if false %>
+    <!-- TO DO -->
+    <span class="article-actions">
+      <% if current_user && @anwser.user == current_user %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_question_anwser_path(@anwser.question, @anwser), class: "pull-right") %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-trash'), question_anwser_path(@anwser.question, @anwser), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
+      <% end %>
+    </span>
+    <% end %>
   </div>
 </article>

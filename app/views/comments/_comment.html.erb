@@ -18,12 +18,14 @@
     </div>
   </div>
   <div class="article-body">
-    <%= sanitize comment.content %>
-    <% if current_user && comment.user == current_user %>
-      <p class="text-right">
-        <%= link_to "Delete", review_comment_path(review, comment), :method => :delete, data: {confirm: "删除后无法恢复，确定删除该评论吗？"}, :class => "btn btn-danger btn-xs", :remote => true %>
-        <%= link_to "Edit", edit_review_comment_path(review, comment), :class => "btn btn-warning btn-xs", :remote => true %>
-      </p>
-    <% end %>
+    <div class="acticle-content">
+      <%= sanitize comment.content %>
+    </div>
+    <span class="acticle-actions">
+      <% if current_user && comment.user == current_user %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_review_comment_path(review, comment), class: "pull-right") %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-trash'), review_comment_path(review, comment), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
+      <% end %>
+    </span>
   </div>
 </article>
