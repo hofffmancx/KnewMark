@@ -7,7 +7,7 @@
 </section>
 
 <section class="rate">
-  <div class="raty" data-score="<%= @knowledge.find_score(current_user).try(:score) || 0 %>" data-score-url="<%= rate_knowledge_path(@knowledge) %>"></div>
+  <div class="raty" data-score="<%= @knowledge.average_score %>"></div>
   <span class="average-score"><%= @knowledge.average_score %></span>
 </section>
 

@@ -45,7 +45,10 @@
 #  index_users_on_friendly_id           (friendly_id) UNIQUE
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
+<<<<<<< HEAD
 #  index_users_on_role                  (role)
+=======
+>>>>>>> 5b598fb562bfc9931e696cdf4f04e1e3cff51e1c
 #
 
 require 'rails_helper'
