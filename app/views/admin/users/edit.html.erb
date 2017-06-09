@@ -13,6 +13,10 @@
 <%= form_for [:admin, @user] do |f| %>
 
   <div class="form-group">
+    <%= f.select :role, User::ROLE, :label =>"用户角色",:input_html => { class: 'form-control'}  %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.text_field :email, :class => "form-control" %>
   </div>

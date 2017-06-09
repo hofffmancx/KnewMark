@@ -16,22 +16,22 @@
 #  activation_state                :string
 #  activation_token                :string
 #  activation_token_expires_at     :datetime
-#  is_admin                        :boolean          default("f")
-#  like_knowledges_count           :integer          default("0")
-#  mark_knowledges_count           :integer          default("0")
-#  follow_knowledges_count         :integer          default("0")
-#  followers_count                 :integer          default("0")
-#  following_count                 :integer          default("0")
-#  want_knowledges_count           :integer          default("0")
-#  have_knowledges_count           :integer          default("0")
-#  reviews_count                   :integer          default("0"), not null
-#  discussions_count               :integer          default("0"), not null
-#  comments_count                  :integer          default("0"), not null
-#  like_comments_count             :integer          default("0")
-#  like_reviews_count              :integer          default("0")
-#  like_discussions_count          :integer          default("0")
-#  questions_count                 :integer          default("0"), not null
-#  anwsers_count                   :integer          default("0"), not null
+#  role                            :string           default("user")
+#  like_knowledges_count           :integer          default(0)
+#  mark_knowledges_count           :integer          default(0)
+#  follow_knowledges_count         :integer          default(0)
+#  followers_count                 :integer          default(0)
+#  following_count                 :integer          default(0)
+#  want_knowledges_count           :integer          default(0)
+#  have_knowledges_count           :integer          default(0)
+#  reviews_count                   :integer          default(0), not null
+#  discussions_count               :integer          default(0), not null
+#  comments_count                  :integer          default(0), not null
+#  like_comments_count             :integer          default(0)
+#  like_reviews_count              :integer          default(0)
+#  like_discussions_count          :integer          default(0)
+#  questions_count                 :integer          default(0), not null
+#  anwsers_count                   :integer          default(0), not null
 #  cellphone                       :string
 #  avatar                          :string
 #  username                        :string
@@ -45,6 +45,7 @@
 #  index_users_on_friendly_id           (friendly_id) UNIQUE
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
+#  index_users_on_role                  (role)
 #
 
 #
@@ -72,6 +73,8 @@
 class User < ApplicationRecord
   include Friendly
   authenticates_with_sorcery!
+
+  ROLE = ["user", "admin"]
 
   attr_accessor :password, :password_confirmation, :token
   CELLPHONE_RE = /\A(\+86|86)?1\d{10}\z/
@@ -117,7 +120,7 @@ class User < ApplicationRecord
   # end
 
   def admin?
-    is_admin
+    self.role == 'admin'
   end
 
 

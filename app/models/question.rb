@@ -9,7 +9,7 @@
 #  description   :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  anwsers_count :integer          default("0"), not null
+#  anwsers_count :integer          default(0), not null
 #  friendly_id   :string
 #
 # Indexes

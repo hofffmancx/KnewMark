@@ -8,7 +8,7 @@
 #  review_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  likes_count :integer          default("0")
+#  likes_count :integer          default(0)
 #  friendly_id :string
 #
 # Indexes
