@@ -1,9 +1,9 @@
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <%= anwser.user.username %>( <%= anwser.created_at %> )
+<article>
+  <div class="article-heading">
+    <span><%= display_avatar(anwser.user, "35x35", "img-circle")%> <%= link_to anwser.user.username, user_path(anwser.user) %> 在 <%= anwser.created_at.to_s(:short) %> 回答：
   </div>
-  <div class="panel-body">
+  <div class="article-body">
     <%= sanitize anwser.content %>
   </div>
-</div>
+</article>

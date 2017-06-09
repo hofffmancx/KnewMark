@@ -1,6 +1,6 @@
 <article>
   <div class="article-heading">
-    来自 <%= link_to discussion.user.username, user_path(discussion.user) %> 的<b>讨论</b>
+    来自 <span><%= display_avatar(discussion.user, "35x35", "img-circle")%> <%= link_to discussion.user.username, user_path(discussion.user) %> 的 <b>讨论</b>
 
   </div>
   <div class="article-body">

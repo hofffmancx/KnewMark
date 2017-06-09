@@ -1,8 +1,6 @@
 <div class="page-content">
   <main class="container">
-
     <section>
-
       <article>
         <div class="article-info">
 
@@ -21,7 +19,6 @@
 
 
     <section>
-
       <div class="add-answer">
         <%= simple_form_for [@question, @anwser], remote: true do |f| %>
           <%= f.input :content %>
@@ -30,19 +27,14 @@
       </div>
 
     </section>
-
     <section>
-      <div id="anwser-count">
-        <p>共有<%= @question.anwsers_count %> 个回答</p>
-      </div>
-
+    <div id="anwser-count">
+      <p>共有<%= @question.anwsers_count %> 个回答</p>
+    </div>
      <div id="anwser-list">
-       <% @question.anwsers.each do |anwser| %>
-        <%= render :partial => "anwsers/anwser", :locals => { :question => @question, :anwser => anwser } %>
-       <% end %>
+       <%= render partial: 'anwsers/anwser', :locals => { :question => @question }, :collection => @question.anwsers, :as => :anwser %>
      </div>
     </section>
-
   </main>
 </div>
 

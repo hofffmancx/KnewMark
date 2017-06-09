@@ -1,2 +1,2 @@
-str = '<span id="comment-<%= @comment.id %>-like"><%= link_to unlike_comment_path(@comment), method: :post, remote: true do  %><i class="fa fa-heart" aria-hidden="true"></i>(<%= @comment.reload.likes_count %>)<% end %></span>'
+str = '<span id="comment-<%= @comment.id %>-like" class="like"><%= link_to unlike_comment_path(@comment), method: :post, remote: true, class: "liked" do  %><i class="fa fa-heart" aria-hidden="true"></i> <%= @comment.reload.likes_count %> <% end %></span>'
 $("#comment-<%= @comment.id %>-like").replaceWith(str)
