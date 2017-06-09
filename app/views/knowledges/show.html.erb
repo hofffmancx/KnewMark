@@ -112,6 +112,7 @@
   <script>
    $(".raty").raty({
      path: '/images/',
+     readOnly:  true,
      score: function() { return $(this).data('score'); },
      click: function(score) {
        var that = this;
@@ -127,4 +128,5 @@
      }
    });
   </script>
+
 <% end %>
