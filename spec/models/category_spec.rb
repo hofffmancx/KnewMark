@@ -4,8 +4,8 @@
 #
 #  id                 :integer          not null, primary key
 #  title              :string
-#  weight             :integer          default("0")
-#  knowledges_counter :integer          default("0")
+#  weight             :integer          default(0)
+#  knowledges_counter :integer          default(0)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  ancestry           :string
