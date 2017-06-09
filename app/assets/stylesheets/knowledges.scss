@@ -222,9 +222,10 @@ article {
 
   }
   .article-body {
-    padding: 1em 0.5em 2em 0.5em;
+    padding: 1em 1em 2em 1em;
     border: solid 1px #eee;
-    margin: 1em 1em 0em 1em;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    margin: 1em 0.5em 0em 0.5em;
     .title a { font-weight: 600; color: #696969; font-size: 18px;}
     .acticle-actions {
       a { }
@@ -232,30 +233,11 @@ article {
   }
 }
 
-.more {
+.more, .less {
   display: block;
   // position: absolute;
   // width: 100%;
-  margin: 0 1em;
-  height: 40px;
-  left: 0;
-  bottom: 0;
-  line-height: 40px;
-  color: #777;
-  text-align: center;
-  background-color: #fff;
-  border-top: 1px dashed #999;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  transition-property: all;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-}
-
-.less {
-  display: block;
-  // position: absolute;
-  // width: 100%;
-  margin: 0 1em;
+  margin: 0 0.5em;
   height: 40px;
   left: 0;
   bottom: 0;
