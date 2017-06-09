@@ -28,6 +28,16 @@ class ReviewsController < ApplicationController
     @comment = Comment.new
   end
 
+  # def rate
+  #   existing_score = @knowledge.find_score(current_user)
+  #   if existing_score
+  #     existing_score.update( :score => params[:score] )
+  #   else
+  #     @knowledge.scores.create( :score => params[:score], :user => current_user )
+  #   end
+  #   render :json => { :average_score => @knowledge.average_score }
+  # end
+
   def edit
   end
 

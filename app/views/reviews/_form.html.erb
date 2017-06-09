@@ -6,8 +6,10 @@
   <div class="group">
     <%= f.input :content, :label => "评测内容" %>
   </div>
-
-  <div class="form-actions">
+    <section class="rate">
+      <div class="raty" data-score="<%= @knowledge.find_score(current_user).try(:score) || 0 %>" data-score-url="<%= rate_knowledge_path(@knowledge) %>"></div>
+    </section>
+    <div class="form-actions">
     <%= f.submit "发表评测", class: "btn btn-primary" %>
   </div>
 <% end %>
@@ -15,5 +17,23 @@
 <%= content_for :page_javascript do %>
   <script type="text/javascript">
     var editor = new Simditor({ textarea: $('#review_content'), toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', '|', 'markdown', 'blockquote', 'code', 'table', 'link','image', '|','hr', 'indent', 'outdent', 'alignment', '|', 'marked', 'mark'],  placeholder: '这里输入评测内容...', pasteImage: true, fileKey: 'file', upload: { url: '/photos', params: null, connectionCount: 3, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?' } });
+  </script>
+  <script>
+   $(".raty").raty({
+     path: '/images/',
+     score: function() { return $(this).data('score'); },
+     click: function(score) {
+       var that = this;
+       $.ajax({
+         url: $(this).data("score-url"),
+         method: "POST",
+         data: { score: score },
+         dataType: "json",
+         success: function(data){
+           $(that).closest(".rate").find(".average-score").html( data["average_score"] );
+         }
+       })
+     }
+   });
   </script>
 <% end %>
