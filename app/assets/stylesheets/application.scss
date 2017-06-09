@@ -89,7 +89,7 @@ a {
 //   margin: 0.125em 0.125em 0 0;
 //   float: right;
 // }
-input[type="text"] {
+#search-id input[type="text"] {
   border: 0.5px dashed #737373;
   border-width: 0 0 0.5px;
   background-color: transparent;
@@ -98,7 +98,7 @@ input[type="text"] {
   // width: 85%;
   float: left;
 }
-input[type="text"]:focus {
+#search-id input[type="text"]:focus {
   color: #FF4500;
   // border-color: #E18728;
   outline: none;
