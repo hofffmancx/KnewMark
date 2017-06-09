@@ -8,6 +8,9 @@
   </div>
 
   <div class="group">
+    <p>
+      <%= f.add_nested_fields_link :photos, "新增上传图片", :class => "btn btn-warning" %>
+    </p>
     <%= f.nested_fields_for :photos do |ff| %>
       <%= ff.input :image %>
       <% if ff.object.image.present? %>
@@ -18,9 +21,7 @@
       <% end %>
       <%= ff.remove_nested_fields_link "移除图片", :class => "btn btn-danger" %>
     <% end %>
-    <p>
-      <%= f.add_nested_fields_link :photos, "新增图片", :class => "btn btn-info" %>
-    </p>
+
   </div>
 
   <div class="group">
@@ -57,7 +58,7 @@
 </div> -->
 
   <div class="form-actions">
-    <%= f.submit "提交", class: "btn btn-info btn-sm" %>
+    <%= f.submit "提交", class: "btn btn-info" %>
   </div>
 <% end %>
 

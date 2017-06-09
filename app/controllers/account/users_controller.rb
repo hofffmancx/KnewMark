@@ -12,7 +12,7 @@ class Account::UsersController < ApplicationController
 
     if @user.update(user_params)
       flash[:notice] = "修改成功"
-      redirect_to edit_account_user_path
+      redirect_to user_path(@user)
     else
       render :edit
     end

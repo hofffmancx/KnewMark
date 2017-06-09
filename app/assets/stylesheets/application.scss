@@ -70,7 +70,51 @@ a {
   color: white !important;
 }
 
+* {
+  box-sizing: border-box;
+}
 
+
+// .searchform {
+//   display: block;
+//   margin: 0;
+//   overflow: hidden;
+//   width: 50%;
+// }
+// label, input {
+//   vertical-align: baseline;
+//   color: #737373;
+// }
+// label {
+//   margin: 0.125em 0.125em 0 0;
+//   float: right;
+// }
+input[type="text"] {
+  border: 0.5px dashed #737373;
+  border-width: 0 0 0.5px;
+  background-color: transparent;
+  font: 14px "Open Sans", sans-serif;
+  // padding: 0.125em 0.225em;
+  // width: 85%;
+  float: left;
+}
+input[type="text"]:focus {
+  color: #FF4500;
+  // border-color: #E18728;
+  outline: none;
+}
+
+.search-button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  vertical-align: baseline;
+  padding: 0 1em;
+}
+
+.input-group-btn button {
+  // color: #333;
+  font-size: 14px;
+}
 
 //---------Navbar End---------
 
