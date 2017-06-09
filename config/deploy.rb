@@ -2,7 +2,7 @@
 lock "3.8.1"
 
 set :application, "KnewMark"
-set :repo_url, "git@gihub.com:an-lee/KnewMark.git"
+set :repo_url, "git@github.com:an-lee/KnewMark.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
