@@ -131,7 +131,7 @@
 
             <table class="table">
               <tbody>
-                <% @user.like_knowledges.each do |knowledge| %>
+                <% @user.have_knowledges.each do |knowledge| %>
                   <tr>
                     <td><%= link_to knowledge.title, knowledge_path(knowledge) %></td>
                   </tr>
