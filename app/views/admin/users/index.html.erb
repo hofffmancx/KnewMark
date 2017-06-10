@@ -22,6 +22,7 @@
 
  <p><%= submit_tag "批次发送邮件", :class => "btn btn-danger" %></p>
 <% end %>
+<%= content_for :page_javascript do %>
   <script>
     $("#toggle_all").click(function(){
       if ( $(this).prop("checked") ) {
@@ -31,3 +32,4 @@
       }
     })
   </script>
+<% end %>
