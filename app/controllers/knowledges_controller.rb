@@ -5,7 +5,7 @@ class KnowledgesController < ApplicationController
   def index
     @knowledges = Knowledge.includes(:photos).where(:status => "published")
 
-    @knowledges = @knowledges.limit(20)
+    # @knowledges = @knowledges.limit(20)
 
     if params[:category].present?
       @category = params[:category]
@@ -26,7 +26,7 @@ class KnowledgesController < ApplicationController
       end
     end
 
-    @knowledges = @knowledges.recent
+    @knowledges = @knowledges.recent.limit(20)
 
     if params[:max_id]
       @knowledges = @knowledges.where( "id < ?", params[:max_id])

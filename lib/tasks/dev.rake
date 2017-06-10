@@ -15,7 +15,7 @@ namespace :dev do
     end
 
     knowledges = []
-    100.times do |i|
+    10.times do |i|
       knowledges << Knowledge.create!( :title => Faker::Book.title,
                                       :description => Faker::Lorem.paragraphs,
                                       :status => "published",
