@@ -27,6 +27,7 @@
             <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_review_path(@review.knowledge, @review), class: "pull-right") %>
             <%= link_to(content_tag(:i, "",class:'fa fa-trash'), knowledge_review_path(@review.knowledge, @review), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
           <% end %>
+          <%= time_ago(@review) %>
         </span>
       </article>
 
