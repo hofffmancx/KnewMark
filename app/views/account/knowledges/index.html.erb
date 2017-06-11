@@ -1,18 +1,30 @@
-<h3>我的心愿单</h3>
-<hr>
+<div class="container">
+  <h3 class="text-center">我推荐的课程</h3>
+  <hr>
 
-<% @knowledges.each do |knowledge| %>
-  <div class="col-md-3">
+  <% @knowledges.each do |knowledge| %>
+  <div class="col-xs-12 col-sm-4 col-md-3">
     <%= link_to knowledge_path(knowledge) do %>
-      <% if knowledge.photos.present? %>
-        <%= image_tag(knowledge.photos[0].image.thumb.url, class: "thumbnail") %>
-      <% else %>
-          <%= image_tag("http://placehold.it/200x200&text=No Pic", class: "thumbnail") %>
-      <% end %>
-      <p>
-        <%= link_to(knowledge.title, knowledge_path(knowledge)) %>
-        <%= link_to("移出", remove_account_knowledge_path(knowledge), :method => :post, :class => "btn btn-default btn-xs") %>
-      </p>
+      <div class="knowledge">
+        <div class="knowledge-cover">
+          <% if knowledge.photos.present? %>
+            <%= image_tag(knowledge.photos[0].image.medium.url, class: 'thumbnail') %>
+          <% else %>
+            <%= image_tag("http://via.placeholder.com/250/87CEFA/ffffff?&text=#{knowledge.title}", class: 'thumbnail') %>
+          <% end %>
+        </div>
+        <div class="knowledge-content">
+          <%= link_to(knowledge.title, knowledge_path(knowledge)) %>
+          <%= render_knowledge_status(knowledge) %>
+          <% if knowledge.is_failed? %>
+            <%= link_to("重新编辑", edit_knowledge_path(knowledge), :class => "btn btn-default btn-xs") %>
+          <% end %>
+        </div>
+        <div class="knowledge-info">  
+          <span class="icon"><i class="fa fa-bookmark-o" aria-hidden="true"></i></span><small><%= knowledge.marks_count %></small>
+        </div>
+      </div>
     <% end %>
   </div>
-<% end %>
+  <% end %>
+</div>
