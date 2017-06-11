@@ -93,4 +93,8 @@ class Knowledge < ApplicationRecord
     self.save
   end
 
+  def is_failed?
+    self.status == "failed"
+  end
+
 end

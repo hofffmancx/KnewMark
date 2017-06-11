@@ -46,13 +46,13 @@
   <div class="col-sm-5">
     <select name="knowledge[category_id]">
       <option></option>
-      <% @root_categories.each do |category| %>
-        <optgroup label="<%= category.title %>"></optgroup>
+      <%# @root_categories.each do |category| %>
+        <optgroup label="<%#= category.title %>"></optgroup>
 
-        <% category.children.each do |sub_category| %>
-          <option value="<%= sub_category.id %>" <%= @knowledge.category_id == sub_category.id ? 'selected' : '' %>><%= sub_category.title %></option>
-        <% end -%>
-      <% end -%>
+        <%# category.children.each do |sub_category| %>
+          <option value="<%#= sub_category.id %>" <%#= @knowledge.category_id == sub_category.id ? 'selected' : '' %>><%#= sub_category.title %></option>
+        <%# end -%>
+      <%# end -%>
     </select>
   </div>
 </div> -->

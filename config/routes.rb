@@ -68,11 +68,7 @@ Rails.application.routes.draw do
        put :update_profile
      end
    end
-   resources :knowledges do
-     member do
-       post :remove
-     end
-   end
+   resources :knowledges
   end
 
   namespace :admin do
