@@ -54,7 +54,8 @@ gem 'sidekiq'
 gem 'bootstrap-datepicker-rails'
 gem 'carrierwave-qiniu'
 gem 'qiniu-rs'
-
+gem 'rails-timeago', '~> 2.0'
+gem "rails-i18n"
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
