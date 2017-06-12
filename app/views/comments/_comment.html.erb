@@ -1,6 +1,6 @@
 <article id="comment-<%= comment.id %>">
   <div class="article-heading">
-    <span><%= display_avatar(comment.user, "35x35", "img-circle")%> <%= link_to comment.user.username, user_path(comment.user) %> <b>评论说：</b>
+    <span><%= display_avatar(comment.user, "35x35", "img-circle")%> <%= link_to comment.user.username, user_path(comment.user) %> <b>评论说：</b></span>
     <div style="float:right">
       <% if current_user && current_user.find_action(:like, target: review) %>
         <span id="comment-<%= comment.id %>-like" class='like'>
@@ -23,8 +23,8 @@
     </div>
     <span class="acticle-actions">
       <% if current_user && comment.user == current_user %>
-        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_review_comment_path(review, comment), class: "pull-right") %>
-        <%= link_to(content_tag(:i, "",class:'fa fa-trash'), review_comment_path(review, comment), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_review_comment_path(review, comment), class: "pull-right", remote: true) %>
+        <%= link_to(content_tag(:i, "",class:'fa fa-trash'), review_comment_path(review, comment), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"},remote: true, class: "pull-right", style:"margin: 0 1em; color: red;") %>
       <% end %>
     </span>
   </div>

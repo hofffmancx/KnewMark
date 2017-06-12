@@ -1,10 +1,15 @@
 <div id="comment-<%= comment.id %>">
-  <%= simple_form_for [ review, comment ], remote: true do |f| %>
-    <div class="form-group">
-      <%= f.input :content, class: "form-control" %>
+  <article>
+    <div class="article-heading">
+      <span><%= display_avatar(comment.user, "35x35", "img-circle")%> <%= link_to comment.user.username, user_path(comment.user) %> <b>评论说：</b></span>
     </div>
-    <div class="form-group">
-      <%= f.submit "修改", class: "btn btn-danger" %>
-    </div>
-  <% end %>
+    <%= simple_form_for [ review, comment ], remote: true do |f| %>
+      <div class="form-group">
+        <%= f.input :content, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "修改", class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </article>
 </div>
