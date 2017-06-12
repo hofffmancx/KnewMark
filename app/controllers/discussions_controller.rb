@@ -45,11 +45,13 @@ class DiscussionsController < ApplicationController
   def like
     @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @discussion)
+    @discussion.like!
   end
 
   def unlike
     @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @discussion)
+    @discussion.unlike!
   end
 
   protected

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609035611) do
+ActiveRecord::Schema.define(version: 20170611115806) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -70,6 +70,22 @@ ActiveRecord::Schema.define(version: 20170609035611) do
     t.index ["friendly_id"], name: "index_discussions_on_friendly_id", unique: true
     t.index ["knowledge_id"], name: "index_discussions_on_knowledge_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "creator_id"
+    t.integer  "knowledge_id"
+    t.string   "action"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.integer  "ownerable_id"
+    t.string   "ownerable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type"
+    t.index ["ownerable_id", "ownerable_type"], name: "index_events_on_ownerable_id_and_ownerable_type"
+    t.index [nil], name: "index_events_on_team_id"
   end
 
   create_table "knowledges", force: :cascade do |t|
@@ -223,6 +239,17 @@ ActiveRecord::Schema.define(version: 20170609035611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cellphone", "token"], name: "index_verify_tokens_on_cellphone_and_token"
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",                         null: false
+    t.integer  "item_id",                           null: false
+    t.string   "event",                             null: false
+    t.string   "whodunnit"
+    t.text     "object",         limit: 1073741823
+    t.datetime "created_at"
+    t.text     "object_changes", limit: 1073741823
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
 end

@@ -79,26 +79,32 @@ class KnowledgesController < ApplicationController
 
   def like
     current_user.create_action(:like, target: @knowledge)
+    @knowledge.like!
   end
 
   def unlike
     current_user.destroy_action(:like, target: @knowledge)
+    @knowledge.unlike!
   end
 
   def mark
     current_user.create_action(:mark, target: @knowledge)
+    @knowledge.mark!
   end
 
   def unmark
     current_user.destroy_action(:mark, target: @knowledge)
+    @knowledge.unmark!
   end
 
   def follow
     current_user.create_action(:follow, target: @knowledge)
+    @knowledge.follow!
   end
 
   def unfollow
     current_user.destroy_action(:follow, target: @knowledge)
+    @knowledge.unfollow!
   end
 
   def search
@@ -111,19 +117,23 @@ class KnowledgesController < ApplicationController
   def want
     current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
+    @knowledge.want!
   end
 
   def unwant
     current_user.destroy_action(:want, target: @knowledge)
+    @knowledge.unwant!
   end
 
   def have
     current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
+    @knowledge.have!
   end
 
   def unhave
     current_user.destroy_action(:have, target: @knowledge)
+    @knowledge.unhave!
   end
 
   private

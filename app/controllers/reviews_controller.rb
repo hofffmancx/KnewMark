@@ -57,11 +57,13 @@ class ReviewsController < ApplicationController
   def like
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @review)
+    @review.like!
   end
 
   def unlike
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @review)
+    @review.unlike!
   end
 
   protected
