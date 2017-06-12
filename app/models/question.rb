@@ -23,14 +23,13 @@ class Question < ApplicationRecord
 	belongs_to :knowledge, counter_cache: true
 	has_many :anwsers, :dependent => :destroy
 	after_create :create_event
-	after_update :update_event
 	after_destroy :destroy_event
 
 	def create_event
 		EventService.new(self.knowledge, self, self.user, "提出了问题", self.knowledge).generate_event
 	end
 
-	def update_event
+	def update_event!
 		EventService.new(self.knowledge, self, self.user, "更新了问题", self.knowledge).generate_event
 	end
 

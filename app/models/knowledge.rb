@@ -76,8 +76,8 @@ class Knowledge < ApplicationRecord
   end
 
 
-  def mark!
-    EventService.new(self, self, self.user, "收藏了知识", self).generate_event
+  def mark!(knowledge)
+    EventService.new(self, self, knowledge.user, "收藏了知识", self).generate_event
   end
 
   def unmark!

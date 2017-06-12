@@ -32,6 +32,8 @@ class QuestionsController < ApplicationController
 
 	def update
 		if @question.update(question_params)
+			@question.user = current_user
+			@question.update_event!
 			redirect_to knowledge_path(@knowledge), notice: "问题已更新。"
 		else
 			render :edit
@@ -40,6 +42,7 @@ class QuestionsController < ApplicationController
 
 	def destroy
 		@question.destroy
+		@question.user = current_user
 		redirect_to knowledge_path(@knowledge), alert: "问题已删除"
 	end
 

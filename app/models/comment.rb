@@ -26,14 +26,13 @@ class Comment < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :review, counter_cache: true
   after_create :create_event
-  after_update :update_event
   after_destroy :destroy_event
 
 	def create_event
 		EventService.new(self.review, self, self.user, "创建了评论", self.review.knowledge).generate_event
 	end
 
-  def update_event
+  def update_event!
     EventService.new(self.review, self, self.user, "更新了评论", self.review.knowledge).generate_event
   end
 

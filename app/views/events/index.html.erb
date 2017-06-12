@@ -1,3 +1,31 @@
-<% @events.each do |event|%>
+<% @group_events.each do |day, events|%>
+<% if @current_page.to_i == 1 or (@current_page.to_i > 1 and current_days.exclude?(day.to_s))%>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 text-center">
+      <div class="owner">
+        <%= day %>
+        <% current_days << day %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% events.each do |event| %>
+
+<%= link_to event.creator.username, user_path(event.creator)%>
 <%= event.action %>
+<% if event.eventable.class == Knowledge%>
+<%= link_to event.eventable.title, knowledge_path(event.eventable)%>
+<% elsif event.eventable.class == Review %>
+<%= link_to event.eventable.title, review_path(event.eventable)%>
+<% elsif event.eventable.class == Question %>
+<%= link_to event.eventable.title, knowledge_question_path(event.eventable.knowledge, event.eventable)%>
+<% elsif event.eventable.class == Anwser%>
+<%= link_to event.eventable.content, knowledge_question_path(event.eventable.question.knowledge, event.eventable.question)%>
+<% elsif event.eventable.class == Discussion %>
+<%= link_to event.eventable.content, knowledge_discussions_path %>
+<% elsif event.eventable.class == Comment %>
+<%= link_to event.eventable.content, review_path(event.eventable.review) %>
+<% end %>
+<%= event.created_at.strftime("%H:%M") %>
+<% end %>
 <% end %>

@@ -31,14 +31,13 @@ class Review < ApplicationRecord
 
   has_many :comments, :dependent => :destroy
   after_create :create_event
-  after_update :update_event
   after_destroy :destroy_event
 
   def create_event
     EventService.new(self.knowledge, self, self.user, "发表了评测", self.knowledge).generate_event
   end
 
-  def update_event
+  def update_event!
     EventService.new(self.knowledge, self, self.user, "更新了评测", self.knowledge).generate_event
   end
 

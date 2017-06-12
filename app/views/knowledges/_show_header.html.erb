@@ -25,6 +25,9 @@
     <li role="presentation" id="knowledge-question">
       <a href="<%= knowledge_questions_path(@knowledge) %>">问题 <span class="counter"><%= @knowledge.questions_count %></span></a>
     </li>
+    <li role="presentation" id="knowledge-dynastic">
+      <a href="<%= knowledge_events_path(@knowledge) %>">动态 <span class="counter"><%= @knowledge.events.count %></span></a>
+    </li>
   </ul>
 </section>
 

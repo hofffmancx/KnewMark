@@ -25,13 +25,12 @@ class Discussion < ApplicationRecord
   belongs_to :knowledge, counter_cache: true
   belongs_to :user, counter_cache: true
   after_create :create_event
-  after_update :update_event
   after_destroy :destroy_event
   def create_event
     EventService.new(self.knowledge, self, self.user, "发起了讨论", self.knowledge).generate_event
   end
 
-  def update_event
+  def update_event!
     EventService.new(self.knowledge, self, self.user, "更新了讨论", self.knowledge).generate_event
   end
 
