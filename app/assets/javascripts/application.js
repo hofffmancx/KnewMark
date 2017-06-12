@@ -26,3 +26,4 @@
 //= require simditor-dropzone
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+//= require rails-timeago-all

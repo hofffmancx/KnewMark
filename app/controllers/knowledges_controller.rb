@@ -1,11 +1,13 @@
 class KnowledgesController < ApplicationController
   before_action :require_login, except: [ :index, :show ]
   before_action :validate_search_key, only: [:search]
-  before_action :find_knowledge, except: [:index, :new, :create, :search ]
+  before_action :find_knowledge, except: [:index, :new, :create, :search, :edit, :update ]
+  before_action :check_failed, :only => [:edit, :update]
+
   def index
     @knowledges = Knowledge.includes(:photos).where(:status => "published")
 
-    @knowledges = @knowledges.limit(20)
+    # @knowledges = @knowledges.limit(20)
 
     if params[:category].present?
       @category = params[:category]
@@ -26,7 +28,7 @@ class KnowledgesController < ApplicationController
       end
     end
 
-    @knowledges = @knowledges.recent
+    @knowledges = @knowledges.recent.limit(20)
 
     if params[:max_id]
       @knowledges = @knowledges.where( "id < ?", params[:max_id])
@@ -62,6 +64,20 @@ class KnowledgesController < ApplicationController
       redirect_to knowledges_path
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @knowledge.update(knowledge_params)
+      @knowledge.status = "hidden"
+      @knowledge.save
+      flash[:notice] = "课程再次提交审核，请耐心等待"
+      redirect_to account_knowledges_path
+    else
+      render :edit
     end
   end
 
@@ -148,6 +164,13 @@ class KnowledgesController < ApplicationController
 
   def search_params
     Knowledge.ransack({:title_or_subtitle_or_description_cont => @query_string}).result(distinct: true)
+  end
+
+  def check_failed
+    @knowledge = Knowledge.find_by_friendly_id!(params[:id])
+    if !@knowledge.is_failed?
+      redirect_to root_path
+    end
   end
 
   def knowledge_params

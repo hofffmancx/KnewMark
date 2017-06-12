@@ -3,12 +3,12 @@
   <main class="container main">
 
     <section>
-      <div class="share-links pull-right">
-        <%= social_share_button_tag(@review.title) %>
-      </div>
       <h2 class="text-center">
         <%= @review.title %>
       </h2>
+      <div class="share-links pull-right">
+        <%= social_share_button_tag(@review.title) %>
+      </div>
       <article>
         <div class="article-info">
           <p>
@@ -27,6 +27,7 @@
             <%= link_to(content_tag(:i, "",class:'fa fa-pencil'), edit_knowledge_review_path(@review.knowledge, @review), class: "pull-right") %>
             <%= link_to(content_tag(:i, "",class:'fa fa-trash'), knowledge_review_path(@review.knowledge, @review), method: :delete, data: {:confirm => "删除后无法恢复，确定要删除吗？"}, class: "pull-right", style:"margin: 0 1em; color: red;") %>
           <% end %>
+          <%= time_ago(@review) %>
         </span>
       </article>
 
@@ -49,12 +50,13 @@
     <section>
       <h4 id="comment-count">共有 <%= @review.comments_count %> 条评论</h4>
       <div id="comment-list">
-        <% @comments.each do |comment| %>
-          <%= render :partial => "comments/comment", :locals => { :review => @review, :comment => comment } %>
-        <% end %>
+        <%= render partial: 'comments/comment', :locals => { :review => @review }, :collection => @comments, :as => :comment %>
       </div>
     </section>
 
+    <section class="section-footer">
+
+    </section>
   </main>
 
 </div>

@@ -1,6 +1,6 @@
 <article>
   <div class="article-heading">
-    来自 <%= link_to question.user.username, user_path(question.user) %> 的 <b>问题</b>
+    来自 <span><%= display_avatar(question.user, "35x35", "img-circle")%> <%= link_to question.user.username, user_path(question.user) %> 的 <b>问题</b>
     <span class="pull-right"><span class="counter"><%= question.anwsers_count %></span> 个回答</span>
   </div>
   <div class="article-body">

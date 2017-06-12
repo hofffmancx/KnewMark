@@ -1,3 +1,11 @@
-<h2>编辑评测</h2>
-
-<%= render "form" %>
+<div class="page-content">
+  <main class="container">
+    <section>
+      <div class="text-center">
+        <h3>编辑评测</h3>
+        <small><%= link_to @knowledge.title, knowledge_path(@knowledge) %></small>
+      </div>
+      <%= render "form" %>
+    </section>
+  </main>
+</div>
