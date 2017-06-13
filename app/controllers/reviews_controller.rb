@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
   def index
-    @reviews = @knowledge.reviews
+    @reviews = @knowledge.reviews.includes(:user)
   end
 
   def new

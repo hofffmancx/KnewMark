@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
   before_action :find_reivew, only: [ :edit, :update, :destroy ]
 
   def index
-    @discussions = @knowledge.discussions
+    @discussions = @knowledge.discussions.includes(:user)
   end
 
   def new

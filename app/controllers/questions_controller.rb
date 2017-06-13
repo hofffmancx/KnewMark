@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 	before_action :find_question, :except => [:index, :new, :create]
 
 	def index
-    @questions = @knowledge.questions
+    @questions = @knowledge.questions.includes(:user)
   end
 
 	def new

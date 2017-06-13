@@ -45,9 +45,9 @@ class KnowledgesController < ApplicationController
       flash[:warning] = "此课程未上线"
       redirect_to knowledges_path
     end
-    @reviews = @knowledge.reviews.recent.limit(3)
-    @discussions = @knowledge.discussions.recent.limit(3)
-    @questions = @knowledge.questions.recent.limit(3)
+    @reviews = @knowledge.reviews.includes(:user).recent.limit(3)
+    @discussions = @knowledge.discussions.includes(:user).recent.limit(3)
+    @questions = @knowledge.questions.includes(:user).recent.limit(3)
   end
 
   def new
