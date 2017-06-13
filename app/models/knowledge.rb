@@ -23,6 +23,7 @@
 #  questions_count   :integer          default(0), not null
 #  user_id           :integer
 #  friendly_id       :string
+#  events_count      :integer          default(0)
 #
 # Indexes
 #

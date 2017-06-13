@@ -25,7 +25,7 @@ class Event < ApplicationRecord
   belongs_to :ownerable, polymorphic: true
   belongs_to :creator, class_name: "User"
   belongs_to :eventable, polymorphic: true
-  belongs_to :knowledge
+  belongs_to :knowledge, :counter_cache => true
 
   scope :recent, -> {order("created_at DESC")}
 end

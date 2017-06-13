@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170611115806) do
+ActiveRecord::Schema.define(version: 20170613064607) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20170611115806) do
     t.integer  "questions_count",   default: 0,        null: false
     t.integer  "user_id"
     t.string   "friendly_id"
+    t.integer  "events_count",      default: 0
     t.index ["friendly_id"], name: "index_knowledges_on_friendly_id", unique: true
     t.index ["title"], name: "index_knowledges_on_title"
   end

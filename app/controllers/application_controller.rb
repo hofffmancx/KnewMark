@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_days
-
+  helper_method :current_owners
   def current_days
     @current_days ||= find_day
   end
@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     @current_owners ||= find_owner
   end
 
+
+  def current_owners
+    @current_owners ||= find_owner
+  end
   private
 
 
@@ -32,7 +36,19 @@ class ApplicationController < ActionController::Base
 
     days
   end
-  
+
+  def find_owner
+    owners = session[:owners]
+
+    if owners.blank?
+      owners = []
+    end
+
+    session[:owners] = owners
+
+    owners
+  end
+
   def not_authenticated
     redirect_to new_session_path, :alert => "请先登录"
   end
