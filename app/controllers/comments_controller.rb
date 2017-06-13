@@ -14,20 +14,29 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
+    @comment.user = current_user
+    @comment.update_event!
+
   end
 
   def destroy
+
     @comment.destroy
+    redirect_to :back
   end
 
   def like
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @comment)
+    @comment.user = current_user
+    @comment.like!
   end
 
   def unlike
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @comment)
+    @comment.user = current_user
+    @comment.unlike!
   end
 
   protected

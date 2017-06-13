@@ -73,6 +73,7 @@ class KnowledgesController < ApplicationController
   def update
     if @knowledge.update(knowledge_params)
       @knowledge.status = "hidden"
+      @knowledge.user = current_user
       @knowledge.save
       flash[:notice] = "课程再次提交审核，请耐心等待"
       redirect_to account_knowledges_path
@@ -95,26 +96,38 @@ class KnowledgesController < ApplicationController
 
   def like
     current_user.create_action(:like, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.like!
   end
 
   def unlike
     current_user.destroy_action(:like, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.unlike!
   end
 
   def mark
     current_user.create_action(:mark, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.mark!
   end
 
   def unmark
     current_user.destroy_action(:mark, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.unmark!
   end
 
   def follow
     current_user.create_action(:follow, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.follow!
   end
 
   def unfollow
     current_user.destroy_action(:follow, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.unfollow!
   end
 
   def search
@@ -127,19 +140,27 @@ class KnowledgesController < ApplicationController
   def want
     current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.want!
   end
 
   def unwant
     current_user.destroy_action(:want, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.unwant!
   end
 
   def have
     current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.have!
   end
 
   def unhave
     current_user.destroy_action(:have, target: @knowledge)
+    @knowledge.user = current_user
+    @knowledge.unhave!
   end
 
   private

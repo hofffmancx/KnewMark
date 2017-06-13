@@ -69,6 +69,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
+    bullet (5.5.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.10.0)
     capistrano (3.8.1)
       airbrussh (>= 1.0.0)
       i18n
@@ -308,6 +311,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    uniform_notifier (1.10.0)
     web-console (3.5.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -329,6 +333,7 @@ DEPENDENCIES
   better_errors
   bootstrap-datepicker-rails
   bootstrap-sass
+  bullet
   capistrano (~> 3.4)
   capistrano-passenger
   capistrano-rails

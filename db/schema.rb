@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609035611) do
+ActiveRecord::Schema.define(version: 20170613064607) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -72,6 +72,22 @@ ActiveRecord::Schema.define(version: 20170609035611) do
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "creator_id"
+    t.integer  "knowledge_id"
+    t.string   "action"
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.integer  "ownerable_id"
+    t.string   "ownerable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type"
+    t.index ["ownerable_id", "ownerable_type"], name: "index_events_on_ownerable_id_and_ownerable_type"
+    t.index [nil], name: "index_events_on_team_id"
+  end
+
   create_table "knowledges", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
@@ -93,6 +109,7 @@ ActiveRecord::Schema.define(version: 20170609035611) do
     t.integer  "questions_count",   default: 0,        null: false
     t.integer  "user_id"
     t.string   "friendly_id"
+    t.integer  "events_count",      default: 0
     t.index ["friendly_id"], name: "index_knowledges_on_friendly_id", unique: true
     t.index ["title"], name: "index_knowledges_on_title"
   end

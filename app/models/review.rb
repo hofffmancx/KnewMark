@@ -30,5 +30,27 @@ class Review < ApplicationRecord
   belongs_to :user, counter_cache: true
 
   has_many :comments, :dependent => :destroy
+  after_create :create_event
+  after_destroy :destroy_event
+
+  def create_event
+    EventService.new(self.knowledge, self, self.user, "发表了评测", self.knowledge).generate_event
+  end
+
+  def update_event!
+    EventService.new(self.knowledge, self, self.user, "更新了评测", self.knowledge).generate_event
+  end
+
+  def destroy
+    EventService.new(self.knowledge, self, self.user, "删除了评测", self.knowledge).generate_event
+  end
+
+  def like!
+    EventService.new(self.knowledge, self, self.user, "喜欢了评测", self.knowledge).generate_event
+  end
+
+  def unlike!
+    EventService.new(self.knowledge, self, self.user, "取消了喜欢评测", self.knowledge).generate_event
+  end
 
 end

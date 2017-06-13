@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
 
-
   resources :categories, only: [:index, :show]
   post 'photos' => 'photos#upload'
 
@@ -39,6 +38,8 @@ Rails.application.routes.draw do
     resources :reviews
     resources :discussions
     resources :questions
+    resources :events
+
 
     member do
       post :rate
