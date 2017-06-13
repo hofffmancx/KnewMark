@@ -17,8 +17,8 @@
 # Indexes
 #
 #  index_events_on_eventable_id_and_eventable_type  (eventable_id,eventable_type)
+#  index_events_on_knowledge_id                     (knowledge_id)
 #  index_events_on_ownerable_id_and_ownerable_type  (ownerable_id,ownerable_type)
-#  index_events_on_team_id                          ()
 #
 
 class Event < ApplicationRecord

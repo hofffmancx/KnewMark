@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 20170613064607) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type"
+    t.index ["knowledge_id"], name: "index_events_on_knowledge_id"
     t.index ["ownerable_id", "ownerable_type"], name: "index_events_on_ownerable_id_and_ownerable_type"
-    t.index [nil], name: "index_events_on_team_id"
   end
 
   create_table "knowledges", force: :cascade do |t|

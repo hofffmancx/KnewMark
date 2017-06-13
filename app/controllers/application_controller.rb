@@ -17,11 +17,6 @@ class ApplicationController < ActionController::Base
   def current_owners
     @current_owners ||= find_owner
   end
-
-
-  def current_owners
-    @current_owners ||= find_owner
-  end
   private
 
 

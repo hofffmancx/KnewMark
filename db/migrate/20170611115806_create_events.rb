@@ -13,7 +13,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
     end
     add_index :events, [:ownerable_id, :ownerable_type]
     add_index :events, [:eventable_id, :eventable_type]
-    add_index :events, :team_id
+    add_index :events, :knowledge_id
 
   end
 end
