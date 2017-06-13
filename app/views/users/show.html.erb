@@ -160,7 +160,7 @@
               <tbody>
                 <% @user.discussions.each do |discussion| %>
                 <tr>
-                  <td><%= discussion.content.truncate(100) %></td>
+                  <td><%= sanitize discussion.content.truncate(100) %></td>
                   <td><%= link_to(discussion.knowledge.title, knowledge_path(discussion.knowledge)) %></td>
                 </tr>
                 <% end %>
@@ -174,7 +174,7 @@
               <tbody>
                 <% @user.comments.each do |comment| %>
                 <tr>
-                  <td><%= comment.content.truncate(100) %></td>
+                  <td><%= sanitize comment.content.truncate(100) %></td>
                   <td><%= link_to(comment.review.title, review_path(comment.review)) %></td>
                 </tr>
                 <% end %>
