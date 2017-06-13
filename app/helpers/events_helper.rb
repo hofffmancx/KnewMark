@@ -15,11 +15,11 @@ module EventsHelper
      elsif event.eventable.class == Question
       link_to event.eventable.title, knowledge_question_path(event.eventable.knowledge, event.eventable)
      elsif event.eventable.class == Anwser
-      link_to event.eventable.content, knowledge_question_path(event.eventable.question.knowledge, event.eventable.question)
+      link_to sanitize(event.eventable.content), knowledge_question_path(event.eventable.question.knowledge, event.eventable.question)
      elsif event.eventable.class == Discussion
-      link_to event.eventable.content, knowledge_discussions_path
+      link_to sanitize(event.eventable.content), knowledge_discussions_path
      elsif event.eventable.class == Comment
-      link_to event.eventable.content, review_path(event.eventable.review)
+      link_to sanitize(event.eventable.content), review_path(event.eventable.review)
      end
   end
 end
