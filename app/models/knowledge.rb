@@ -102,11 +102,11 @@ class Knowledge < ApplicationRecord
   end
 
   def want!
-    EventService.new(self, self, self.user, "想学了知识", self).generate_event
+    EventService.new(self, self, self.user, "想学知识", self).generate_event
   end
 
   def unwant!
-    EventService.new(self, self, self.user, "取消想学了知识", self).generate_event
+    EventService.new(self, self, self.user, "取消想学知识", self).generate_event
   end
 
   def have!
