@@ -27,3 +27,9 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 //= require rails-timeago-all
+
+$(function() {
+   $('div.alert').delay(500).fadeIn('normal', function() {
+      $(this).delay(2500).fadeOut('slow');
+   });
+});
