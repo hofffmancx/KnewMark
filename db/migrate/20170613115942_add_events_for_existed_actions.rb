@@ -27,6 +27,10 @@ class AddEventsForExistedActions < ActiveRecord::Migration[5.0]
         @knowledge = Knowledge.find(id)
         EventService.new(@knowledge, @knowledge, u, "关注了知识", @knowledge).generate_event
       end
+      u.mark_knowledge_ids do |id|
+        @knowledge = Knowledge.find(id)
+        EventService.new(@knowledge, @knowledge, u, "马克了知识", @knowledge).generate_event
+      end
     end
 
   end

@@ -78,11 +78,11 @@ class Knowledge < ApplicationRecord
 
 
   def mark!(knowledge)
-    EventService.new(self, self, knowledge.user, "收藏了知识", self).generate_event
+    EventService.new(self, self, knowledge.user, "马克了知识", self).generate_event
   end
 
   def unmark!
-    EventService.new(self, self, self.user, "取消收藏了知识", self).generate_event
+    EventService.new(self, self, self.user, "取消马克知识", self).generate_event
   end
 
   def like!
@@ -90,7 +90,7 @@ class Knowledge < ApplicationRecord
   end
 
   def unlike!
-    EventService.new(self, self, self.user, "取消喜欢了知识", self).generate_event
+    EventService.new(self, self, self.user, "取消喜欢知识", self).generate_event
   end
 
   def follow!
@@ -98,7 +98,7 @@ class Knowledge < ApplicationRecord
   end
 
   def unfollow!
-    EventService.new(self, self, self.user, "取消关注了知识", self).generate_event
+    EventService.new(self, self, self.user, "取消关注知识", self).generate_event
   end
 
   def want!
@@ -114,7 +114,7 @@ class Knowledge < ApplicationRecord
   end
 
   def unhave!
-    EventService.new(self, self, self.user, "取消学过了知识", self).generate_event
+    EventService.new(self, self, self.user, "取消学过知识", self).generate_event
   end
 
   def average_score
