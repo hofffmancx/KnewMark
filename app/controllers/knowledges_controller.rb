@@ -97,37 +97,37 @@ class KnowledgesController < ApplicationController
   def like
     current_user.create_action(:like, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.like!
+    # @knowledge.like!
   end
 
   def unlike
     current_user.destroy_action(:like, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unlike!
+    # @knowledge.unlike!
   end
 
   def mark
     current_user.create_action(:mark, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.mark!
+    # @knowledge.mark!
   end
 
   def unmark
     current_user.destroy_action(:mark, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unmark!
+    # @knowledge.unmark!
   end
 
   def follow
     current_user.create_action(:follow, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.follow!
+    # @knowledge.follow!
   end
 
   def unfollow
     current_user.destroy_action(:follow, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unfollow!
+    # @knowledge.unfollow!
   end
 
   def search
@@ -141,26 +141,26 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.want!
+    # @knowledge.want!
   end
 
   def unwant
     current_user.destroy_action(:want, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unwant!
+    # @knowledge.unwant!
   end
 
   def have
     current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.have!
+    # @knowledge.have!
   end
 
   def unhave
     current_user.destroy_action(:have, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unhave!
+    # @knowledge.unhave!
   end
 
   private

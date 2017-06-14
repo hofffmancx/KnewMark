@@ -56,6 +56,7 @@ gem 'carrierwave-qiniu'
 gem 'qiniu-rs'
 gem 'rails-timeago', '~> 2.0'
 gem "rails-i18n"
+gem 'public_activity'
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'

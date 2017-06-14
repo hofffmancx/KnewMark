@@ -23,7 +23,6 @@
 #  questions_count   :integer          default(0), not null
 #  user_id           :integer
 #  friendly_id       :string
-#  events_count      :integer          default(0)
 #
 # Indexes
 #
@@ -59,7 +58,7 @@ class Knowledge < ApplicationRecord
 
   belongs_to :category
   belongs_to :user
-  has_many :events
+  # has_many :events
 
   def find_score(user)
     user && self.scores.where( :user_id => user.id ).first
@@ -77,45 +76,45 @@ class Knowledge < ApplicationRecord
   end
 
 
-  def mark!
-    EventService.new(self, self, self.user, "马克了知识", self).generate_event
-  end
+  # def mark!
+  #   EventService.new(self, self, self.user, "马克了知识", self).generate_event
+  # end
+  #
+  # def unmark!
+  #   EventService.new(self, self, self.user, "取消马克知识", self).generate_event
+  # end
+  #
+  # def like!
+  #   EventService.new(self, self, self.user, "喜欢了知识", self).generate_event
+  # end
+  #
+  # def unlike!
+  #   EventService.new(self, self, self.user, "取消喜欢知识", self).generate_event
+  # end
+  #
+  # def follow!
+  #   EventService.new(self, self, self.user, "关注了知识", self).generate_event
+  # end
+  #
+  # def unfollow!
+  #   EventService.new(self, self, self.user, "取消关注知识", self).generate_event
+  # end
 
-  def unmark!
-    EventService.new(self, self, self.user, "取消马克知识", self).generate_event
-  end
-
-  def like!
-    EventService.new(self, self, self.user, "喜欢了知识", self).generate_event
-  end
-
-  def unlike!
-    EventService.new(self, self, self.user, "取消喜欢知识", self).generate_event
-  end
-
-  def follow!
-    EventService.new(self, self, self.user, "关注了知识", self).generate_event
-  end
-
-  def unfollow!
-    EventService.new(self, self, self.user, "取消关注知识", self).generate_event
-  end
-
-  def want!
-    EventService.new(self, self, self.user, "想学知识", self).generate_event
-  end
-
-  def unwant!
-    EventService.new(self, self, self.user, "取消想学知识", self).generate_event
-  end
-
-  def have!
-    EventService.new(self, self, self.user, "学过知识", self).generate_event
-  end
-
-  def unhave!
-    EventService.new(self, self, self.user, "取消学过知识", self).generate_event
-  end
+  # def want!
+  #   EventService.new(self, self, self.user, "想学知识", self).generate_event
+  # end
+  #
+  # def unwant!
+  #   EventService.new(self, self, self.user, "取消想学知识", self).generate_event
+  # end
+  #
+  # def have!
+  #   EventService.new(self, self, self.user, "学过知识", self).generate_event
+  # end
+  #
+  # def unhave!
+  #   EventService.new(self, self, self.user, "取消学过知识", self).generate_event
+  # end
 
   def average_score
     self.scores.average(:score)

@@ -25,26 +25,26 @@ class Comment < ApplicationRecord
 
   belongs_to :user, counter_cache: true
   belongs_to :review, counter_cache: true
-  after_create :create_event
-  after_destroy :destroy_event
-
-	def create_event
-		EventService.new(self.review, self, self.user, "创建了评论", self.review.knowledge).generate_event
-	end
-
-  def update_event!
-    EventService.new(self.review, self, self.user, "更新了评论", self.review.knowledge).generate_event
-  end
-
-  def destroy_event
-    EventService.new(self.review, self, self.user, "删除了评论", self.review.knowledge).generate_event
-  end
-
-  def like!
-    EventService.new(self.review, self, self.user, "喜欢了评论", self.review.knowledge).generate_event
-  end
-
-  def unlike!
-    EventService.new(self.review, self, self.user, "取消了喜欢评论", self.review.knowledge).generate_event
-  end
+  # after_create :create_event
+  # after_destroy :destroy_event
+  #
+	# def create_event
+	# 	EventService.new(self.review, self, self.user, "创建了评论", self.review.knowledge).generate_event
+	# end
+  #
+  # def update_event!
+  #   EventService.new(self.review, self, self.user, "更新了评论", self.review.knowledge).generate_event
+  # end
+  #
+  # def destroy_event
+  #   EventService.new(self.review, self, self.user, "删除了评论", self.review.knowledge).generate_event
+  # end
+  #
+  # def like!
+  #   EventService.new(self.review, self, self.user, "喜欢了评论", self.review.knowledge).generate_event
+  # end
+  #
+  # def unlike!
+  #   EventService.new(self.review, self, self.user, "取消了喜欢评论", self.review.knowledge).generate_event
+  # end
 end

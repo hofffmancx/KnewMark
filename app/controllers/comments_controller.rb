@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
   def update
     @comment.update(comment_params)
     @comment.user = current_user
-    @comment.update_event!
+    # @comment.update_event!
 
   end
 
@@ -29,14 +29,14 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @comment)
     @comment.user = current_user
-    @comment.like!
+    # @comment.like!
   end
 
   def unlike
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @comment)
     @comment.user = current_user
-    @comment.unlike!
+    # @comment.unlike!
   end
 
   protected

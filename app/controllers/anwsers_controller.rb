@@ -20,7 +20,7 @@ class AnwsersController < ApplicationController
 	def update
 		if @anwser.update(anwser_params)
 			@anwser_user = current_user
-			@anwser.update_event!
+			# @anwser.update_event!
 			redirect_to knowledge_question_path(@question)
 		else
 			render :edit

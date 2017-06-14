@@ -32,7 +32,7 @@ class DiscussionsController < ApplicationController
   def update
     if @discussion.update(discussion_params)
       @discussion.user = current_user
-      @discussion.update_event!
+      # @discussion.update_event!
       redirect_to knowledge_path(@knowledge), notice: "评测更新成功。"
     else
       render :edit
@@ -49,14 +49,14 @@ class DiscussionsController < ApplicationController
     @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @discussion)
     @discussion.user = current_user
-    @discussion.like!
+    # @discussion.like!
   end
 
   def unlike
     @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @discussion)
     @discussion.user = current_user
-    @discussion.unlike!
+    # @discussion.unlike!
   end
 
   protected

@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update(review_params)
       @review.user = current_user
-      @review.update_event!
+      # @review.update_event!
       redirect_to knowledge_path(@knowledge), notice: "评测更新成功。"
     else
       render :edit
@@ -53,22 +53,19 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    @review.user = current_user
     redirect_to knowledge_path(@knowledge), alert: "评测已经删除。"
   end
 
   def like
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @review)
-    @review.user = current_user
-    @review.like!
+    # @review.like!
   end
 
   def unlike
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @review)
-    @review.user = current_user
-    @review.unlike!
+    # @review.unlike!
   end
 
   protected

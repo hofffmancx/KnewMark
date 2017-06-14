@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613115942) do
+ActiveRecord::Schema.define(version: 20170614065701) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -23,6 +23,22 @@ ActiveRecord::Schema.define(version: 20170613115942) do
     t.datetime "updated_at",    null: false
     t.index ["target_type", "target_id", "action_type"], name: "index_actions_on_target_type_and_target_id_and_action_type"
     t.index ["user_type", "user_id", "action_type"], name: "index_actions_on_user_type_and_user_id_and_action_type"
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "trackable_type"
+    t.integer  "trackable_id"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.string   "key"
+    t.text     "parameters"
+    t.string   "recipient_type"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
   end
 
   create_table "anwsers", force: :cascade do |t|
@@ -72,22 +88,6 @@ ActiveRecord::Schema.define(version: 20170613115942) do
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer  "owner_id"
-    t.integer  "creator_id"
-    t.integer  "knowledge_id"
-    t.string   "action"
-    t.integer  "eventable_id"
-    t.string   "eventable_type"
-    t.integer  "ownerable_id"
-    t.string   "ownerable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type"
-    t.index ["knowledge_id"], name: "index_events_on_knowledge_id"
-    t.index ["ownerable_id", "ownerable_type"], name: "index_events_on_ownerable_id_and_ownerable_type"
-  end
-
   create_table "knowledges", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 20170613115942) do
     t.integer  "questions_count",   default: 0,        null: false
     t.integer  "user_id"
     t.string   "friendly_id"
-    t.integer  "events_count",      default: 0
     t.index ["friendly_id"], name: "index_knowledges_on_friendly_id", unique: true
     t.index ["title"], name: "index_knowledges_on_title"
   end
