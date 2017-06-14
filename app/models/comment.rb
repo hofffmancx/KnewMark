@@ -20,6 +20,7 @@
 
 class Comment < ApplicationRecord
   include Friendly
+
   validates_presence_of :content, message: "回复不能为空"
   validates_length_of :content, maximum: 1000, too_long: "不能超过1000字"
 

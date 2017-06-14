@@ -41,6 +41,9 @@
 
 class Knowledge < ApplicationRecord
   include Friendly
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+
   validates_presence_of :title, message: "标题不能为空"
   validates_presence_of :description, message: "请添加详情介绍"
   validates_presence_of :category_id, message: "分类不能为空"
@@ -74,7 +77,6 @@ class Knowledge < ApplicationRecord
       self.tags << one_tag
     end
   end
-
 
   # def mark!
   #   EventService.new(self, self, self.user, "马克了知识", self).generate_event
