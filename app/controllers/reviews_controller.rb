@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
     @review.knowledge = @knowledge
     @review.user = current_user
     if @review.save
+      @review.create_activity :create, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
       redirect_to knowledge_path(@knowledge), notice: "评测发布成功。"
     else
       render :new
@@ -44,6 +45,8 @@ class ReviewsController < ApplicationController
   def update
     if @review.update(review_params)
       @review.user = current_user
+      @review.create_activity :update, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
+
       # @review.update_event!
       redirect_to knowledge_path(@knowledge), notice: "评测更新成功。"
     else
@@ -59,12 +62,16 @@ class ReviewsController < ApplicationController
   def like
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @review)
+    @review.create_activity :like, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
+
     # @review.like!
   end
 
   def unlike
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @review)
+    @review.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
+
     # @review.unlike!
   end
 

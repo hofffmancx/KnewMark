@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 
   root 'knowledges#index'
-  resources :activities
   resources :users
   resources :sessions
   resources :password_resets
@@ -36,6 +35,7 @@ Rails.application.routes.draw do
   end
 
   resources :knowledges do
+    resources :activities
     resources :reviews
     resources :discussions
     resources :questions

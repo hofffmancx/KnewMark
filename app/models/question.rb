@@ -19,6 +19,7 @@
 
 class Question < ApplicationRecord
 	include Friendly
+	include PublicActivity::Common
 	belongs_to :user, counter_cache: true
 	belongs_to :knowledge, counter_cache: true
 	has_many :anwsers, :dependent => :destroy

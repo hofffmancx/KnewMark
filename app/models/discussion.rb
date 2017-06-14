@@ -20,8 +20,8 @@
 
 class Discussion < ApplicationRecord
   include Friendly
-  include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller && controller.current_user }
+  include PublicActivity::Common
+  # tracked owner: ->(controller, model) { controller && controller.current_user }
 
   validates_presence_of :content, message: "讨论不能为空"
   validates_length_of :content, maximum: 300, too_long: "讨论不能超过300字"

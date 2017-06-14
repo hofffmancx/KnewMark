@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   include PublicActivity::StoreController
+
+
   def require_admin
     unless current_user.admin?
       redirect_to root_path, alert: "你不是管理员"
@@ -9,11 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
 
-  # helper_method :current_days
+  helper_method :current_days
   # helper_method :current_owners
-  # def current_days
-  #   @current_days ||= find_day
-  # end
+  def current_days
+    @current_days ||= find_day
+  end
   #
   # def current_owners
   #   @current_owners ||= find_owner
@@ -22,17 +24,17 @@ class ApplicationController < ActionController::Base
 
 
   #
-  # def find_day
-  #   days = session[:days]
-  #
-  #   if days.blank?
-  #     days = []
-  #   end
-  #
-  #   session[:days] = days
-  #
-  #   days
-  # end
+  def find_day
+    days = session[:days]
+
+    if days.blank?
+      days = []
+    end
+
+    session[:days] = days
+
+    days
+  end
   #
   # def find_owner
   #   owners = session[:owners]

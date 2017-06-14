@@ -12,6 +12,8 @@ class AnwsersController < ApplicationController
 		@anwser.question = @question
 		@anwser.user = current_user
 		@anwser.save
+		@anwser.create_activity :create, owner: current_user,:params => {:knowledge_id => @anwser.question.knowledge.friendly_id}
+
 	end
 
 	def edit
@@ -20,6 +22,7 @@ class AnwsersController < ApplicationController
 	def update
 		if @anwser.update(anwser_params)
 			@anwser_user = current_user
+			@anwser.create_activity :update, owner: current_user,:params => {:knowledge_id => @anwser.question.knowledge.friendly_id}
 			# @anwser.update_event!
 			redirect_to knowledge_question_path(@question)
 		else

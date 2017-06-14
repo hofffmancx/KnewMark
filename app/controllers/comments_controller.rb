@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.review = @review
     @comment.user = current_user
     @comment.save
+    @comment.create_activity :create, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
   end
 
   def edit
@@ -16,6 +17,7 @@ class CommentsController < ApplicationController
     @comment.update(comment_params)
     @comment.user = current_user
     # @comment.update_event!
+    @comment.create_activity :update, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
 
   end
 
@@ -29,6 +31,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @comment)
     @comment.user = current_user
+    @comment.create_activity :like, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
+
     # @comment.like!
   end
 
@@ -36,6 +40,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @comment)
     @comment.user = current_user
+    @comment.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
+
     # @comment.unlike!
   end
 

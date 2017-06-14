@@ -17,6 +17,8 @@ class QuestionsController < ApplicationController
 		@question.knowledge = @knowledge
 
 		if @question.save
+			@question.create_activity :create, owner: current_user,:params => {:knowledge_id => @question.knowledge.friendly_id}
+
 			redirect_to knowledge_path(@knowledge), notice: "问题已发布。"
 		else
 			render :new
@@ -33,6 +35,8 @@ class QuestionsController < ApplicationController
 	def update
 		if @question.update(question_params)
 			@question.user = current_user
+			@question.create_activity :update, owner: current_user,:params => {:knowledge_id => @question.knowledge.friendly_id}
+
 			# @question.update_event!
 			redirect_to knowledge_path(@knowledge), notice: "问题已更新。"
 		else
@@ -42,6 +46,8 @@ class QuestionsController < ApplicationController
 
 	def destroy
 		@question.destroy
+		@question.create_activity :destroy, owner: current_user,:params => {:knowledge_id => @question.knowledge.friendly_id}
+
 		redirect_to knowledge_path(@knowledge), alert: "问题已删除"
 	end
 

@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+对问题 <%= link_to activity.trackable.question.title, knowledge_question_path(activity.trackable.question.knowledge, activity.trackable.question) %>发表了回答 <%= activity.trackable.content %>
+<% else %>
+删除了对问题的回答
+<% end %>

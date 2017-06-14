@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+发表了评测 <%= link_to activity.trackable.title, review_path(activity.trackable) %>
+<% else %>
+  发表的评测已被删除
+<% end %>

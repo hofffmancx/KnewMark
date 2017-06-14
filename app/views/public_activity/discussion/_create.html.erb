@@ -1,1 +1,5 @@
-added comment to <%= link_to activity.trackable.knowledge.name, activity.trackable.knowledge %>
+<% if activity.trackable %>
+发表了讨论 <%= link_to activity.trackable.content, knowledge_discussions_path(activity.trackable.knowledge, activity.trackable) %>
+<% else %>
+  which has since been removed
+<% end %>

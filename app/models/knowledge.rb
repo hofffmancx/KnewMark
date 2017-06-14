@@ -41,8 +41,8 @@
 
 class Knowledge < ApplicationRecord
   include Friendly
-  include PublicActivity::Model
-  tracked owner: ->(controller, model) { controller && controller.current_user }
+  include PublicActivity::Common
+  # tracked except: :update, owner: ->(controller, model) { controller && controller.current_user }
 
   validates_presence_of :title, message: "标题不能为空"
   validates_presence_of :description, message: "请添加详情介绍"
