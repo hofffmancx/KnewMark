@@ -27,6 +27,15 @@ class Discussion < ApplicationRecord
   validates_length_of :content, maximum: 300, too_long: "讨论不能超过300字"
   belongs_to :knowledge, counter_cache: true
   belongs_to :user, counter_cache: true
+  after_commit :create_notifications, on: [:create]
+  def create_notifications
+    Notification.create(
+      notify_type: 'discussion',
+      actor: self.user,
+      user: self.knowledge.user,
+      target: self,
+      second_target: self.knowledge)
+  end
   # after_create :create_event
   # after_destroy :destroy_event
   # def create_event

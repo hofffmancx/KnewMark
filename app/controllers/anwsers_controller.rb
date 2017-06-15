@@ -13,6 +13,7 @@ class AnwsersController < ApplicationController
 		@anwser.user = current_user
 		@anwser.save
 		@anwser.create_activity :create, owner: current_user,:params => {:knowledge_id => @anwser.question.knowledge.friendly_id}
+		Notification.create(notify_type: 'create_anwser', target: @anwser, second_target: @anwser.question, actor: current_user, user: @anwser.question.user)
 
 	end
 

@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
 
 		if @question.save
 			@question.create_activity :create, owner: current_user,:params => {:knowledge_id => @question.knowledge.friendly_id}
+			Notification.create(notify_type: 'create_question', target: @question, second_target: @question.knowledge, actor: current_user, user: @question.knowledge.user)
 
 			redirect_to knowledge_path(@knowledge), notice: "问题已发布。"
 		else
