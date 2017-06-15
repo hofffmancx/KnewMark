@@ -97,37 +97,48 @@ class KnowledgesController < ApplicationController
   def like
     current_user.create_action(:like, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.like!
+    @knowledge.create_activity :like, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    # @knowledge.like!
   end
 
   def unlike
     current_user.destroy_action(:like, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unlike!
+    @knowledge.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.unlike!
   end
 
   def mark
     current_user.create_action(:mark, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.mark!
+    @knowledge.create_activity :mark, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.mark!
   end
 
   def unmark
     current_user.destroy_action(:mark, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unmark!
+    @knowledge.create_activity :unmark, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.unmark!
   end
 
   def follow
     current_user.create_action(:follow, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.follow!
+    @knowledge.create_activity :follow, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.follow!
   end
 
   def unfollow
     current_user.destroy_action(:follow, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unfollow!
+    @knowledge.create_activity :unfollow, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.unfollow!
   end
 
   def search
@@ -141,26 +152,34 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:have, target: @knowledge)
     current_user.create_action(:want, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.want!
+    @knowledge.create_activity :want, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.want!
   end
 
   def unwant
     current_user.destroy_action(:want, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unwant!
+    @knowledge.create_activity :unwant, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.unwant!
   end
 
   def have
     current_user.destroy_action(:want, target: @knowledge)
     current_user.create_action(:have, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.have!
+    @knowledge.create_activity :have, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.have!
   end
 
   def unhave
     current_user.destroy_action(:have, target: @knowledge)
     @knowledge.user = current_user
-    @knowledge.unhave!
+    @knowledge.create_activity :unhave, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+
+    # @knowledge.unhave!
   end
 
   private

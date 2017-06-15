@@ -1,0 +1,5 @@
+<% if activity.trackable %>
+取消喜欢了对测评 <%= link_to activity.trackable.review.title, review_path(activity.trackable.review) %>的评论 <%= activity.trackable.content %>
+<% else %>
+删除了对评测的评论
+<% end %>
