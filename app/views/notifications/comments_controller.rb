@@ -34,7 +34,6 @@ class CommentsController < ApplicationController
     current_user.create_action(:like, target: @comment)
     @comment.user = current_user
     @comment.create_activity :like, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
-    Notification.create(notify_type: 'like_comment', target: @comment, second_target: @comment.review, actor: current_user, user: @comment.user)
 
     # @comment.like!
   end
@@ -44,7 +43,6 @@ class CommentsController < ApplicationController
     current_user.destroy_action(:like, target: @comment)
     @comment.user = current_user
     @comment.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
-    Notification.create(notify_type: 'unlike_comment', target: @comment, second_target: @comment.review, actor: current_user, user: @comment.user)
 
     # @comment.unlike!
   end

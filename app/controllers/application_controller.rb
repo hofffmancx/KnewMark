@@ -12,10 +12,16 @@ class ApplicationController < ActionController::Base
 
 
   helper_method :current_days
+  helper_method :unread_notify_count
   # helper_method :current_owners
   def current_days
     @current_days ||= find_day
   end
+
+  def unread_notify_count
+   return 0 if current_user.blank?
+   @unread_notify_count ||= Notification.unread_count(current_user)
+ end
   #
   # def current_owners
   #   @current_owners ||= find_owner

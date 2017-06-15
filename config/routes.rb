@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-
   require 'sidekiq/web'
   require 'admin_constraint'
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
-
+  mount Notifications::Engine => "/notifications"
   root 'knowledges#index'
+  resources :notifications
   resources :users
   resources :sessions
   resources :password_resets
