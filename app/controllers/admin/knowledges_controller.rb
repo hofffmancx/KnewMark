@@ -4,15 +4,16 @@ class Admin::KnowledgesController < AdminController
 
   def index
     @knowledges = case params[:status]
-    when "by_published"
-      Knowledge.where(:status => "published").all
-    when "by_failed"
-      Knowledge.where(:status => "failed").all
-    when "by_hidden"
-      Knowledge.where(:status => "hidden").all
-    else
-      Knowledge.all.recent
-    end
+                  when "by_published"
+                    Knowledge.where(:status => "published").all
+                  when "by_failed"
+                    Knowledge.where(:status => "failed").all
+                  when "by_hidden"
+                    Knowledge.where(:status => "hidden").all
+                  else
+                    Knowledge.all.recent
+                  end
+    @knowledges = @knowledges.includes(:photos)
   end
 
   def show
