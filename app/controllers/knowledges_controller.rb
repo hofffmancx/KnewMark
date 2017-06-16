@@ -98,6 +98,8 @@ class KnowledgesController < ApplicationController
     current_user.create_action(:like, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :like, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'like_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
+
     # @knowledge.like!
   end
 
@@ -105,6 +107,7 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:like, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'unlike_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.unlike!
   end
@@ -113,6 +116,7 @@ class KnowledgesController < ApplicationController
     current_user.create_action(:mark, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :mark, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'mark_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.mark!
   end
@@ -121,6 +125,7 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:mark, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :unmark, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'unmark_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.unmark!
   end
@@ -129,6 +134,7 @@ class KnowledgesController < ApplicationController
     current_user.create_action(:follow, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :follow, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'follow_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.follow!
   end
@@ -137,6 +143,7 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:follow, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :unfollow, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'unfollow_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.unfollow!
   end
@@ -153,6 +160,7 @@ class KnowledgesController < ApplicationController
     current_user.create_action(:want, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :want, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'want_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.want!
   end
@@ -161,6 +169,7 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:want, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :unwant, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'unwant_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.unwant!
   end
@@ -170,6 +179,7 @@ class KnowledgesController < ApplicationController
     current_user.create_action(:have, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :have, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'have_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.have!
   end
@@ -178,6 +188,7 @@ class KnowledgesController < ApplicationController
     current_user.destroy_action(:have, target: @knowledge)
     @knowledge.user = current_user
     @knowledge.create_activity :unhave, owner: current_user,:params => {:knowledge_id => @knowledge.friendly_id}
+    Notification.create(notify_type: 'unhave_knowledge', target: @knowledge, actor: current_user, user: @knowledge.user)
 
     # @knowledge.unhave!
   end

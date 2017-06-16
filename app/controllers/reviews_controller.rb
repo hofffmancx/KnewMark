@@ -17,6 +17,8 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     if @review.save
       @review.create_activity :create, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
+      Notification.create(notify_type: 'create_review', target: @review, second_target: @review.knowledge, actor: current_user, user: @review.knowledge.user)
+
       redirect_to knowledge_path(@knowledge), notice: "评测发布成功。"
     else
       render :new
@@ -63,6 +65,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @review)
     @review.create_activity :like, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
+    Notification.create(notify_type: 'like_review', target: @review, second_target: @review.knowledge, actor: current_user, user: @review.user)
 
     # @review.like!
   end
@@ -71,6 +74,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @review)
     @review.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @review.knowledge.friendly_id}
+    Notification.create(notify_type: 'unlike_review', target: @review, second_target: @review.knowledge, actor: current_user, user: @review.user)
 
     # @review.unlike!
   end

@@ -53,7 +53,7 @@ class DiscussionsController < ApplicationController
     current_user.create_action(:like, target: @discussion)
     @discussion.user = current_user
     @discussion.create_activity :like, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
-
+    Notification.create(notify_type: 'like_discussion', target: @discussion, second_target: @discussion.knowledge, actor: current_user, user: @discussion.user)
     # @discussion.like!
   end
 
@@ -62,6 +62,7 @@ class DiscussionsController < ApplicationController
     current_user.destroy_action(:like, target: @discussion)
     @discussion.user = current_user
     @discussion.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
+    Notification.create(notify_type: 'unlike_discussion', target: @discussion, second_target: @discussion.knowledge, actor: current_user, user: @discussion.user)
 
     # @discussion.unlike!
   end
