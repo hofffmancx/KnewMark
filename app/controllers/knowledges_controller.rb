@@ -1,5 +1,5 @@
 class KnowledgesController < ApplicationController
-  before_action :require_login, except: [ :index, :show ]
+  before_action :require_login, except: [ :index, :show, :search ]
   before_action :validate_search_key, only: [:search]
   before_action :find_knowledge, except: [:index, :new, :create, :search, :edit, :update ]
   before_action :check_failed, :only => [:edit, :update]
@@ -28,16 +28,16 @@ class KnowledgesController < ApplicationController
       end
     end
 
-    @knowledges = @knowledges.recent.limit(20)
+    @knowledges = @knowledges.recent.page(params[:page] || 1).per_page(params[:per_page] || 20)
+    #
+    # if params[:max_id]
+    #   @knowledges = @knowledges.where( "id < ?", params[:max_id])
+    # end
 
-    if params[:max_id]
-      @knowledges = @knowledges.where( "id < ?", params[:max_id])
-    end
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   def show
@@ -151,7 +151,7 @@ class KnowledgesController < ApplicationController
   def search
     if @query_string.present?
       @knowledges = search_params
-      @knowledges = @knowledges.where(:status => "published")
+      @knowledges = @knowledges.includes(:photos).where(:status => "published")
     end
   end
 
