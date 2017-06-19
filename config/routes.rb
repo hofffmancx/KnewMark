@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   require 'admin_constraint'
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
   mount Notifications::Engine => "/notifications"
-  root 'knowledges#index'
+  root 'welcome#index'
   resources :notifications
   resources :users
   resources :sessions
