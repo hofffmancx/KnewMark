@@ -9,4 +9,10 @@ module KnowledgesHelper
       content_tag(:span, "未通过", :class => "label label-danger")
     end
   end
+
+  def render_highlight_content(knowledge,query_string)
+    excerpt_cont = excerpt(knowledge.title, query_string, radius: 500)
+    highlight(excerpt_cont, query_string)
+  end
+  #可以高亮，但是逻辑有问题
 end
