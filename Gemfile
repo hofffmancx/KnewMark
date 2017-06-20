@@ -58,6 +58,7 @@ gem 'rails-timeago', '~> 2.0'
 gem "rails-i18n"
 gem 'public_activity'
 gem 'notifications'
+gem "rails-erd"
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'

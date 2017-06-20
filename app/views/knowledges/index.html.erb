@@ -11,27 +11,29 @@
       </div>
     </div>
   </div>
+  <div class="apple_pagination">
+    <%= will_paginate @knowledges, :container => false %>
+  </div>
 </div>
-
 <%= content_for :page_javascript do %>
 
   <script>
-    <% if @knowledges.present? %>
-      var current_knowledge_id = <%= @knowledges.last.id %>;
-      $(window).scroll(function(){
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-          var url = "/knowledges?max_id=" + current_knowledge_id;
-          if (url) {
-            $.ajax({
-              method: "GET",
-              url: url,
-              dataType: "script"
-            })
-          } else {
-            console.log("data ended")
-          }
-        }
-      })
-    <% end %>
+    // <%# if @knowledges.present? %>
+    //   var current_knowledge_id = <%#= @knowledges.last.id %>;
+    //   $(window).scroll(function(){
+    //     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    //       var url = "/knowledges?max_id=" + current_knowledge_id;
+    //       if (url) {
+    //         $.ajax({
+    //           method: "GET",
+    //           url: url,
+    //           dataType: "script"
+    //         })
+    //       } else {
+    //         console.log("data ended")
+    //       }
+    //     }
+    //   })
+    // <%# end %>
   </script>
 <% end %>
