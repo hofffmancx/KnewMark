@@ -1,0 +1,46 @@
+
+.article {
+  background-color: white;
+  margin-bottom: 30px;
+  display: inline-block;
+  height: 200px;
+}
+
+
+.article {
+  .article-cover {
+    width: 40%;
+    height: 200px;
+    float: left;
+    display: block;
+    overflow: hidden;
+    img {
+      width: 100%;
+      vertical-align: middle;
+    }
+    .thumbnail {
+      border: none !important;
+      padding: 0 !important;
+      display: block;
+      border-radius: 0;
+    }
+
+  }
+  .article-content {
+    float: left;
+    width: 60%;
+    display: block;
+    word-break: break-all;
+    h3 { margin: 0}
+    h3 a {
+      font-size: 20px;
+      color: #333;
+      font-weight: 600;
+    }
+  }
+}
+
+.article .article-content small {
+  font-size: 11px !important;
+  color: grey;
+}

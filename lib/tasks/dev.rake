@@ -11,12 +11,12 @@ namespace :dev do
 
     categories = []
     5.times do |i|
-      categories << Category.create!( :title => Faker::Lorem.word )
+      categories << Category.create( :title => Faker::Lorem.word )
     end
 
     knowledges = []
     100.times do |i|
-      knowledges << Knowledge.create!( :title => Faker::Book.title,
+      knowledges << Knowledge.create( :title => Faker::Book.title,
                                       :description => Faker::Lorem.paragraphs,
                                       :status => "published",
                                       :category_id => categories.sample.id,
@@ -25,7 +25,7 @@ namespace :dev do
 
     reviews = []
     500.times do |i|
-      reviews << Review.create!( :title => Faker::Lorem.word,
+      reviews << Review.create( :title => Faker::Lorem.word,
                                  :content => Faker::Lorem.paragraph(50),
                                  :knowledge_id => knowledges.sample.id,
                                  :user_id => users.sample.id )
@@ -33,14 +33,14 @@ namespace :dev do
 
     discussions = []
     500.times do |i|
-      discussions << Discussion.create!( :content => Faker::Lorem.sentence,
+      discussions << Discussion.create( :content => Faker::Lorem.sentence,
                                          :knowledge_id => knowledges.sample.id,
                                          :user_id => users.sample.id )
     end
 
     questions = []
     500.times do |i|
-      questions << Question.create!( :title => Faker::Lorem.sentence,
+      questions << Question.create( :title => Faker::Lorem.sentence,
                                      :description => Faker::Lorem.sentence,
                                      :knowledge_id => knowledges.sample.id,
                                      :user_id => users.sample.id )
@@ -48,7 +48,7 @@ namespace :dev do
 
     comments = []
     500.times do |i|
-      comments << Comment.create!( :content => Faker::Lorem.sentence,
+      comments << Comment.create( :content => Faker::Lorem.sentence,
                                          :review_id => reviews.sample.id,
                                          :user_id => users.sample.id )
     end
