@@ -11,7 +11,7 @@
     <section>
       <%= simple_form_for [@knowledge, @question] do |f| %>
         <%= f.input :title, label: "问题：" %>
-        <%= f.input :description, label: "描述：" %>
+        <%= f.input :content, label: "描述：" %>
         <%= f.submit "发布问题", class: "btn btn-primary" %>
       <% end %>
 

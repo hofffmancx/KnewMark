@@ -3,21 +3,18 @@
     <div class="row">
       <main class="col-md-9">
         <%= render "knowledges/show_header" %>
-        <section class="knowledge-event">
-
-        <% @activities.each do |activity| %>
-          <div class="activity">
-
-            <% if activity.trackable && activity.parameters[:knowledge_id] == @knowledge.friendly_id %>
-            <%#= activity.inspect%>
-
-            <%= link_to activity.owner.username, activity.owner if activity.owner %>
-            <%= render_activity activity %>
-            <%= time_ago(activity) %>
-          </div>
-
+        <section class="knowledge-activity">
+          <% @activities.each do |activity| %>
+            <table class="table">
+              <% if activity.trackable && activity.parameters[:knowledge_id] == @knowledge.friendly_id %>
+                <tr>
+                  <td>
+                    <%= display_avatar(activity.owner, "25x25", "img-circle") %> <%= link_to activity.owner.username, activity.owner if activity.owner %> 在 <%= time_ago(activity) %> <%= render_activity activity %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
           <% end %>
-        <% end %>
       </section>
     </main>
     <aside class="col-md-3">

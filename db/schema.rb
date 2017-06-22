@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615013827) do
+ActiveRecord::Schema.define(version: 20170621021739) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20170615013827) do
     t.integer  "knowledge_id"
     t.integer  "user_id"
     t.string   "title"
-    t.text     "description"
+    t.text     "content"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "anwsers_count", default: 0, null: false

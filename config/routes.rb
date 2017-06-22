@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   resources :questions do
     resources :anwsers
   end
-  get "/post", to: "posts#index"
+  get "/posts", to: "posts#index"
 
   resources :knowledges do
     resources :activities

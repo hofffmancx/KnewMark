@@ -210,6 +210,7 @@ section .knowledge-pictures {
 
 .article-content, .article-info {
   padding: 0.5em 1em;
+  word-break: break-all;
 }
 
 article {
@@ -280,3 +281,13 @@ article {
     color: black; }
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }
+
+
+
+
+// ---------
+
+.knowledge-activity table tr td {
+  border-top: 0;
+  border-bottom: 1px dashed #eee;
+}

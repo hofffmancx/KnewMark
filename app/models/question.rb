@@ -6,7 +6,7 @@
 #  knowledge_id  :integer
 #  user_id       :integer
 #  title         :string
-#  description   :text
+#  content       :text
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  anwsers_count :integer          default(0), not null
