@@ -24,7 +24,7 @@
                 <% if activity.trackable_type == "Review" %>
                   <%= link_to activity.trackable.title.truncate(20), review_path(activity.trackable.friendly_id) %>
                 <% elsif activity.trackable_type == "Question" %>
-                  <%= link_to activity.trackable.title.truncate(20), question_path(activity.trackable.friendly_id) %>
+                  <%= link_to activity.trackable.title.truncate(20), knowledge_question_path(activity.parameters[:knowledge_id],activity.trackable.friendly_id) %>
                 <% end %>
               </h3>
               <p> <%= sanitize(activity.trackable.content.truncate(140)) %> </p>
