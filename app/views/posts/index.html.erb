@@ -27,7 +27,7 @@
                   <%= link_to activity.trackable.title.truncate(20), knowledge_question_path(activity.parameters[:knowledge_id],activity.trackable.friendly_id) %>
                 <% end %>
               </h3>
-              <p> <%= sanitize(activity.trackable.content.truncate(140)) %> </p>
+              <p> <%= sanitize(activity.trackable.content.truncate(100)) %> </p>
               <p style="text-align:right;">
                 <%= display_avatar(activity.owner, "25x25", "img-circle") %>  <%= link_to activity.owner.username, activity.owner if activity.owner %>
               <small><%= time_ago(activity) %></small>
