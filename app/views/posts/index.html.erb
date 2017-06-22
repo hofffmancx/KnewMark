@@ -2,42 +2,45 @@
   <div class="container">
     <!-- <div class="row"> -->
     <div class="article-list">
-      <% @activities.each do |activity| %>
+      <% @posts.each do |post| %>
         <div class="col-md-6 col-sm-12 col-xs-12">
           <div class="article">
             <div class="article-cover">
-              <a href="<%= knowledge_path(activity.parameters[:knowledge_id]) %>">
-                <% if activity.trackable.knowledge.photos.present? %>
-                  <%= image_tag(activity.trackable.knowledge.photos[0].image.url, class: 'thumbnail') %>
+              <a href="<%= knowledge_path(post.knowledge) %>">
+                <% if post.knowledge.photos.present? %>
+                  <%= image_tag(post.knowledge.photos[0].image.url, class: 'thumbnail') %>
                 <% else %>
-                  <%= image_tag("http://via.placeholder.com/250/87CEFA/ffffff?&text=#{activity.trackable.knowledge.title}", class: 'thumbnail') %>
+                  <%= image_tag("http://via.placeholder.com/250/87CEFA/ffffff?&text=#{post.knowledge.title}", class: 'thumbnail') %>
                 <% end %>
               </a>
             </div>
             <div class="article-content">
-              <% if activity.trackable_type == "Review" %>
+              <% if post.model_name.name == "Review" %>
                 <i class="fa fa-pen-circle-o fa-2x pull-right" aria-hidden="true"></i>
-              <% elsif activity.trackable_type == "Question" %>
+              <% elsif post.model_name.name == "Question" %>
                 <i class="fa fa-question-square-o fa-2x pull-right" aria-hidden="true"></i>
               <% end %>
               <h3 style="margin-bottom: 0.5em;">
-                <% if activity.trackable_type == "Review" %>
-                  <%= link_to activity.trackable.title.truncate(20), review_path(activity.trackable.friendly_id) %>
-                <% elsif activity.trackable_type == "Question" %>
-                  <%= link_to activity.trackable.title.truncate(20), knowledge_question_path(activity.parameters[:knowledge_id],activity.trackable.friendly_id) %>
+                <% if post.model_name.name == "Review" %>
+                  <%= link_to post.title.truncate(20), review_path(post.friendly_id) %>
+                <% elsif post.model_name.name == "Question" %>
+                  <%= link_to post.title.truncate(20), knowledge_question_path(post.knowledge_id, post.friendly_id) %>
                 <% end %>
               </h3>
               <p style="text-align:right;">
-                <%= display_avatar(activity.owner, "25x25", "img-circle") %>  <%= link_to activity.owner.username, activity.owner if activity.owner %>
-              <small><%= time_ago(activity) %></small>
+                <%= display_avatar(post.user, "25x25", "img-circle") %>  <%= link_to post.user.username%>
+              <small><%= time_ago(post) %></small>
               </p>
-              <p> <%= simple_format(activity.trackable.content.truncate(140)) %> </p>
+              <p> <%= simple_format(post.content.truncate(140)) %> </p>
 
 
             </div>
           </div>
         </div>
       <% end %>
+      <div class="apple_pagination">
+        <%= will_paginate @posts, :container => false %>
+      </div>
     </div>
   </div>
 </div>
