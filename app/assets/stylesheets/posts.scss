@@ -42,10 +42,14 @@
       font-size: 16px;
       color: #333;
       font-weight: 600;
+      margin-top: 0.5em;
+    }
+    time {
+      font-size: 11px;
     }
     .brief {
       color: grey;
-      height: 120px;
+      height: 100px;
       overflow: hidden;
       margin-bottom: 0.5em;
     }
@@ -55,4 +59,13 @@
 .article .article-content small {
   font-size: 11px !important;
   color: grey;
+}
+
+@media only screen and (max-width: 640px) {
+  h3 {
+      font-weight: 800 !important;
+      margin: 10px 0 5px !important;
+      max-height: 19px;
+      overflow: hidden;
+  }
 }

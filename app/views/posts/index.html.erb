@@ -20,7 +20,7 @@
               <% elsif post.model_name.name == "Question" %>
                 <i class="fa fa-question-square-o fa-2x pull-right" aria-hidden="true"></i>
               <% end %>
-              <h3 style="margin-bottom: 0.5em;">
+              <h3 style="margin-bottom: 0.5em;margin-top: 0.5em;">
                 <% if post.model_name.name == "Review" %>
                   <%= link_to post.title.truncate(15), review_path(post.friendly_id) %>
                 <% elsif post.model_name.name == "Question" %>
