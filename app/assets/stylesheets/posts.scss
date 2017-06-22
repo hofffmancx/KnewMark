@@ -32,16 +32,22 @@
   }
   .article-content {
     width: 60%;
+    height: 100%;
     float: left;
     display: block;
     word-break: break-all;
-    height: 90%;
     overflow: hidden;
     h3 { margin: 0}
     h3 a {
       font-size: 20px;
       color: #333;
       font-weight: 600;
+    }
+    .brief {
+      color: grey;
+      height: 120px;
+      overflow: hidden;
+      margin-bottom: 0.5em;
     }
   }
 }
