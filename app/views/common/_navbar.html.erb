@@ -10,11 +10,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><i class="fa fa-bookmark-o logo" aria-hidden="true"></i> KnewMark</a>
+          <a class="navbar-brand" href="/posts"><i class="fa fa-bookmark-o logo" aria-hidden="true"></i> KnewMark</a>
         </div>
-
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav">
+            <li><%= link_to '文章', main_app.posts_path %></li>
+            <li><%= link_to '发现', main_app.knowledges_path %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 知识分类<span class="caret"></span>
@@ -25,10 +26,10 @@
                   <a href="<%#= category_path(g) %>"><%#= g.first.title %></a>
                   </li>
                 <%# end -%> -->
-                <li><%= link_to("全部", knowledges_path) %></li>
+                <li><%= link_to("全部", main_app.knowledges_path) %></li>
                 <% Category.all.each do |category| %>
                   <li>
-                    <%= link_to(category.title, knowledges_path(category: category.title)) %>
+                    <%= link_to(category.title, main_app.knowledges_path(category: category.title)) %>
                   </li>
                 <% end %>
               </ul>
@@ -38,15 +39,15 @@
                 筛选<span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to("已学人数", knowledges_path(order: "by_have_counts", category: @category)) %></li>
-                <li><%= link_to("想学人数", knowledges_path(order: "by_want_counts", category: @category)) %></li>
-                <li><%= link_to("关注人数", knowledges_path(order: "by_follows_counts", category: @category)) %></li>
-                <li><%= link_to("喜欢人数", knowledges_path(order: "by_likes_counts", category: @category)) %></li>
+                <li><%= link_to("已学人数", main_app.knowledges_path(order: "by_have_counts", category: @category)) %></li>
+                <li><%= link_to("想学人数", main_app.knowledges_path(order: "by_want_counts", category: @category)) %></li>
+                <li><%= link_to("关注人数", main_app.knowledges_path(order: "by_follows_counts", category: @category)) %></li>
+                <li><%= link_to("喜欢人数", main_app.knowledges_path(order: "by_likes_counts", category: @category)) %></li>
               </ul>
             </li>
             <li>
               <div class="navbar-form navbar-left" role="search">
-                <%= form_tag search_knowledges_path , :method => :get  do %>
+                <%= form_tag main_app.search_knowledges_path , :method => :get  do %>
                   <div class="input-group" id="search-id" >
                     <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="search">
                     <div class="input-group-btn">
@@ -71,7 +72,15 @@
                   <i class="fa fa-plus" aria-hidden="true"></i> 推荐知识
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to("填写推荐表", new_knowledge_path) %></li>
+                  <li><%= link_to("填写推荐表", main_app.new_knowledge_path) %></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell" aria-hidden="true"></i> 消息中心(<%= unread_notify_count %>)
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to("查看全部消息", notifications_path) %></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -81,13 +90,13 @@
                 </a>
                 <ul class="dropdown-menu">
                   <% if current_user.admin? %>
-                  <li><%= link_to "Admin 后台", admin_knowledges_path %></li>
+                  <li><%= link_to "Admin 后台", main_app.admin_knowledges_path %></li>
                   <% end -%>
-                  <li> <%= link_to "我的知识库", user_path(current_user) %></li>
-                  <li> <%= link_to "我推荐的课程", account_knowledges_path %></li>
-                  <li> <%= link_to "编辑账户信息", edit_account_user_path %></li>
-                  <li> <%= link_to "修改密码", account_password_path %></li>
-                  <li> <%= link_to("登出", session_path(current_user), method: :delete) %> </li>
+                  <li> <%= link_to "我的知识库", main_app.user_path(current_user) %></li>
+                  <li> <%= link_to "我推荐的课程", main_app.account_knowledges_path %></li>
+                  <li> <%= link_to "编辑账户信息", main_app.edit_account_user_path %></li>
+                  <li> <%= link_to "修改密码", main_app.account_password_path %></li>
+                  <li> <%= link_to("登出", main_app.session_path(current_user), method: :delete) %> </li>
                 </ul>
               </li>
             <% end -%>

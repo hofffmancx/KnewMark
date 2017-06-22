@@ -7,7 +7,7 @@
     <div class="text-center">
       <p class="title"><%= link_to(question.title, knowledge_question_path(@knowledge, question)) %></p>
     </div>
-    <%= sanitize question.description %>
+    <%= sanitize question.content %>
     <p><%= link_to("我来回答", knowledge_question_path(@knowledge, question), class: "btn btn-default btn-xs pull-right") %></p>
 
     <p class="acticle-actions">

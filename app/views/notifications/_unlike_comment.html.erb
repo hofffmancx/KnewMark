@@ -1,0 +1,8 @@
+<div class="media-heading">
+  <%= link_to notification.actor.username, main_app.user_path(notification.actor) %> 取消了喜欢了你对
+  <%= link_to notification.second_target.title, main_app.review_path(notification.target.review) %>
+的评论
+</div>
+<div class="media-content">
+  <%= sanitize(notification.target.content) %>
+</div>

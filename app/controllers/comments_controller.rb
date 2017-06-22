@@ -7,6 +7,9 @@ class CommentsController < ApplicationController
     @comment.review = @review
     @comment.user = current_user
     @comment.save
+    @comment.create_activity :create, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
+    Notification.create(notify_type: 'create_comment', target: @comment, second_target: @comment.review, actor: current_user, user: @comment.review.user)
+
   end
 
   def edit
@@ -15,7 +18,8 @@ class CommentsController < ApplicationController
   def update
     @comment.update(comment_params)
     @comment.user = current_user
-    @comment.update_event!
+    # @comment.update_event!
+    @comment.create_activity :update, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
 
   end
 
@@ -29,14 +33,20 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @comment)
     @comment.user = current_user
-    @comment.like!
+    @comment.create_activity :like, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
+    Notification.create(notify_type: 'like_comment', target: @comment, second_target: @comment.review, actor: current_user, user: @comment.user)
+
+    # @comment.like!
   end
 
   def unlike
     @comment = Comment.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @comment)
     @comment.user = current_user
-    @comment.unlike!
+    @comment.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @comment.review.knowledge.friendly_id}
+    Notification.create(notify_type: 'unlike_comment', target: @comment, second_target: @comment.review, actor: current_user, user: @comment.user)
+
+    # @comment.unlike!
   end
 
   protected

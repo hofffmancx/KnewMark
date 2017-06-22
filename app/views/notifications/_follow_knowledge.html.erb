@@ -1,0 +1,4 @@
+<div class="media-heading">
+  <%= link_to notification.actor.username, main_app.user_path(notification.actor) %> 关注了你推荐的知识
+  <%= link_to notification.target.title, main_app.knowledge_path(notification.target) %>
+</div>

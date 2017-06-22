@@ -112,6 +112,7 @@ class User < ApplicationRecord
   has_many :photos, :dependent => :destroy
   has_one :profile
   accepts_nested_attributes_for :profile
+  # has_many :events, foreign_key: "creator_id"
 
   mount_uploader :avatar, AvatarUploader
 

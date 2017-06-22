@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615013827) do
+
+ActiveRecord::Schema.define(version: 20170621021739) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -100,8 +101,8 @@ ActiveRecord::Schema.define(version: 20170615013827) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["eventable_id", "eventable_type"], name: "index_events_on_eventable_id_and_eventable_type"
-    t.index ["knowledge_id"], name: "index_events_on_knowledge_id"
     t.index ["ownerable_id", "ownerable_type"], name: "index_events_on_ownerable_id_and_ownerable_type"
+    t.index [nil], name: "index_events_on_team_id"
   end
 
   create_table "knowledges", force: :cascade do |t|
@@ -177,7 +178,7 @@ ActiveRecord::Schema.define(version: 20170615013827) do
     t.integer  "knowledge_id"
     t.integer  "user_id"
     t.string   "title"
-    t.text     "description"
+    t.text     "content"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "anwsers_count", default: 0, null: false

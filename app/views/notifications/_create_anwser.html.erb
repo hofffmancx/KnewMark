@@ -1,0 +1,7 @@
+<div class="media-heading">
+  <%= link_to notification.actor.username, main_app.user_path(notification.actor) %> 回答了你提出的问题
+  <%= link_to notification.second_target.title, main_app.knowledge_question_path(notification.target.question.knowledge, notification.target.question) %>
+</div>
+<div class="media-content">
+  <%= sanitize(notification.target.content) %>
+</div>

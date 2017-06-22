@@ -16,6 +16,7 @@ class DiscussionsController < ApplicationController
     @discussion.knowledge = @knowledge
     @discussion.user = current_user
     if @discussion.save
+      @discussion.create_activity :create, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
       redirect_to knowledge_path(@knowledge), notice: "评测发布成功。"
     else
       render :new
@@ -32,7 +33,8 @@ class DiscussionsController < ApplicationController
   def update
     if @discussion.update(discussion_params)
       @discussion.user = current_user
-      @discussion.update_event!
+      @discussion.create_activity :update, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
+      # @discussion.update_event!
       redirect_to knowledge_path(@knowledge), notice: "评测更新成功。"
     else
       render :edit
@@ -42,6 +44,7 @@ class DiscussionsController < ApplicationController
   def destroy
     @discussion.destroy
     @discussion.user = current_user
+    @discussion.create_activity :destroy, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
     redirect_to knowledge_path(@knowledge), alert: "评测已经删除。"
   end
 
@@ -49,14 +52,19 @@ class DiscussionsController < ApplicationController
     @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.create_action(:like, target: @discussion)
     @discussion.user = current_user
-    @discussion.like!
+    @discussion.create_activity :like, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
+    Notification.create(notify_type: 'like_discussion', target: @discussion, second_target: @discussion.knowledge, actor: current_user, user: @discussion.user)
+    # @discussion.like!
   end
 
   def unlike
     @discussion = Discussion.find_by_friendly_id!(params[:id])
     current_user.destroy_action(:like, target: @discussion)
     @discussion.user = current_user
-    @discussion.unlike!
+    @discussion.create_activity :unlike, owner: current_user,:params => {:knowledge_id => @discussion.knowledge.friendly_id}
+    Notification.create(notify_type: 'unlike_discussion', target: @discussion, second_target: @discussion.knowledge, actor: current_user, user: @discussion.user)
+
+    # @discussion.unlike!
   end
 
   protected
