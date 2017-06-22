@@ -22,14 +22,14 @@
               <% end %>
               <h3 style="margin-bottom: 0.5em;">
                 <% if post.model_name.name == "Review" %>
-                  <%= link_to post.title.truncate(20), review_path(post.friendly_id) %>
+                  <%= link_to post.title.truncate(15), review_path(post.friendly_id) %>
                 <% elsif post.model_name.name == "Question" %>
-                  <%= link_to post.title.truncate(20), knowledge_question_path(post.knowledge_id, post.friendly_id) %>
+                  <%= link_to post.title.truncate(15), knowledge_question_path(post.knowledge.friendly_id, post.friendly_id) %>
                 <% end %>
               </h3>
               <div class="brief"> <%= simple_format(post.content.truncate(140)) %> </div>
               <div style="text-align:right;">
-                <%= display_avatar(post.user, "25x25", "img-circle") %>  <%= link_to post.user.username%>
+                <%= display_avatar(post.user, "25x25", "img-circle") %>  <%= link_to post.user.username.truncate(5) %>
               <small><%= time_ago(post) %></small>
               </div>
 
