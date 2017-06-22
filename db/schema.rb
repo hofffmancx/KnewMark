@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613115942) do
+ActiveRecord::Schema.define(version: 20170615013827) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "action_type",   null: false
@@ -23,6 +23,22 @@ ActiveRecord::Schema.define(version: 20170613115942) do
     t.datetime "updated_at",    null: false
     t.index ["target_type", "target_id", "action_type"], name: "index_actions_on_target_type_and_target_id_and_action_type"
     t.index ["user_type", "user_id", "action_type"], name: "index_actions_on_user_type_and_user_id_and_action_type"
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "trackable_type"
+    t.integer  "trackable_id"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.string   "key"
+    t.text     "parameters"
+    t.string   "recipient_type"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
   end
 
   create_table "anwsers", force: :cascade do |t|
@@ -117,6 +133,23 @@ ActiveRecord::Schema.define(version: 20170613115942) do
   create_table "knowledges_tags", force: :cascade do |t|
     t.integer "knowledge_id"
     t.integer "tag_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",            null: false
+    t.integer  "actor_id"
+    t.string   "notify_type",        null: false
+    t.string   "target_type"
+    t.integer  "target_id"
+    t.string   "second_target_type"
+    t.integer  "second_target_id"
+    t.string   "third_target_type"
+    t.integer  "third_target_id"
+    t.datetime "read_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["user_id", "notify_type"], name: "index_notifications_on_user_id_and_notify_type"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|
