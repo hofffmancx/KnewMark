@@ -4,6 +4,8 @@
   margin-bottom: 30px;
   display: inline-block;
   height: 200px;
+  width: 100%;
+
 }
 
 
@@ -29,10 +31,12 @@
 
   }
   .article-content {
-    float: left;
     width: 60%;
+    float: left;
     display: block;
     word-break: break-all;
+    height: 90%;
+    overflow: hidden;
     h3 { margin: 0}
     h3 a {
       font-size: 20px;

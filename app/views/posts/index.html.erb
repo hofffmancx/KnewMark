@@ -20,18 +20,19 @@
               <% elsif activity.trackable_type == "Question" %>
                 <i class="fa fa-question-square-o fa-2x pull-right" aria-hidden="true"></i>
               <% end %>
-              <h3>
+              <h3 style="margin-bottom: 0.5em;">
                 <% if activity.trackable_type == "Review" %>
                   <%= link_to activity.trackable.title.truncate(20), review_path(activity.trackable.friendly_id) %>
                 <% elsif activity.trackable_type == "Question" %>
                   <%= link_to activity.trackable.title.truncate(20), knowledge_question_path(activity.parameters[:knowledge_id],activity.trackable.friendly_id) %>
                 <% end %>
               </h3>
-              <p> <%= sanitize(activity.trackable.content.truncate(100)) %> </p>
               <p style="text-align:right;">
                 <%= display_avatar(activity.owner, "25x25", "img-circle") %>  <%= link_to activity.owner.username, activity.owner if activity.owner %>
               <small><%= time_ago(activity) %></small>
               </p>
+              <p> <%= simple_format(activity.trackable.content.truncate(140)) %> </p>
+
 
             </div>
           </div>
