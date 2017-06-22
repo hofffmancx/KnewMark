@@ -41,7 +41,7 @@ namespace :dev do
     questions = []
     500.times do |i|
       questions << Question.create( :title => Faker::Lorem.sentence,
-                                     :description => Faker::Lorem.sentence,
+                                  
                                      :knowledge_id => knowledges.sample.id,
                                      :user_id => users.sample.id )
     end
